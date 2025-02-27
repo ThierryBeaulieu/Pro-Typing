@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import dummyText from '../Pages/database.json';
+import dummyText from '../database.json';
 
 import './PrototypeTyping.css';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 function PrototypeTyping() {
   const [userInput, setUserInput] = useState('');
-  const text = dummyText.content.split('');
+  const text = dummyText['short-content'].split('');
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -25,7 +30,11 @@ function PrototypeTyping() {
   return (
     <div className="paragraph">
       {text.map((letter: string, index: number) => (
-        <span key={index}>{letter}</span>
+        <div className="tile-wrapper">
+          <span className="tile" key={index}>
+            {letter}
+          </span>
+        </div>
       ))}
     </div>
   );
