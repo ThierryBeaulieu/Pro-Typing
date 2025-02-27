@@ -18,8 +18,20 @@
   padding-right: 5vw;
   height: 40vh;
   overflow-y: auto;
-  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
   border: 1px solid black;
   padding: 10px;
 }
@@ -32,11 +44,31 @@
   padding-right: 5vw;
   height: 40vh;
   overflow: hidden;
-  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
   padding: 10px;
 }
 
 .scrollable-content {
   position: relative;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
 }
