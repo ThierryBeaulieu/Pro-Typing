@@ -26,12 +26,16 @@ function PrototypeTyping() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+  console.log({ userInput });
 
   return (
     <div className="paragraph">
       {text.map((letter: string, index: number) => (
         <div className="tile-wrapper">
-          <span className="tile" key={index}>
+          <span
+            className={`tile ${userInput.length == index ? 'active' : ''} `}
+            key={index}
+          >
             {letter}
           </span>
         </div>

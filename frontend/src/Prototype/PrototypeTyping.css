@@ -26,26 +26,28 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-family: Roboto, sans-serif;
   background-color: var(--tile);
   border-radius: 3px;
   border-bottom: 4px solid var(--tile);
   border-top: 4px solid var(--tile);
-  width: 45px;
-  height: 50px;
-  margin: 2px;
+  width: 40px;
+  height: 40px;
+  margin: 1.5px;
 }
 
-.tile:hover {
+.active {
   border-bottom: 4px solid var(--gold);
   border-radius: 3px 3px 0px 0px;
 }
 
-.correct .tile {
+.correct {
   background-color: var(--green-tile);
+  border-color: var(--green-tile);
 }
 
-.bad .tile {
+.incorrect {
   background-color: var(--red-tile);
+  border-color: var(--red-tile);
 }
