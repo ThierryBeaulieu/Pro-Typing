@@ -45,9 +45,11 @@
 .correct {
   background-color: var(--green-tile);
   border-color: var(--green-tile);
+  border-radius: 3px;
 }
 
 .incorrect {
   background-color: var(--red-tile);
   border-color: var(--red-tile);
+  border-radius: 3px;
 }
