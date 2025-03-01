@@ -49,7 +49,6 @@
 .active {
   border-bottom: 4px solid var(--gold);
 }
-
 .correct {
   color: white;
   border-radius: 3px;
