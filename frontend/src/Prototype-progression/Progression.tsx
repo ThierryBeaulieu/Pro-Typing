@@ -19,15 +19,15 @@ const callToAction = createTheme({
 });
 
 const levels = [
-  ['50 MPM', '52 MPM', '55 MPM', '58 MPM', '50 MPM', 'Get Certified'],
-  ['60 MPM', '62 MPM', '65 MPM', '68 MPM', '70 MPM', 'Get Certified'],
-  ['70 MPM', '72 MPM', '75 MPM', '78 MPM', '80 MPM', 'Get Certified'],
-  ['80 MPM', '82 MPM', '85 MPM', '88 MPM', '90 MPM', 'Get Certified'],
-  ['90 MPM', '92 MPM', '95 MPM', '98 MPM', '100 MPM', 'Get Certified'],
-  ['100 MPM', '102 MPM', '105 MPM', '108 MPM', '110 MPM', 'Get Certified'],
-  ['110 MPM', '112 MPM', '115 MPM', '118 MPM', '120 MPM', 'Get Certified'],
-  ['120 MPM', '122 MPM', '125 MPM', '128 MPM', '130 MPM', 'Get Certified'],
-  ['130 MPM', '132 MPM', '135 MPM', '138 MPM', '140 MPM', 'Get Certified'],
+  ['50', '52', '55', '58', '50', 'Get Certified'],
+  ['60', '62', '65', '68', '70', 'Get Certified'],
+  ['70', '72', '75', '78', '80', 'Get Certified'],
+  ['80', '82', '85', '88', '90', 'Get Certified'],
+  ['90', '92', '95', '98', '100', 'Get Certified'],
+  ['100', '102', '105', '108', '110', 'Get Certified'],
+  ['110', '112', '115', '118', '120', 'Get Certified'],
+  ['120', '122', '125', '128', '130', 'Get Certified'],
+  ['130', '132', '135', '138', '140', 'Get Certified'],
 ];
 
 function ProgressionPage() {

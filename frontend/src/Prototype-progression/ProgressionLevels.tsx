@@ -1,5 +1,6 @@
 import { ThemeProvider, Theme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface ProgressionLevelsProps {
   theme: Theme; // MUI theme type
@@ -12,6 +13,12 @@ function ProgressionLevels({
   actionTheme,
   levels,
 }: ProgressionLevelsProps) {
+  const navigate = useNavigate();
+
+  const handleClick = (level: string) => {
+    navigate(`/training/${level}`);
+  };
+
   return (
     <>
       {levels.map((certification: string[], certificationKey: number) => (
@@ -27,8 +34,9 @@ function ProgressionLevels({
                     height: 50,
                   }}
                   variant="contained"
+                  onClick={() => handleClick(level)}
                 >
-                  {level}
+                  {index !== certification.length - 1 ? level + ' WPM' : level}
                 </Button>
               </ThemeProvider>
               {index !== certification.length - 1 && (
