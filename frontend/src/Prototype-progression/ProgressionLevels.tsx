@@ -25,7 +25,6 @@ function ProgressionLevels({
                   sx={{
                     width: 100,
                     height: 50,
-                    color: 'palette.primary.light',
                   }}
                   variant="contained"
                 >

@@ -1,10 +1,12 @@
 import { createTheme } from '@mui/material/styles';
-import { lightBlue, blue, red } from '@mui/material/colors';
+import { blue, red } from '@mui/material/colors';
 import ProgressionLevels from './ProgressionLevels';
 
 const defaultTheme = createTheme({
   palette: {
-    primary: lightBlue,
+    primary: {
+      main: blue[400],
+    },
     secondary: blue,
   },
 });
