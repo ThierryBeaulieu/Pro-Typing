@@ -1,4 +1,3 @@
-import './Progression.css';
 import { createTheme } from '@mui/material/styles';
 import { lightBlue, blue, red } from '@mui/material/colors';
 import ProgressionLevels from './ProgressionLevels';

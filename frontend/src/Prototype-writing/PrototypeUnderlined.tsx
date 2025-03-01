@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import dummyText from '../database.json';
-
-import './PrototypeUnderlined.css';
+import { useParams } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -22,6 +21,8 @@ function sentenceToWords(text: string): string[] {
 }
 
 function PrototypeTyping() {
+  const { wpm } = useParams();
+  console.log(wpm);
   const [userInput, setUserInput] = useState('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
   const sentence: string = dummyText['long-content'];
@@ -72,7 +73,7 @@ function PrototypeTyping() {
 
   return (
     <>
-      <div className="paragraph">
+      <div className="paragraph wrapper">
         {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
           <div className="word" key={wordIndex}>
             {word.split('').map((letter, letterIndex) => (

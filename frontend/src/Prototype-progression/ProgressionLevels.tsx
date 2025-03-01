@@ -1,4 +1,3 @@
-import './Progression.css';
 import { ThemeProvider, Theme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
@@ -15,10 +14,10 @@ function ProgressionLevels({
 }: ProgressionLevelsProps) {
   return (
     <>
-      {levels.map((certification: string[]) => (
-        <div className="line-level">
+      {levels.map((certification: string[], certificationKey: number) => (
+        <div className="line-level" key={certificationKey}>
           {certification.map((level: string, index: number) => (
-            <div className="arrow-and-box">
+            <div className="arrow-and-box" key={index}>
               <ThemeProvider
                 theme={index !== certification.length - 1 ? theme : actionTheme}
               >
