@@ -49,14 +49,24 @@ function PrototypeTyping() {
     };
   }, [correctChar.length, sentence]);
 
-  const isCorrectChar = (index: number) => {
-    if (correctChar[index] === true) return 'correct';
-    if (correctChar[index] === false) return 'incorrect';
-    return '';
-  };
+  function isCorrectChar(wordIndex: number, letterIndex: number) {
+    const charIndex =
+      sentenceToWords(sentence)
+        .slice(0, wordIndex)
+        .reduce((acc, word) => acc + word.length, 0) + letterIndex;
 
-  const isActiveChar = (index: number) => {
-    return userInput.length === index ? 'active' : '';
+    if (correctChar[charIndex] === true) return 'correct';
+    if (correctChar[charIndex] === false) return 'incorrect';
+    return '';
+  }
+
+  const isActiveChar = (wordIndex: number, letterIndex: number) => {
+    const charIndex =
+      sentenceToWords(sentence)
+        .slice(0, wordIndex)
+        .reduce((acc, word) => acc + word.length, 0) + letterIndex;
+
+    return userInput.length === charIndex ? 'active' : '';
   };
 
   return (
@@ -64,10 +74,10 @@ function PrototypeTyping() {
       <div className="line">
         {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
           <div className="word" key={wordIndex}>
-            {word.split('').map((letter, index) => (
-              <div className="letter-wrapper" key={index}>
+            {word.split('').map((letter, letterIndex) => (
+              <div className="letter-wrapper" key={letterIndex}>
                 <span
-                  className={`letter ${isCorrectChar(wordIndex)} ${isActiveChar(wordIndex)}`}
+                  className={`letter ${isCorrectChar(wordIndex, letterIndex)} ${isActiveChar(wordIndex, letterIndex)}`}
                 >
                   {letter}
                 </span>
