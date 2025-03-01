@@ -8,9 +8,10 @@
   --tile: #515151;
   --green-tile: #526e47;
   --red-tile: #754c4c;
+  --background: #242424;
 }
 
-.line {
+.paragraph {
   min-width: 400px;
   display: flex;
   justify-content: flex-start;
@@ -30,12 +31,12 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  font-size: 1.5em;
+  font-size: 2em;
   font-family: Roboto, sans-serif;
   background-color: var(--tile);
-  border-radius: 3px;
   border-bottom: 4px solid var(--tile);
   border-top: 4px solid var(--tile);
+  border-radius: 3px;
   width: 35px;
   height: 35px;
   margin: 1.5px;

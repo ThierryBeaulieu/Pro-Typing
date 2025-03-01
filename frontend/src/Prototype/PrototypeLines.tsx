@@ -24,7 +24,7 @@ function sentenceToWords(text: string): string[] {
 function PrototypeTyping() {
   const [userInput, setUserInput] = useState('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
-  const sentence: string = dummyText['medium-content'];
+  const sentence: string = dummyText['long-content'];
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -32,6 +32,7 @@ function PrototypeTyping() {
         setUserInput((prev) => prev.slice(0, -1));
         setCorrectChar((prev) => prev.slice(0, -1));
       } else if (event.key.length === 1) {
+        event.preventDefault();
         if (sentence.length === correctChar.length) return;
         setUserInput((prev) => prev + event.key);
 
@@ -71,7 +72,7 @@ function PrototypeTyping() {
 
   return (
     <>
-      <div className="line">
+      <div className="paragraph">
         {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
           <div className="word" key={wordIndex}>
             {word.split('').map((letter, letterIndex) => (
