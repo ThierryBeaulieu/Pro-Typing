@@ -12,6 +12,7 @@
   --red-tile: #754c4c;
   --red-letter: #ff4747;
   --background: #242424;
+  --white-background: #efd5b2;
 }
 
 .paragraph {
@@ -30,23 +31,23 @@
 }
 
 .letter {
-  font-weight: 500;
+  font-weight: 450;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   font-size: 30px;
   font-family: Roboto, sans-serif;
-  width: 24px;
-  height: 30px;
   border-bottom: 4px solid var(--background);
   margin-bottom: 5px;
   margin-top: 10px;
+  padding-right: 1px;
+  min-width: 12px;
+  min-height: 45px;
 }
 
 .active {
   border-bottom: 4px solid var(--gold);
-  border-radius: 3px 3px 0px 0px;
 }
 
 .correct {
@@ -57,5 +58,4 @@
 .incorrect {
   color: var(--red-letter);
   border-color: var(--red-tile);
-  border-radius: 3px;
 }

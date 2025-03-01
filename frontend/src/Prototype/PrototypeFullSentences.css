@@ -3,14 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  color: #8f8f8f;
 
   --gold: #e2b714;
   --tile: #515151;
   --green-tile: #526e47;
-  --green-letter: #3cdd41;
   --red-tile: #754c4c;
-  --red-letter: #ff4747;
   --background: #242424;
 }
 
@@ -30,17 +27,20 @@
 }
 
 .letter {
-  font-weight: 500;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 2em;
   font-family: Roboto, sans-serif;
-  width: 24px;
-  height: 30px;
-  border-bottom: 4px solid var(--background);
-  margin-bottom: 5px;
+  background-color: var(--tile);
+  border-bottom: 4px solid var(--tile);
+  border-top: 4px solid var(--tile);
+  border-radius: 3px;
+  width: 35px;
+  height: 35px;
+  margin: 1.5px;
+  margin-bottom: 10px;
   margin-top: 10px;
 }
 
@@ -50,12 +50,13 @@
 }
 
 .correct {
-  color: white;
+  background-color: var(--green-tile);
+  border-color: var(--green-tile);
   border-radius: 3px;
 }
 
 .incorrect {
-  color: var(--red-letter);
+  background-color: var(--red-tile);
   border-color: var(--red-tile);
   border-radius: 3px;
 }
