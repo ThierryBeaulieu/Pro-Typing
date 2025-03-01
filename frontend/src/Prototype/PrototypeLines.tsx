@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import dummyText from '../database.json';
 
-import './PrototypeTyping.css';
+import './PrototypeLines.css';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+function sentenceToWords(text: string): string[] {
+  const words = text.split(' ');
+  const fullSentence = [];
 
-
+  for (let i = 0; i < words.length; i++) {
+    fullSentence.push(words[i]);
+    if (i !== words.length - 1) {
+      fullSentence.push(' ');
+    }
+  }
+  return fullSentence;
+}
 
 function PrototypeTyping() {
   const [userInput, setUserInput] = useState('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
-  const text = dummyText['medium-content'].split('');
-  const text2 = dummyText['short-content'].split('');
+  const sentence: string = dummyText['medium-content'];
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -23,10 +32,10 @@ function PrototypeTyping() {
         setUserInput((prev) => prev.slice(0, -1));
         setCorrectChar((prev) => prev.slice(0, -1));
       } else if (event.key.length === 1) {
-        if (text.length === correctChar.length) return;
+        if (sentence.length === correctChar.length) return;
         setUserInput((prev) => prev + event.key);
 
-        if (text[correctChar.length] === event.key) {
+        if (sentence[correctChar.length] === event.key) {
           setCorrectChar((prev) => [...prev, true]);
         } else {
           setCorrectChar((prev) => [...prev, false]);
@@ -38,10 +47,7 @@ function PrototypeTyping() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [correctChar.length, text]);
-  console.log({ userInput });
-  console.log(correctChar.length);
-  console.log(text.length);
+  }, [correctChar.length, sentence]);
 
   const isCorrectChar = (index: number) => {
     if (correctChar[index] === true) return 'correct';
@@ -56,26 +62,17 @@ function PrototypeTyping() {
   return (
     <>
       <div className="line">
-        {text.map((letter: string, index: number) => (
-          <div className="tile-wrapper">
-            <span
-              className={`tile ${isCorrectChar(index)} ${isActiveChar(index)}`}
-              key={index}
-            >
-              {letter}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="line">
-        {text2.map((letter: string, index: number) => (
-          <div className="tile-wrapper">
-            <span
-              className={`tile ${isCorrectChar(index)} ${isActiveChar(index)}`}
-              key={index}
-            >
-              {letter}
-            </span>
+        {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
+          <div className="word" key={wordIndex}>
+            {word.split('').map((letter, index) => (
+              <div className="letter-wrapper" key={index}>
+                <span
+                  className={`letter ${isCorrectChar(wordIndex)} ${isActiveChar(wordIndex)}`}
+                >
+                  {letter}
+                </span>
+              </div>
+            ))}
           </div>
         ))}
       </div>

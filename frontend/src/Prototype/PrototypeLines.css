@@ -11,22 +11,21 @@
 }
 
 .line {
-  min-width: 600px;
-  display: flex;
-}
-
-.paragraph {
+  min-width: 400px;
   display: flex;
   justify-content: flex-start;
-  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  text-align: justify;
-  padding: 10%;
-  font-size: 2em;
 }
 
-.tile {
+.word {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.letter {
   display: flex;
   justify-content: center;
   text-align: center;
