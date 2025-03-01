@@ -16,7 +16,7 @@ function ProgressionLevels({
   const navigate = useNavigate();
 
   const handleClick = (level: string) => {
-    navigate(`/training/${level}`);
+    navigate(`/typing/${level}`);
   };
 
   return (

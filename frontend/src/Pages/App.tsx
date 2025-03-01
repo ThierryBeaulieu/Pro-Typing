@@ -6,7 +6,7 @@ function App() {
   const routes = [
     { path: '/', element: <ProgressionPage /> },
     {
-      path: '/training/:wpm',
+      path: '/typing/:wpm',
       element: <TypingPage />,
     },
     { path: '/progression', element: <ProgressionPage /> },

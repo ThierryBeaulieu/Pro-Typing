@@ -1,9 +1,13 @@
-import PrototypeUnderlined from '../Prototype-writing/PrototypeUnderlined';
+import PrototypeTyping from '../Prototype-writing/PrototypeUnderlined';
+import NavigationBar from './NavigationBar';
 
 function TypingPage() {
   return (
     <>
-      <PrototypeUnderlined />
+      <NavigationBar name={'Training'} />
+      <div className="progression">
+        <PrototypeTyping />
+      </div>
     </>
   );
 }
