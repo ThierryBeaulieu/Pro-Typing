@@ -1,12 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import ProgressionPage from '../Pages/ProgressionPage';
 import TypingPage from '../Pages/TypingPage';
+import TrainingPage from './TrainingPage';
 
 function App() {
   const routes = [
     { path: '/', element: <ProgressionPage /> },
     {
-      path: '/typing/:wpm',
+      path: '/training/:wpm',
+      element: <TrainingPage />,
+    },
+    {
+      path: '/typing/:exercise',
       element: <TypingPage />,
     },
     { path: '/progression', element: <ProgressionPage /> },

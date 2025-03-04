@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface NavigationBarProp {
   name: string;
+  wordsPerMinute?: string;
 }
 
 const theme = createTheme({
@@ -23,7 +24,7 @@ const theme = createTheme({
   },
 });
 
-function NavigationBar({ name }: NavigationBarProp) {
+function NavigationBar({ name, wordsPerMinute }: NavigationBarProp) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -46,7 +47,7 @@ function NavigationBar({ name }: NavigationBarProp) {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" component="div">
-                {name}
+                {name} {wordsPerMinute}
               </Typography>
             </Toolbar>
           </AppBar>

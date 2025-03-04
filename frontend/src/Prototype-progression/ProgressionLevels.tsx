@@ -16,7 +16,7 @@ function ProgressionLevels({
   const navigate = useNavigate();
 
   const handleClick = (level: string) => {
-    navigate(`/typing/${level}`);
+    navigate(`/training/${level}`);
   };
 
   return (
@@ -36,7 +36,7 @@ function ProgressionLevels({
                   variant="contained"
                   onClick={() => handleClick(level)}
                 >
-                  {index !== certification.length - 1 ? level + ' WPM' : level}
+                  {level} WPM
                 </Button>
               </ThemeProvider>
               {index !== certification.length - 1 && (
