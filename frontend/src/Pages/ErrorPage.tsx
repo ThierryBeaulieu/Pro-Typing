@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavigationBar from '../Components/NavigationBar';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Box, Button } from '@mui/material';
 
 function ErrorPage() {
   return (
@@ -12,6 +13,9 @@ function ErrorPage() {
           <Typography variant="h6" color="textSecondary">
             The page you are looking for does not exist.
           </Typography>
+          <Button variant="contained" component={Link} to="/" sx={{ mt: 3 }}>
+            Main Menu
+          </Button>
         </Box>
       </Container>
     </>
