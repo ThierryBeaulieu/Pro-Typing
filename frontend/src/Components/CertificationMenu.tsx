@@ -1,6 +1,8 @@
+
 import certifications from '../interfaces/MajorCertifications';
 
 function CertificationMenu() {
+
   return (
     <>
       {certifications[0].subCertifications.map((subCertification, cIndex) => (

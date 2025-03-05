@@ -4,6 +4,7 @@ import { useState } from 'react';
 import certifications from '../interfaces/MajorCertifications';
 import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import CertificationButtons from './CertificationButtons';
 
 function CertificationsMenu() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
@@ -18,10 +19,6 @@ function CertificationsMenu() {
 
   const handleTrainingClick = () => {
     navigate('/training/543');
-  };
-
-  const handleCertificationClick = () => {
-    navigate('/certification/543');
   };
 
   return (
@@ -56,9 +53,9 @@ function CertificationsMenu() {
                 <Button variant="outlined" onClick={handleTrainingClick}>
                   Training
                 </Button>
-                <Button variant="outlined" onClick={handleCertificationClick}>
-                  Take Certification
-                </Button>
+                <CertificationButtons
+                  wordsPerMinute={subCertification.wordsPerMinute}
+                />
               </div>
             </div>
           ),

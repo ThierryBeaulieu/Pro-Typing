@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import CertificationPage from './Pages/CertificationsPage';
-import TypingPage from './Pages/TypingPage';
-import TrainingPage from './Pages/TrainingPage';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import CertificationPage from './Pages/CertificationPage';
+import CertificationsPage from './Pages/CertificationsPage';
+import TrainingPage from './Pages/TrainingPage';
+import TypingPage from './Pages/TypingPage';
 import ErrorPage from './Pages/ErrorPage';
 import darkTheme from './DarkTheme';
-import CertificationsPage from './Pages/CertificationsPage';
+import TestPage from './Pages/TestPage';
 
 function App() {
   const routes = [
@@ -23,6 +24,10 @@ function App() {
     {
       path: '/typing/:exercise',
       element: <TypingPage />,
+    },
+    {
+      path: '/test',
+      element: <TestPage />,
     },
   ];
 
