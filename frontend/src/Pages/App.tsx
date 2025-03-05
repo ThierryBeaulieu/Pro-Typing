@@ -2,6 +2,14 @@ import { Routes, Route } from 'react-router-dom';
 import CertificationPage from './CertificationPage';
 import TypingPage from '../Pages/TypingPage';
 import TrainingPage from './TrainingPage';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   const routes = [
@@ -18,11 +26,16 @@ function App() {
   ];
 
   return (
-    <Routes>
-      {routes.map((route, index) => {
-        return <Route key={index} path={route.path} element={route.element} />;
-      })}
-    </Routes>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Routes>
+        {routes.map((route, index) => {
+          return (
+            <Route key={index} path={route.path} element={route.element} />
+          );
+        })}
+      </Routes>
+    </ThemeProvider>
   );
 }
 
