@@ -1,25 +1,29 @@
 import { Routes, Route } from 'react-router-dom';
-import CertificationPage from './Pages/CertificationPage';
+import CertificationPage from './Pages/CertificationsPage';
 import TypingPage from './Pages/TypingPage';
 import TrainingPage from './Pages/TrainingPage';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import ErrorPage from './Pages/ErrorPage';
 import darkTheme from './DarkTheme';
+import CertificationsPage from './Pages/CertificationsPage';
 
 function App() {
   const routes = [
     { path: '*', element: <ErrorPage /> },
-    { path: '/', element: <CertificationPage /> },
+    { path: '/', element: <CertificationsPage /> },
     {
       path: '/training/:wpm',
       element: <TrainingPage />,
     },
     {
+      path: '/certification/:wpm',
+      element: <CertificationPage />,
+    },
+    {
       path: '/typing/:exercise',
       element: <TypingPage />,
     },
-    { path: '/progression', element: <CertificationPage /> },
   ];
 
   return (

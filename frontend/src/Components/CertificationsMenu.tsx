@@ -1,17 +1,27 @@
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
-import certifications from '../interfaces/CertificationLevels';
+import certifications from '../interfaces/MajorCertifications';
 import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-function ProgressionPage() {
+function CertificationsMenu() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
+  const navigate = useNavigate();
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
     newIndex: number,
   ) => {
     if (newIndex !== null) setMajorIndex(newIndex);
+  };
+
+  const handleTrainingClick = () => {
+    navigate('/training/543');
+  };
+
+  const handleCertificationClick = () => {
+    navigate('/certification/543');
   };
 
   return (
@@ -36,15 +46,19 @@ function ProgressionPage() {
       <div className="typist-section">
         {certifications[majorIndex].subCertifications.map(
           (subCertification, cIndex) => (
-            <div className="certification-divider">
+            <div className="certification-divider" key={cIndex}>
               <div className="certification-description" key={cIndex}>
                 <h2>{subCertification.name}</h2>
                 <h3>{subCertification.range}</h3>
                 <p>{subCertification.description}</p>
               </div>
               <div className="certification-buttons">
-                <Button variant="outlined">Training</Button>
-                <Button variant="outlined">Take Certification</Button>
+                <Button variant="outlined" onClick={handleTrainingClick}>
+                  Training
+                </Button>
+                <Button variant="outlined" onClick={handleCertificationClick}>
+                  Take Certification
+                </Button>
               </div>
             </div>
           ),
@@ -54,4 +68,4 @@ function ProgressionPage() {
   );
 }
 
-export default ProgressionPage;
+export default CertificationsMenu;

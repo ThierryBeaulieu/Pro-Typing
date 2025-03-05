@@ -1,15 +1,15 @@
-import CertificationMenu from '../Components/CertificationMenu';
+import CertificationsMenu from '../Components/CertificationsMenu';
 import NavigationBar from '../Components/NavigationBar';
 
-function CertificationPage() {
+function CertificationsPage() {
   return (
     <>
       <NavigationBar name={'Certifications'} />
       <div className="progression-wrapper">
-        <CertificationMenu />
+        <CertificationsMenu />
       </div>
     </>
   );
 }
 
-export default CertificationPage;
+export default CertificationsPage;
