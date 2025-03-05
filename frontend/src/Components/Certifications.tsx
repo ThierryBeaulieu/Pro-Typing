@@ -2,7 +2,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/CertificationLevels';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 function ProgressionPage() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
@@ -38,8 +38,8 @@ function ProgressionPage() {
           (subCertification, cIndex) => (
             <div className="certification-divider">
               <div className="certification-description" key={cIndex}>
-                <h2>{subCertification.name}</h2>
-                <h3>{subCertification.range}</h3>
+                <Typography variant="h1">{subCertification.name}</Typography>
+                <Typography variant="h2">{subCertification.range}</Typography>
                 <p>{subCertification.description}</p>
               </div>
               <div className="certification-buttons">

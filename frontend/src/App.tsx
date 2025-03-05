@@ -2,36 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import CertificationPage from './Pages/CertificationPage';
 import TypingPage from './Pages/TypingPage';
 import TrainingPage from './Pages/TrainingPage';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import ErrorPage from './Pages/ErrorPage';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: '#242424',
-      paper: '#333333',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0b0b0',
-    },
-  },
-  typography: {
-    fontFamily: 'Arial, sans-serif',
-    h1: {
-      fontSize: '2rem',
-      fontWeight: 'bold',
-    },
-    h2: {
-      fontSize: '1.5rem',
-    },
-    body1: {
-      fontSize: '1rem',
-    },
-  },
-});
+import darkTheme from './DarkTheme';
 
 function App() {
   const routes = [
