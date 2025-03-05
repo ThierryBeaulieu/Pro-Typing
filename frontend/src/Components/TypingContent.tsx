@@ -47,7 +47,6 @@ function TypingContent() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      console.log(userInput);
       if (event.key === 'r' && event.metaKey) {
         location.reload();
         return;
