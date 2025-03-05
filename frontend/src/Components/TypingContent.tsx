@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import dummyText from '../Database/database.json';
-import { useParams } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -20,7 +19,6 @@ function sentenceToWords(text: string): string[] {
 }
 
 function TypingContent() {
-  const { wpm } = useParams();
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
   const sentence: string = dummyText['medium-content'];
