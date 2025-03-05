@@ -2,8 +2,9 @@ import Box from '@mui/material/Box/Box';
 import { useParams } from 'react-router';
 import { Button } from '@mui/material';
 import manWorking from '../assets/man_working.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CircularProgressText from './CircularProgressText';
+import TypingContent from './TypingContent';
 
 enum pageState {
   PreCertification,
@@ -16,9 +17,27 @@ function CertificationMenu() {
   const [certificationState, setCertificationState] = useState<pageState>(
     pageState.PreCertification,
   );
+  const [timeLeft, setTimeLeft] = useState<number>(0);
+
+  useEffect(() => {
+    if (
+      timeLeft === 0 &&
+      certificationState === pageState.PreppingCertification
+    ) {
+      setCertificationState(pageState.Certification);
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, certificationState]);
 
   const handleStartCertificationClick = () => {
     setCertificationState(pageState.PreppingCertification);
+    setTimeLeft(10);
   };
 
   const handleGoBackClick = () => {
@@ -58,7 +77,7 @@ function CertificationMenu() {
       >
         <h1>Certification starts in</h1>
         <Box display={'flex'} justifyContent={'center'} padding={'5vh 0 4vh 0'}>
-          <CircularProgressText text="9" />
+          <CircularProgressText text={timeLeft.toString()} />
         </Box>
         <Button onClick={handleGoBackClick} variant="contained">
           Go back
@@ -66,9 +85,7 @@ function CertificationMenu() {
       </Box>
     );
   } else {
-    return (
-      <Box>{/* You can add content here for the Certification state */}</Box>
-    );
+    return <TypingContent></TypingContent>;
   }
 }
 
