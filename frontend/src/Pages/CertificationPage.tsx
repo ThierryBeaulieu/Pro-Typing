@@ -5,7 +5,7 @@ function CertificationPage() {
   return (
     <>
       <NavigationBar name={'Certifications'} />
-      <div className="progression">
+      <div className="progression-wrapper">
         <Progression />
       </div>
     </>

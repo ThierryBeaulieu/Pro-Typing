@@ -20,12 +20,8 @@
 }
 
 /*Progression Page*/
-.progression {
-  display: flex;
-  margin-top: 4vh;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.progression-wrapper {
+  margin: 4vh;
 }
 
 .line-level {
@@ -107,7 +103,19 @@
   border-color: var(--red-tile);
 }
 
+/* certification */
 .certification-options {
   display: flex;
   justify-content: center;
+}
+
+.typist-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vh;
+}
+
+.typist-category {
+  display: flex;
+  justify-content: flex-start;
 }

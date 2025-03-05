@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import dummyText from '../database.json';
+import dummyText from '../Database/database.json';
 import { useParams } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
