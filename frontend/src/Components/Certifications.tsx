@@ -3,8 +3,6 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/CertificationLevels';
 import { Button } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 
 function ProgressionPage() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
