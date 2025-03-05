@@ -1,4 +1,4 @@
-import PrototypeTyping from '../Prototype-writing/PrototypeUnderlined';
+import TypingContent from '../Components/TypingContent';
 import NavigationBar from './NavigationBar';
 
 function TypingPage() {
@@ -6,7 +6,7 @@ function TypingPage() {
     <>
       <NavigationBar name={'Training'} />
       <div className="progression">
-        <PrototypeTyping />
+        <TypingContent />
       </div>
     </>
   );

@@ -20,7 +20,7 @@ function sentenceToWords(text: string): string[] {
   return fullSentence;
 }
 
-function PrototypeTyping() {
+function TypingContent() {
   const { wpm } = useParams();
   console.log(wpm);
   const [userInput, setUserInput] = useState('');
@@ -92,4 +92,4 @@ function PrototypeTyping() {
   );
 }
 
-export default PrototypeTyping;
+export default TypingContent;

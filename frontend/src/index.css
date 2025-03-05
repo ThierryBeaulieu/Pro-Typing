@@ -12,8 +12,6 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  min-width: 1000px;
-
   --box-content: #0b2332;
   --pale-grey: #8f8f8f;
   --gold: #e2b714;
@@ -107,4 +105,9 @@
 .incorrect {
   color: var(--red-letter);
   border-color: var(--red-tile);
+}
+
+.certification-options {
+  display: flex;
+  justify-content: center;
 }
