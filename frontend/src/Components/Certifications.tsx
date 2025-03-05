@@ -34,9 +34,13 @@ function ProgressionPage() {
       </div>
       <div className="typist-section">
         {certifications[majorIndex].subCertifications.map(
-          (subCertification, cIndex) => {
-            return <h1 key={cIndex}>{subCertification.name}</h1>;
-          },
+          (subCertification, cIndex) => (
+            <div className="certification-description" key={cIndex}>
+              <h1>{subCertification.name}</h1>
+              <h3>{subCertification.range}</h3>
+              <p>{subCertification.description}</p>
+            </div>
+          ),
         )}
       </div>
     </>
