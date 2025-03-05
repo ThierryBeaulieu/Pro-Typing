@@ -116,7 +116,7 @@ const majorCertifications: MajorCertification[] = [
     ],
   },
   {
-    name: 'Hall of Fame',
+    name: 'Record Breaking',
     subCertifications: [
       {
         name: 'Hall of Fame Typist',
