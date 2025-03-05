@@ -136,3 +136,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.certification-disclaimer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 2fr;
+  gap: 4vw;
+}
