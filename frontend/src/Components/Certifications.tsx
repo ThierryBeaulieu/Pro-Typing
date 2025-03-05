@@ -2,7 +2,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/CertificationLevels';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function ProgressionPage() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
@@ -16,7 +16,7 @@ function ProgressionPage() {
 
   return (
     <>
-      <div className="certification-options">
+      <Box display="flex" justifyContent="center">
         <ToggleButtonGroup
           color="primary"
           value={majorIndex}
@@ -32,7 +32,7 @@ function ProgressionPage() {
             );
           })}
         </ToggleButtonGroup>
-      </div>
+      </Box>
       <div className="typist-section">
         {certifications[majorIndex].subCertifications.map(
           (subCertification, cIndex) => (
