@@ -8,15 +8,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   --box-content: #0b2332;
   --pale-grey: #8f8f8f;
   --gold: #e2b714;
   --tile: #515151;
-  --background: #242424;
 }
 
 /*Progression Page*/
