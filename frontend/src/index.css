@@ -97,6 +97,7 @@
 }
 
 .incorrect {
+  min-height: 49px;
   color: var(--red-letter);
   border-color: var(--red-tile);
 }

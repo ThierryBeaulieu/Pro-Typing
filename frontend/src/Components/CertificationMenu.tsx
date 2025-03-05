@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import CircularProgressText from './CircularProgressText';
 import TypingContent from './TypingContent';
 
+const DEFAULT_TIMING: number = 0; // todo change in production
+
 enum pageState {
   PreCertification,
   PreppingCertification,
@@ -37,7 +39,7 @@ function CertificationMenu() {
 
   const handleStartCertificationClick = () => {
     setCertificationState(pageState.PreppingCertification);
-    setTimeLeft(10);
+    setTimeLeft(DEFAULT_TIMING);
   };
 
   const handleGoBackClick = () => {

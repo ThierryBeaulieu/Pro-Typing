@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -23,33 +22,9 @@ function sentenceToWords(text: string): string[] {
 function TypingContent() {
   const { wpm } = useParams();
   console.log(wpm);
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
   const sentence: string = dummyText['long-content'];
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Backspace') {
-        setUserInput((prev) => prev.slice(0, -1));
-        setCorrectChar((prev) => prev.slice(0, -1));
-      } else if (event.key.length === 1) {
-        event.preventDefault();
-        if (sentence.length === correctChar.length) return;
-        setUserInput((prev) => prev + event.key);
-
-        if (sentence[correctChar.length] === event.key) {
-          setCorrectChar((prev) => [...prev, true]);
-        } else {
-          setCorrectChar((prev) => [...prev, false]);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [correctChar.length, sentence]);
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =
@@ -70,6 +45,34 @@ function TypingContent() {
 
     return userInput.length === charIndex ? 'active' : '';
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'r' && event.metaKey) {
+        location.reload();
+      } else if (event.key === 'Backspace' && event.altKey) {
+        /*TODO */
+      } else if (event.key === 'Backspace') {
+        setUserInput((prev) => prev.slice(0, -1));
+        setCorrectChar((prev) => prev.slice(0, -1));
+      } else if (event.key.length === 1) {
+        event.preventDefault();
+        if (sentence.length === correctChar.length) return;
+        setUserInput((prev) => prev + event.key);
+
+        if (sentence[correctChar.length] === event.key) {
+          setCorrectChar((prev) => [...prev, true]);
+        } else {
+          setCorrectChar((prev) => [...prev, false]);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [correctChar.length, sentence, userInput]);
 
   return (
     <>
