@@ -21,7 +21,6 @@ function sentenceToWords(text: string): string[] {
 
 function TypingContent() {
   const { wpm } = useParams();
-  console.log(wpm);
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
   const sentence: string = dummyText['long-content'];
@@ -48,11 +47,30 @@ function TypingContent() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      console.log(userInput);
       if (event.key === 'r' && event.metaKey) {
         location.reload();
-      } else if (event.key === 'Backspace' && event.altKey) {
-        /*TODO */
-      } else if (event.key === 'Backspace') {
+        return;
+      }
+
+      if (event.altKey && event.key === 'Backspace') {
+        setUserInput((prev) => {
+          const words = prev.trim().split(' ');
+          words.pop();
+          return words.join(' ') + (prev.endsWith(' ') ? ' ' : '');
+        });
+
+        setCorrectChar((prev) => {
+          const words = userInput.trim().split(' ');
+          const lastWordLength =
+            words.length > 0 ? words[words.length - 1].length : 0;
+          return prev.slice(0, prev.length - lastWordLength - 1);
+        });
+
+        return;
+      }
+
+      if (event.key === 'Backspace') {
         setUserInput((prev) => prev.slice(0, -1));
         setCorrectChar((prev) => prev.slice(0, -1));
       } else if (event.key.length === 1) {
