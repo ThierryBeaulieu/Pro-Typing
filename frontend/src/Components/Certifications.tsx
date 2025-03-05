@@ -7,7 +7,7 @@ function ProgressionPage() {
   const [majorIndex, setMajorIndex] = useState<number>(0);
 
   const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newIndex: number,
   ) => {
     if (newIndex !== null) setMajorIndex(newIndex);
