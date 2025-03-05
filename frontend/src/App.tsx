@@ -4,6 +4,7 @@ import TypingPage from './Pages/TypingPage';
 import TrainingPage from './Pages/TrainingPage';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import ErrorPage from './Pages/ErrorPage';
 
 const darkTheme = createTheme({
   palette: {
@@ -34,6 +35,7 @@ const darkTheme = createTheme({
 
 function App() {
   const routes = [
+    { path: '*', element: <ErrorPage /> },
     { path: '/', element: <CertificationPage /> },
     {
       path: '/training/:wpm',
