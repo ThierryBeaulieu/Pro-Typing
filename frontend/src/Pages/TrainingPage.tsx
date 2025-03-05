@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box/Box';
 import NavigationBar from '../Components/NavigationBar';
 import { useParams } from 'react-router';
 
@@ -7,9 +8,9 @@ function TrainingPage() {
   return (
     <>
       <NavigationBar name={`Training page ${params.wpm} WPM`} />
-      <div className="progression">
+      <Box className="progression">
         You will type a certain amount of words per minute
-      </div>
+      </Box>
     </>
   );
 }
