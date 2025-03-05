@@ -1,5 +1,5 @@
 import Progression from '../Components/Certifications';
-import NavigationBar from './NavigationBar';
+import NavigationBar from '../Components/NavigationBar';
 
 function CertificationPage() {
   return (

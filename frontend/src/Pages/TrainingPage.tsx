@@ -1,4 +1,4 @@
-import NavigationBar from './NavigationBar';
+import NavigationBar from '../Components/NavigationBar';
 import { useParams } from 'react-router';
 
 function TrainingPage() {

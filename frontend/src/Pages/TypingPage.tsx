@@ -1,5 +1,5 @@
 import TypingContent from '../Components/TypingContent';
-import NavigationBar from './NavigationBar';
+import NavigationBar from '../Components/NavigationBar';
 
 function TypingPage() {
   return (

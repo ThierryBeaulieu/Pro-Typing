@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import CertificationPage from './CertificationPage';
-import TypingPage from '../Pages/TypingPage';
-import TrainingPage from './TrainingPage';
+import CertificationPage from './Pages/CertificationPage';
+import TypingPage from './Pages/TypingPage';
+import TrainingPage from './Pages/TrainingPage';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
