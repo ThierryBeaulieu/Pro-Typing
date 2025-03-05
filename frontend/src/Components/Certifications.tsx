@@ -38,7 +38,7 @@ function ProgressionPage() {
           (subCertification, cIndex) => (
             <div className="certification-divider">
               <div className="certification-description" key={cIndex}>
-                <h1>{subCertification.name}</h1>
+                <h2>{subCertification.name}</h2>
                 <h3>{subCertification.range}</h3>
                 <p>{subCertification.description}</p>
               </div>
