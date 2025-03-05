@@ -23,7 +23,7 @@ function TypingContent() {
   const { wpm } = useParams();
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
-  const sentence: string = dummyText['long-content'];
+  const sentence: string = dummyText['medium-content'];
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =
@@ -57,6 +57,7 @@ function TypingContent() {
         setUserInput((prev) => {
           const words = prev.trim().split(' ');
           words.pop();
+          if (words.length === 0) return '';
           return words.join(' ') + (prev.endsWith(' ') ? ' ' : '');
         });
 
@@ -64,7 +65,8 @@ function TypingContent() {
           const words = userInput.trim().split(' ');
           const lastWordLength =
             words.length > 0 ? words[words.length - 1].length : 0;
-          return prev.slice(0, prev.length - lastWordLength - 1);
+          const leftOverLength = prev.length - lastWordLength - 1;
+          return prev.slice(0, leftOverLength > 0 ? leftOverLength : 0);
         });
 
         return;
