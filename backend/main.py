@@ -1,24 +1,17 @@
 from flask import (Flask, redirect, render_template, request, url_for)
+import json
+from waitress import serve
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
-    print('Request for index page received')
-    return render_template('index.html')
+    return "hello world"
 
 @app.route('/hello', methods=['POST'])
 def hello():
-    name = request.form.get('name')
-
-    if name:
-        print('Request for hello page received with name=%s' % name)
-        return render_template('hello.html', name = name)
-    else:
-        print('Request for hello page received with no name or blank name -- redirecting')
-        return redirect(url_for('index'))
+    return "hello world"
 
 
 if __name__ == '__main__':
-    app.run()
+    serve(app, host="0.0.0.0", port=8080)
