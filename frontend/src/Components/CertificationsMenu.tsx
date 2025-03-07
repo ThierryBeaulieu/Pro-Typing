@@ -49,6 +49,27 @@ function CertificationsMenu() {
         {certifications[majorIndex].subCertifications.map(
           (subCertification, cIndex) => (
             <Grid2 container spacing={2} key={cIndex}>
+              <Grid2
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingTop: { xs: 4, sm: 4, md: 2 },
+                }}
+                size={{ xs: 12, sm: 12, md: 6 }}
+              >
+                <Box
+                  component="img"
+                  sx={{
+                    height: 'auto',
+                    width: 450,
+                    maxWidth: { xs: 350, sm: 350, md: 350, lg: 350, xl: 350 },
+                  }}
+                  alt="certification-image"
+                  src={images[cIndex]}
+                />
+              </Grid2>
+
               <Grid2 padding={2} size={{ xs: 12, sm: 12, md: 6 }}>
                 <h2>{subCertification.name}</h2>
                 <h3>{subCertification.range}</h3>
@@ -61,7 +82,7 @@ function CertificationsMenu() {
                     paddingBottom: 2,
                     paddingTop: 2,
                     gap: 2,
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                   }}
                 >
                   <Button variant="outlined" onClick={handleTrainingClick}>
@@ -71,26 +92,6 @@ function CertificationsMenu() {
                     wordsPerMinute={subCertification.wordsPerMinute}
                   />
                 </Box>
-              </Grid2>
-              <Grid2
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  paddingBottom: 2,
-                }}
-                size={{ xs: 12, sm: 12, md: 6 }}
-              >
-                <Box
-                  component="img"
-                  sx={{
-                    height: 'auto',
-                    width: 450,
-                    maxWidth: { xs: 250, sm: 275, md: 300, lg: 325, xl: 350 },
-                  }}
-                  alt="certification-image"
-                  src={images[cIndex]}
-                />
               </Grid2>
             </Grid2>
           ),
