@@ -49,22 +49,47 @@ function CertificationsMenu() {
         {certifications[majorIndex].subCertifications.map(
           (subCertification, cIndex) => (
             <Grid2 container spacing={2} key={cIndex}>
-              <Grid2 size={{ xs: 12, sm: 6 }}>
+              <Grid2 padding={2} size={{ xs: 12, sm: 12, md: 6 }}>
                 <h2>{subCertification.name}</h2>
                 <h3>{subCertification.range}</h3>
                 <p>{subCertification.description}</p>
-                <Button variant="outlined" onClick={handleTrainingClick}>
-                  Training
-                </Button>
-                <CertificationButtons
-                  wordsPerMinute={subCertification.wordsPerMinute}
-                />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingBottom: 2,
+                    paddingTop: 2,
+                    gap: 2,
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Button variant="outlined" onClick={handleTrainingClick}>
+                    Training
+                  </Button>
+                  <CertificationButtons
+                    wordsPerMinute={subCertification.wordsPerMinute}
+                  />
+                </Box>
               </Grid2>
-              <Grid2 size={{ xs: 12, sm: 6 }}>
-                <img
+              <Grid2
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingBottom: 2,
+                }}
+                size={{ xs: 12, sm: 12, md: 6 }}
+              >
+                <Box
+                  component="img"
+                  sx={{
+                    height: 'auto',
+                    width: 450,
+                    maxWidth: { xs: 250, sm: 275, md: 300, lg: 325, xl: 350 },
+                  }}
+                  alt="certification-image"
                   src={images[cIndex]}
-                  style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
-                  alt={`Certification image ${cIndex}`}
                 />
               </Grid2>
             </Grid2>
