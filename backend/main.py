@@ -1,20 +1,24 @@
-from flask import Flask, jsonify, request
+from flask import (Flask, redirect, render_template, request, url_for)
 
 app = Flask(__name__)
 
+
 @app.route('/')
-def home():
-    return "Welcome to the Flask server!"
+def index():
+   print('Request for index page received')
+   return render_template('index.html')
 
-@app.route('/data', methods=['GET'])
-def get_data():
-    data = {"message": "This is a simple Flask server"}
-    return jsonify(data)
+@app.route('/hello', methods=['POST'])
+def hello():
+   name = request.form.get('name')
 
-@app.route('/echo', methods=['POST'])
-def echo():
-    user_data = request.get_json()
-    return jsonify(user_data)
+   if name:
+       print('Request for hello page received with name=%s' % name)
+       return render_template('hello.html', name = name)
+   else:
+       print('Request for hello page received with no name or blank name -- redirecting')
+       return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+   app.run()
