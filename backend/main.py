@@ -1,17 +1,22 @@
-from flask import (Flask, redirect, render_template, request, url_for)
-import json
-from waitress import serve
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
-@app.route('/')
-def index():
-    return "hello world"
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"message": "Welcome to the Azure Flask API!"})
 
-@app.route('/hello', methods=['POST'])
-def hello():
-    return "hello world"
+@app.route('/data', methods=['GET'])
+def get_data():
+    sample_data = {"id": 1, "name": "Sample Data"}
+    return jsonify(sample_data)
 
+@app.route('/data', methods=['POST'])
+def post_data():
+    data = request.json
+    return jsonify({"received": data}), 201
 
 if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port=8080)
+    app.run(host='0.0.0.0', port=8080)
