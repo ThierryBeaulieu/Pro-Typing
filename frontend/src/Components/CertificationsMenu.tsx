@@ -78,7 +78,7 @@ function CertificationsMenu() {
                       paddingBottom: 2,
                       paddingTop: 2,
                       gap: 2,
-                      flexDirection: 'row',
+                      flexDirection: 'column',
                     }}
                   >
                     <Button variant="outlined" onClick={handleTrainingClick}>
