@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@mui/material/styles';
-import { blue, grey } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -19,18 +17,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import darkTheme from '../DarkTheme';
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[800],
-    },
-    secondary: {
-      main: blue[500],
-    },
-  },
-});
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -70,7 +58,7 @@ function NavigationBar() {
   );
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar variant="dense">
