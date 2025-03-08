@@ -2,9 +2,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/MajorCertifications';
-import { Box, Button, Grid2 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import CertificationButtons from './CertificationButtons';
+import { Box, Grid2 } from '@mui/material';
 import RunningMan from '../assets/running-man.jpeg';
 import BikeMan from '../assets/cycling-man.jpeg';
 import SpaceMan from '../assets/space-man.jpeg';
@@ -12,17 +10,12 @@ import SpaceMan from '../assets/space-man.jpeg';
 function CertificationsMenu() {
   const images: string[] = [RunningMan, BikeMan, SpaceMan];
   const [majorIndex, setMajorIndex] = useState<number>(0);
-  const navigate = useNavigate();
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
     newIndex: number,
   ) => {
     if (newIndex !== null) setMajorIndex(newIndex);
-  };
-
-  const handleTrainingClick = () => {
-    navigate('/training/543');
   };
 
   return (
@@ -81,9 +74,6 @@ function CertificationsMenu() {
                       flexDirection: 'column',
                     }}
                   >
-                    <Button variant="outlined" onClick={handleTrainingClick}>
-                      Training
-                    </Button>
                     <CertificationButtons
                       wordsPerMinute={subCertification.wordsPerMinute}
                     />
