@@ -1,11 +1,11 @@
-import TypingContent from '../Components/TypingContent';
-import NavigationBar from '../Components/NavigationBar';
+import TypingContent from '../components/TypingContent';
+import NavigationBar from '../components/NavigationBar';
 import Box from '@mui/material/Box/Box';
 
 function TypingPage() {
   return (
     <>
-      <NavigationBar name={'Training'} />
+      <NavigationBar />
       <Box className="progression">
         <TypingContent />
       </Box>
