@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -15,44 +15,64 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import darkTheme from '../DarkTheme';
+import KeyboardIcon from '@mui/icons-material/Keyboard';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import { useNavigate } from 'react-router';
 
+interface DrawerElement {
+  label: string, 
+  path: string,
+  icon: ReactNode
+}
+
+const certification: DrawerElement = {label: 'Certifications', path: '/certifications', icon: <WorkspacePremiumIcon/>}
+const training: DrawerElement = {label: 'Training', path: '/training', icon: <DirectionsRunIcon/>}
+const drawerContent: DrawerElement[] = [certification, training ]
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
+  const handleClickMainMenu =()=> {
+    navigate('/');
+  }
+
+  const handleClick =(link: string)=> {
+    navigate(link);
+  }
+
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleClickMainMenu}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <KeyboardIcon/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Pro Typing'} />
             </ListItemButton>
           </ListItem>
-        ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {drawerContent.map((item: DrawerElement, index) => {
+          return (
+            <ListItem key={index} disablePadding>
+            <ListItemButton onClick={() => {handleClick(item.path)}}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
-        ))}
+          );
+        })}
       </List>
     </Box>
   );
