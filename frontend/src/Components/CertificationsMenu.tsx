@@ -1,6 +1,3 @@
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { useState } from 'react';
 import certifications from '../interfaces/MajorCertifications';
 import { Box, Button, Grid2 } from '@mui/material';
 import RunningMan from '../assets/running-man.jpeg';
