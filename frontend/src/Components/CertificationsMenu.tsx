@@ -3,6 +3,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/MajorCertifications';
 import { Box, Grid2 } from '@mui/material';
+import CertificationButtons from './CertificationButtons';
 import RunningMan from '../assets/running-man.jpeg';
 import BikeMan from '../assets/cycling-man.jpeg';
 import SpaceMan from '../assets/space-man.jpeg';
