@@ -36,7 +36,7 @@ function CertificationsMenu() {
         <Grid2 container spacing={4}>
           {certifications[0].subCertifications.map(
             (subCertification, cIndex) => (
-              <Grid2 size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
+              <Grid2 key={cIndex} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
                 <Box
                   sx={{
                     display: 'flex',
