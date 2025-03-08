@@ -11,7 +11,7 @@ import DivingMan from '../assets/diving-man.jpeg';
 import DrivingMan from '../assets/driving-man.jpeg';
 import FighterJet from '../assets/fighter-jet.png';
 import MotorCycle from '../assets/motorcylce.png';
-import TrainDriving from '../assets/traing.png';
+import TrainDriving from '../assets/train.png';
 
 import { useNavigate } from 'react-router';
 
