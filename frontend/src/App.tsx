@@ -18,7 +18,7 @@ function App() {
       element: <TrainingPage />,
     },
     {
-      path: '/certification/:wpm',
+      path: '/certification/',
       element: <CertificationPage />,
     },
     {

@@ -15,7 +15,7 @@ const majorCertifications: MajorCertification[] = [
     name: 'Advanced',
     subCertifications: [
       {
-        name: 'Associate Typist',
+        name: 'Average Typist',
         range: '40-55 words per minute',
         description:
           'This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.',
@@ -35,11 +35,6 @@ const majorCertifications: MajorCertification[] = [
           'This range includes about 15-20% of people. You are well above average and typing at a proficient speed.',
         wordsPerMinute: [80, 85, 90, 95],
       },
-    ],
-  },
-  {
-    name: 'Professional',
-    subCertifications: [
       {
         name: 'Advanced Typist',
         range: '100-115 words per minute',
@@ -61,11 +56,7 @@ const majorCertifications: MajorCertification[] = [
           'Less than 5% of typists achieve this level. You are among the fastest typists in the world.',
         wordsPerMinute: [140, 145, 150, 155],
       },
-    ],
-  },
-  {
-    name: 'Elite',
-    subCertifications: [
+
       {
         name: 'Elite Typist',
         range: '160-175 words per minute',
@@ -90,7 +81,7 @@ const majorCertifications: MajorCertification[] = [
     ],
   },
   {
-    name: 'Grandmaster',
+    name: 'Master',
     subCertifications: [
       {
         name: 'Grandmaster Typist',
@@ -116,7 +107,7 @@ const majorCertifications: MajorCertification[] = [
     ],
   },
   {
-    name: 'Record Breaking',
+    name: 'World Record',
     subCertifications: [
       {
         name: 'Hall of Fame Typist',

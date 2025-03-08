@@ -2,21 +2,43 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useState } from 'react';
 import certifications from '../interfaces/MajorCertifications';
-import { Box, Grid2 } from '@mui/material';
-import CertificationButtons from './CertificationButtons';
+import { Box, Button, Grid2 } from '@mui/material';
 import RunningMan from '../assets/running-man.jpeg';
 import BikeMan from '../assets/cycling-man.jpeg';
 import SpaceMan from '../assets/space-man.jpeg';
+import SkateBoard from '../assets/skate-board.png';
+import DivingMan from '../assets/diving-man.jpeg';
+import DrivingMan from '../assets/driving-man.jpeg';
+import FighterJet from '../assets/fighter-jet.png';
+import MotorCycle from '../assets/motorcylce.png';
+import TrainDriving from '../assets/traing.png';
+
+import { useNavigate } from 'react-router';
 
 function CertificationsMenu() {
-  const images: string[] = [RunningMan, BikeMan, SpaceMan];
+  const images: string[] = [
+    RunningMan,
+    SkateBoard,
+    BikeMan,
+    DivingMan,
+    MotorCycle,
+    DrivingMan,
+    TrainDriving,
+    FighterJet,
+    SpaceMan,
+  ];
   const [majorIndex, setMajorIndex] = useState<number>(0);
+  const navigate = useNavigate();
 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
     newIndex: number,
   ) => {
     if (newIndex !== null) setMajorIndex(newIndex);
+  };
+
+  const handleCertificationClick = () => {
+    navigate(`/certification/`);
   };
 
   return (
@@ -43,7 +65,7 @@ function CertificationsMenu() {
         <Grid2 container spacing={4}>
           {certifications[majorIndex].subCertifications.map(
             (subCertification, cIndex) => (
-              <Grid2 size={{ xs: 12, sm: 6, md: 4 }}>
+              <Grid2 size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -75,9 +97,12 @@ function CertificationsMenu() {
                       flexDirection: 'column',
                     }}
                   >
-                    <CertificationButtons
-                      wordsPerMinute={subCertification.wordsPerMinute}
-                    />
+                    <Button
+                      variant="outlined"
+                      onClick={handleCertificationClick}
+                    >
+                      Take Certification
+                    </Button>
                   </Box>
                 </Box>
               </Grid2>
