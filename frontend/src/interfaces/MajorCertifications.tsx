@@ -56,7 +56,6 @@ const majorCertifications: MajorCertification[] = [
           'Less than 5% of typists achieve this level. You are among the fastest typists in the world.',
         wordsPerMinute: [140, 145, 150, 155],
       },
-
       {
         name: 'Elite Typist',
         range: '160-175 words per minute',
@@ -71,6 +70,11 @@ const majorCertifications: MajorCertification[] = [
           'Achieved by less than 1% of typists. You are among the elite in typing speed.',
         wordsPerMinute: [180, 185, 190, 195],
       },
+    ],
+  },
+  {
+    name: 'Master',
+    subCertifications: [
       {
         name: 'Virtuoso Typist',
         range: '200-215 words per minute',
@@ -78,11 +82,6 @@ const majorCertifications: MajorCertification[] = [
           'Only a small fraction of typists can hit this speed. You are in the top 0.1% of typists.',
         wordsPerMinute: [200, 205, 210, 215],
       },
-    ],
-  },
-  {
-    name: 'Master',
-    subCertifications: [
       {
         name: 'Grandmaster Typist',
         range: '220-235 words per minute',

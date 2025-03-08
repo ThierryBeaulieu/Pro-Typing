@@ -27,15 +27,7 @@ function CertificationsMenu() {
     FighterJet,
     SpaceMan,
   ];
-  const [majorIndex, setMajorIndex] = useState<number>(0);
   const navigate = useNavigate();
-
-  const handleChange = (
-    _event: React.MouseEvent<HTMLElement>,
-    newIndex: number,
-  ) => {
-    if (newIndex !== null) setMajorIndex(newIndex);
-  };
 
   const handleCertificationClick = () => {
     navigate(`/certification/`);
@@ -43,27 +35,9 @@ function CertificationsMenu() {
 
   return (
     <>
-      <Box display="flex" justifyContent="center">
-        <ToggleButtonGroup
-          color="primary"
-          value={majorIndex}
-          exclusive
-          onChange={handleChange}
-          aria-label="Platform"
-          sx={{ display: 'flex', flexWrap: 'wrap' }}
-        >
-          {certifications.map((category, index) => {
-            return (
-              <ToggleButton key={index} value={index}>
-                {category.name}
-              </ToggleButton>
-            );
-          })}
-        </ToggleButtonGroup>
-      </Box>
       <div className="typist-section">
         <Grid2 container spacing={4}>
-          {certifications[majorIndex].subCertifications.map(
+          {certifications[0].subCertifications.map(
             (subCertification, cIndex) => (
               <Grid2 size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
                 <Box
