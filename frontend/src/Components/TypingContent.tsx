@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import dummyText from '../Database/database.json';
 
-import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
