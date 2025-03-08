@@ -32,7 +32,7 @@ function CertificationsMenu() {
 
   return (
     <>
-      <div className="typist-section">
+    <h1>Certifications</h1>
         <Grid2 container spacing={4}>
           {certifications[0].subCertifications.map(
             (subCertification, cIndex) => (
@@ -80,7 +80,6 @@ function CertificationsMenu() {
             ),
           )}
         </Grid2>
-      </div>
     </>
   );
 }

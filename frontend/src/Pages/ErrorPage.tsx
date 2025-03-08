@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import NavigationBar from '../Components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 import { Typography, Container, Box, Button } from '@mui/material';
 
 function ErrorPage() {
   return (
     <>
-      <NavigationBar name={'Error'} />
+      <NavigationBar />
       <Container maxWidth="sm">
         <Box sx={{ textAlign: 'center', mt: 5 }}>
           <Typography variant="h3">404 - Page Not Found</Typography>

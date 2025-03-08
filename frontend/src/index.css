@@ -17,7 +17,7 @@
 /*Progression Page*/
 .progression-wrapper {
   margin-bottom: 4vh;
-  margin-top: 4vh;
+  margin-top: 2vh;
   margin-left: 10vw;
   margin-right: 10vw;
 }
@@ -100,13 +100,6 @@
   min-height: 49px;
   color: var(--red-letter);
   border-color: var(--red-tile);
-}
-
-/* certification */
-.typist-section {
-  display: flex;
-  flex-direction: column;
-  margin-top: 3vh;
 }
 
 .typist-category {

@@ -10,10 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { useNavigate } from 'react-router-dom';
 
-interface NavigationBarProp {
-  name: string;
-  wordsPerMinute?: string;
-}
 
 const theme = createTheme({
   palette: {
@@ -24,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-function NavigationBar({ name, wordsPerMinute }: NavigationBarProp) {
+function NavigationBar() {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -47,7 +43,7 @@ function NavigationBar({ name, wordsPerMinute }: NavigationBarProp) {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" component="div">
-                {name} {wordsPerMinute}
+                Pro Typing
               </Typography>
             </Toolbar>
           </AppBar>
