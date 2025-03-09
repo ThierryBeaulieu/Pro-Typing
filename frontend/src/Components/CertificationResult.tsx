@@ -5,6 +5,7 @@ import StillWorkToDo from '../assets/work-to-do.jpeg';
 import { useNavigate } from 'react-router';
 import PdfCertification from '../assets/pro-typing-certificate.pdf';
 import CertificateImage from '../assets/certificate.png';
+import { useEffect } from 'react';
 
 interface CertificationResultProp {
   result: CertificationState;
@@ -22,6 +23,14 @@ function Certificate({
   accuracy: number;
   range: string;
 }) {
+  const addCertification = (wpm: string) => {
+    localStorage.setItem(wpm, 'true');
+  };
+
+  useEffect(() => {
+    addCertification(range.split('-')[0]);
+  }, []);
+
   const navigate = useNavigate();
 
   const handleDownload = () => {

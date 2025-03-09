@@ -34,7 +34,6 @@ function CertificationsMenu() {
 
   const isCertificationObtained = (wpm: number) => {
     const certification: string | null = localStorage.getItem(wpm.toString());
-
     return certification === null ? false : true;
   };
 
