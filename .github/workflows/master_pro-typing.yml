@@ -37,7 +37,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: node-app
           path: release.zip
 
   deploy:
@@ -54,10 +54,10 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip -d app
+        run: unzip release.zip
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -66,13 +66,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_64E4AB7C9E904A89B3A5B7F37B7D68F4 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BBBAA75BE2B747E397F4E2825303EB73 }}
 
-      - name: Unzip artifact for deployment
-        run: ls
-
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'pro-typing'
           slot-name: 'Production'
-          package: ./app
+          package: ./app/dist
