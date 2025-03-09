@@ -26,60 +26,62 @@ function CertificationsMenu() {
   ];
   const navigate = useNavigate();
 
-  const handleCertificationClick = () => {
-    navigate(`/certification/`);
+  const handleCertificationClick = (wordsPerMinute: number[]) => {
+    const min = wordsPerMinute[0];
+    const max = wordsPerMinute[wordsPerMinute.length - 1];
+    navigate(`/certification/${min}-${max}`);
   };
 
   return (
     <>
-    <h1>Certifications</h1>
-        <Grid2 container spacing={4}>
-          {certifications[0].subCertifications.map(
-            (subCertification, cIndex) => (
-              <Grid2 key={cIndex} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: { xs: 4, sm: 4, md: 2 },
-                  }}
-                >
-                  <Box
-                    width={'100%'}
-                    component="img"
-                    alt="certification-image"
-                    src={images[cIndex]}
-                  />
-                </Box>
+      <h1>Certifications</h1>
+      <Grid2 container spacing={4}>
+        {certifications[0].subCertifications.map((subCertification, cIndex) => (
+          <Grid2 key={cIndex} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingTop: { xs: 4, sm: 4, md: 2 },
+              }}
+            >
+              <Box
+                width={'100%'}
+                component="img"
+                alt="certification-image"
+                src={images[cIndex]}
+              />
+            </Box>
 
-                <Box padding={2}>
-                  <h2>{subCertification.name}</h2>
-                  <h3>{subCertification.range}</h3>
-                  <p>{subCertification.description}</p>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      paddingBottom: 2,
-                      paddingTop: 2,
-                      gap: 2,
-                      flexDirection: 'column',
-                    }}
-                  >
-                    <Button
-                      variant="outlined"
-                      onClick={handleCertificationClick}
-                    >
-                      Take Certification
-                    </Button>
-                  </Box>
-                </Box>
-              </Grid2>
-            ),
-          )}
-        </Grid2>
+            <Box padding={2}>
+              <h2>{subCertification.name}</h2>
+              <h3>{subCertification.range}</h3>
+              <p>{subCertification.description}</p>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingBottom: 2,
+                  paddingTop: 2,
+                  gap: 2,
+                  flexDirection: 'column',
+                }}
+              >
+                <Button
+                  variant="outlined"
+                  onClick={() =>
+                    handleCertificationClick(subCertification.wordsPerMinute)
+                  }
+                >
+                  Take Certification
+                </Button>
+              </Box>
+            </Box>
+          </Grid2>
+        ))}
+      </Grid2>
     </>
   );
 }

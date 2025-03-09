@@ -23,7 +23,7 @@ function App() {
       element: <CertificationsPage />,
     },
     {
-      path: '/certification/',
+      path: '/certification/:wpm',
       element: <CertificationPage />,
     },
     {
