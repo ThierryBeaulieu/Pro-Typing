@@ -5,7 +5,7 @@ import NavigationBar from '../Components/NavigationBar';
 function CertificationsPage() {
   return (
     <>
-      <NavigationBar name={'Certifications'} />
+      <NavigationBar />
       <Box className="progression-wrapper">
         <CertificationsMenu />
       </Box>

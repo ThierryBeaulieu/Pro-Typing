@@ -21,7 +21,7 @@ function sentenceToWords(text: string): string[] {
 function TypingContent() {
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
-  const sentence: string = dummyText['medium-content'];
+  const sentence: string = dummyText['home-page'];
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =

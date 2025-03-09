@@ -5,7 +5,7 @@ import Box from '@mui/material/Box/Box';
 function TypingPage() {
   return (
     <>
-      <NavigationBar name={'Training'} />
+      <NavigationBar />
       <Box className="progression">
         <TypingContent />
       </Box>
