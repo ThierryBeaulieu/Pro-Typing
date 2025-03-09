@@ -178,3 +178,11 @@ function TypingContent() {
 }
 
 export default TypingContent;
+
+/*
+ <CertificationResult
+            result={CertificationState.Failed}
+            wpm={20}
+            accuracy={84}
+          ></CertificationResult>
+*/

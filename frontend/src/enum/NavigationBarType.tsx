@@ -1,6 +1,5 @@
 enum NavigationBarType {
   Default,
-  Progression,
   Typing,
 }
 

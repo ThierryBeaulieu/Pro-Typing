@@ -7,7 +7,7 @@ function CertificationPage() {
     <>
       <NavigationBar />
       <Box className="progression-wrapper">
-        <CertificationMenu />
+        <CertificationMenu></CertificationMenu>
       </Box>
     </>
   );

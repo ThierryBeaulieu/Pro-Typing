@@ -67,6 +67,7 @@ function TextWrapper({ path, text, buttonTxt }: TextWrapperProps) {
 function MenuContent() {
   return (
     <>
+      <Box paddingTop={1}></Box>
       <Box
         sx={{
           width: { xs: '90%', sm: '80%', md: '70%', lg: '60%', xl: '70%' },

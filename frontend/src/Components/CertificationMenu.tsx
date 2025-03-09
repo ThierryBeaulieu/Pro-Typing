@@ -21,8 +21,6 @@ function CertificationMenu() {
     setCertificationState(pageState.Certification);
   };
 
-
-
   if (certificationState === pageState.PreCertification) {
     return (
       <Box className="certification-disclaimer">
