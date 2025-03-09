@@ -7,6 +7,7 @@ import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
 import CertificationResult from './CertificationResult';
 import CertificationState from '../enum/certificationState';
+import { useNavigate, useParams } from 'react-router';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -31,9 +32,18 @@ function TypingContent() {
   const sentence: string = dummyText['home-page'];
   const [precision, setPrecision] = useState<number>(0);
   const [wpm, setWPM] = useState<number>(0);
+  const { range } = useParams();
+  const navigate = useNavigate();
 
   const didPassTest = () => {
-    if (precision >= 95 && wpm >= 60) {
+    const wordsPerMinuteRange: string[] | undefined = range?.split('-');
+    if (wordsPerMinuteRange === undefined) {
+      navigate('/error');
+      return CertificationState.Failed;
+    }
+    const minWPM: number = parseInt(wordsPerMinuteRange[0]);
+
+    if (precision >= 95 && wpm >= minWPM) {
       return CertificationState.Completed;
     }
     return CertificationState.Failed;

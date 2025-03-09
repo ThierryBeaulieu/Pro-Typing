@@ -12,7 +12,7 @@ enum pageState {
 }
 
 function CertificationMenu() {
-  const { wpm } = useParams();
+  const { range } = useParams();
   const [certificationState, setCertificationState] = useState<pageState>(
     pageState.PreCertification,
   );
@@ -26,12 +26,12 @@ function CertificationMenu() {
       <>
         <Grid2 container spacing={3}>
           <Grid2 size={{ xs: 12, sm: 7, md: 7, lg: 8, xl: 8 }}>
-            <h1>Certification {wpm} WPM</h1>
+            <h1>Certification {range} WPM</h1>
             <p style={{ padding: '0px 0px 20px ' }}>
-              You are about to start the {wpm} words per minute certification.
+              You are about to start the {range} words per minute certification.
               Start whenever you feel ready. To obtain the certification, you
-              will need an average of {wpm} words per minute with an accuracy of
-              95%.
+              will need an average of {range} words per minute with an accuracy
+              of 95%.
             </p>
             <Box display={'flex'} justifyContent={'center'}>
               <Button

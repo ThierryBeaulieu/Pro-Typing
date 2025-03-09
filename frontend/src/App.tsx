@@ -9,11 +9,13 @@ import ErrorPage from './Pages/ErrorPage';
 import darkTheme from './DarkTheme';
 import TestPage from './Pages/TestPage';
 import MenuPage from './Pages/MenuPage';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App() {
   const routes = [
-    { path: '*', element: <ErrorPage /> },
+    { path: '*', element: <NotFoundPage /> },
     { path: '/', element: <MenuPage /> },
+    { path: '/error', element: <ErrorPage /> },
     {
       path: '/training/:wpm',
       element: <TrainingPage />,
@@ -23,7 +25,7 @@ function App() {
       element: <CertificationsPage />,
     },
     {
-      path: '/certification/:wpm',
+      path: '/certification/:range',
       element: <CertificationPage />,
     },
     {
