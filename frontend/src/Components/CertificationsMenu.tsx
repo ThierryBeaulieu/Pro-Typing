@@ -82,7 +82,7 @@ function CertificationsMenu() {
                       handleCertificationClick(subCertification.wordsPerMinute)
                     }
                   >
-                    Retake Certification
+                    Take again
                   </Button>
                 ) : (
                   <Button
