@@ -5,7 +5,6 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
-import { useNavigate } from 'react-router-dom';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -27,7 +26,6 @@ function TypingContent() {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [timerId, setTimerId] = useState<number | null>(null);
   const sentence: string = dummyText['home-page'];
-  const navigate = useNavigate();
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =
@@ -112,7 +110,6 @@ function TypingContent() {
     if (correctChar.length === sentence.length && timerId !== null) {
       clearInterval(timerId);
       setTimerId(null);
-      navigate(`/certification-result/${wpm}/${precision}`);
     }
   }, [correctChar.length, sentence.length, timerId]);
 
