@@ -35,9 +35,9 @@ jobs:
           zip release.zip ./app/dist/* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
-          name: app
+          name: node-app
           path: release.zip
 
   deploy:
@@ -54,7 +54,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: node-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
