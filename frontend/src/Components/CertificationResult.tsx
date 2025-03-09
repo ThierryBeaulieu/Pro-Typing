@@ -56,8 +56,8 @@ function Certificate({
             Feel free to share it on LinkedIn, Indeed or other social media.
           </Box>
           <Box paddingTop={2} display="flex" justifyContent={'center'}>
-            <Button onClick={handleMainMenu} variant="contained">
-              Main menu
+            <Button onClick={handleRedirection} variant="contained">
+              Certifications
             </Button>
           </Box>
         </Grid2>
