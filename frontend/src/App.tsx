@@ -8,14 +8,19 @@ import TypingPage from './Pages/TypingPage';
 import ErrorPage from './Pages/ErrorPage';
 import darkTheme from './DarkTheme';
 import TestPage from './Pages/TestPage';
+import MenuPage from './Pages/MenuPage';
 
 function App() {
   const routes = [
     { path: '*', element: <ErrorPage /> },
-    { path: '/', element: <CertificationsPage /> },
+    { path: '/', element: <MenuPage /> },
     {
       path: '/training/:wpm',
       element: <TrainingPage />,
+    },
+    {
+      path: '/certifications/',
+      element: <CertificationsPage />,
     },
     {
       path: '/certification/',
