@@ -29,9 +29,13 @@ function TypingContent() {
   const [timerId, setTimerId] = useState<number | null>(null);
   const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
   const sentence: string = dummyText['home-page'];
+  const [precision, setPrecision] = useState<number>(0);
+  const [wpm, setWPM] = useState<number>(0);
 
   const didPassTest = () => {
-    if (precision > 95 && wpm > 60) return CertificationState.Completed;
+    if (precision >= 95 && wpm >= 60) {
+      return CertificationState.Completed;
+    }
     return CertificationState.Failed;
   };
 
@@ -114,6 +118,17 @@ function TypingContent() {
   }, [correctChar.length, sentence, userInput, startTime]);
 
   useEffect(() => {
+    const correct = correctChar.filter((c) => c).length;
+    const totalTyped = correctChar.length;
+    const newPrecision =
+      totalTyped > 0 ? Math.round((correct / totalTyped) * 100) : 0;
+    const newWPM =
+      elapsedTime > 0 ? Math.round((correct * 12) / elapsedTime) : 0;
+    setPrecision(newPrecision);
+    setWPM(newWPM);
+  }, [correctChar, elapsedTime]);
+
+  useEffect(() => {
     // Stop timer when sentence is completed
     if (correctChar.length === sentence.length && timerId !== null) {
       clearInterval(timerId);
@@ -129,13 +144,6 @@ function TypingContent() {
       }
     };
   }, [timerId]);
-
-  // Calculate stats
-  const correct = correctChar.filter((c) => c).length;
-  const totalTyped = correctChar.length;
-  const precision =
-    totalTyped > 0 ? Math.round((correct / totalTyped) * 100) : 0;
-  const wpm = elapsedTime > 0 ? Math.round((correct * 12) / elapsedTime) : 0;
 
   return (
     <>
