@@ -66,6 +66,10 @@ function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
   const navigate = useNavigate();
 
   const handleClick = (link: string) => {
+    if (link === '/certification') {
+      window.location.reload();
+    }
+
     navigate(link);
   };
   return (
