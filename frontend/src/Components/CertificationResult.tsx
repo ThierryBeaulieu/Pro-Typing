@@ -55,12 +55,9 @@ function Certificate({
             Congratulations! You are now the proud owner of this certificate.
             Feel free to share it on LinkedIn, Indeed or other social media.
           </Box>
-          <Box width={'100%'} paddingTop={2} display="flex" gap={10}>
+          <Box paddingTop={2} display="flex" justifyContent={'center'}>
             <Button onClick={handleMainMenu} variant="contained">
               Main menu
-            </Button>
-            <Button onClick={handleRedirection} variant="contained">
-              Take another certification
             </Button>
           </Box>
         </Grid2>
@@ -81,10 +78,14 @@ function Certificate({
         alt="certification-image"
         src={CertificateImage}
       />
-
-      <Button onClick={handleDownload} variant="outlined">
-        Download
-      </Button>
+      <Box width={'100%'} display={'flex'} justifyContent={'space-between'}>
+        <Button onClick={handleDownload} variant="outlined">
+          Download
+        </Button>
+        <Button onClick={handleRedirection} variant="outlined">
+          Take another certification
+        </Button>
+      </Box>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import dummyText from '../database/database.json';
+import text from '../database/database.json';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -22,6 +22,13 @@ function sentenceToWords(text: string): string[] {
   return fullSentence;
 }
 
+const initSentence = () => {
+  const sentences: string[] = text['texts'];
+  const sentenceIndex = Math.floor(Math.random() * sentences.length);
+  return sentences[sentenceIndex];
+};
+const sentence: string = initSentence();
+
 function TypingContent() {
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
@@ -29,7 +36,6 @@ function TypingContent() {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [timerId, setTimerId] = useState<number | null>(null);
   const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
-  const sentence: string = dummyText['home-page'];
   const [precision, setPrecision] = useState<number>(0);
   const [wpm, setWPM] = useState<number>(0);
   const { range } = useParams();
@@ -48,6 +54,8 @@ function TypingContent() {
     }
     return CertificationState.Failed;
   };
+
+  initSentence();
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =

@@ -1,7 +1,14 @@
 {
-  "long-content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  "medium-content": "Phrase with enough content to be 2 sentences long. Well, almost, sometimes it can fit in only one.",
-  "short-content": "Short content",
-  "shorter-content": "Content",
-  "home-page": "Type better and faster"
+  "texts": [
+    "The weather forecast for tomorrow predicts rain, with temperatures around 15C.",
+    "The price of the car was $12,500 (before tax) and included all the features I wanted.",
+    "In 2023, I visited 15 different cities, including Paris, Berlin, and Tokyo.",
+    "Can you believe she finished the project in just 72 hours (without any help)?",
+    "The temperature today is expected to reach 25C, but it might drop in the evening.",
+    "My phone number is (123) 456-7890, and my email address is example@email.com.",
+    "The meeting will be held on Thursday, 10th March, from 2:00 PM to 4:00 PM.",
+    "Please pay $50 now, and the remaining $200 is due on the 1st of next month.",
+    "There are 3 main topics in the report: budget, team performance, and future plans.",
+    "If you order by 6:00 PM, your package should arrive by Friday, 13th."
+  ]
 }
