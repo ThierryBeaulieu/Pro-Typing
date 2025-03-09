@@ -39,15 +39,13 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd frontend/dist
-          zip release.zip ./* -r
-          ls
+          zip release.zip ./frontend/dist/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: app
-          path: frontend/dist/release.zip
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,10 +61,10 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip app.zip -d app
+        run: unzip release.zip
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -81,4 +79,4 @@ jobs:
         with:
           app-name: 'pro-typing'
           slot-name: 'Production'
-          package: ./release
+          package: ./app/dist
