@@ -13,6 +13,8 @@ interface CertificationResultProp {
 }
 
 function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
+  const navigate = useNavigate();
+
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = PdfCertification;
@@ -20,6 +22,10 @@ function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleRedirection = () => {
+    navigate('/certifications');
   };
 
   return (
@@ -54,10 +60,14 @@ function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
         alt="certification-image"
         src={CertificateImage}
       />
-
-      <Button onClick={handleDownload} variant="outlined">
-        Download
-      </Button>
+      <Box width={'100%'} display={'flex'} justifyContent={'space-between'}>
+        <Button onClick={handleDownload} variant="outlined">
+          Download
+        </Button>
+        <Button onClick={handleRedirection} variant="outlined">
+          Take another certification
+        </Button>
+      </Box>
     </>
   );
 }
@@ -67,7 +77,7 @@ function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
 
   const handleClick = (link: string) => {
     if (link === '/certification') {
-      window.location.reload();
+      window.location.href = link;
     }
 
     navigate(link);
