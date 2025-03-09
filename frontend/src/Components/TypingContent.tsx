@@ -137,9 +137,9 @@ function TypingContent() {
       {isTypingDone ? (
         <CertificationResult
           result={CertificationState.Failed}
-          wpm={20}
-          accuracy={84}
-        ></CertificationResult>
+          wpm={wpm}
+          accuracy={precision}
+        />
       ) : (
         <Box>
           <Box className="paragraph wrapper">

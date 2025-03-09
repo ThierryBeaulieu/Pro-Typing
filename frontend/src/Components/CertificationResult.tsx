@@ -12,7 +12,7 @@ interface CertificationResultProp {
   wpm: number;
 }
 
-function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
+function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = PdfCertification;
@@ -62,7 +62,7 @@ function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
   );
 }
 
-function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
+function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
   const navigate = useNavigate();
 
   const handleClick = (link: string) => {
