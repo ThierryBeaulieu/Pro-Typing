@@ -4,6 +4,7 @@ import dummyText from '../database/database.json';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
+import Box from '@mui/material/Box/Box';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -130,7 +131,7 @@ function TypingContent() {
 
   return (
     <>
-      <div className="paragraph wrapper">
+      <Box className="paragraph wrapper">
         {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
           <div className="word" key={wordIndex}>
             {word.split('').map((letter, letterIndex) => (
@@ -144,11 +145,34 @@ function TypingContent() {
             ))}
           </div>
         ))}
-      </div>
-      <div className="stats">
-        <div>Precision: {precision}%</div>
-        <div>WPM: {wpm}</div>
-      </div>
+      </Box>
+      <Box
+        paddingTop={30}
+        sx={{
+          color: 'grey',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <h2
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            fontWeight: 400,
+          }}
+        >
+          Precision: {precision}%
+        </h2>
+        <h2
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            fontWeight: 400,
+          }}
+        >
+          WPM: {wpm}
+        </h2>
+      </Box>
     </>
   );
 }
