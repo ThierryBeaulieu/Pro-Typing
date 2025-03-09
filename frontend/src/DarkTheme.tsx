@@ -11,6 +11,12 @@ const darkTheme = createTheme({
       primary: '#ffffff',
       secondary: '#b0b0b0',
     },
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#FFD700', // Gold color
+    },
   },
 });
 

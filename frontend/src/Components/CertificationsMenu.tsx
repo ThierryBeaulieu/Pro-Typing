@@ -70,6 +70,7 @@ function CertificationsMenu() {
                 }}
               >
                 <Button
+                  color={'secondary'}
                   variant="outlined"
                   onClick={() =>
                     handleCertificationClick(subCertification.wordsPerMinute)
