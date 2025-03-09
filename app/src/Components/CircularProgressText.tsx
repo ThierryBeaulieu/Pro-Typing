@@ -14,7 +14,7 @@ function CircularProgressText({ text }: CircularProgressWithTextProp) {
         left="50%"
         style={{ transform: 'translate(-50%, -50%)', fontSize: '1.5rem' }}
       >
-        {text} hello
+        {text} hello again
       </Box>
     </Box>
   );
