@@ -22,14 +22,22 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import { useNavigate } from 'react-router';
 
 interface DrawerElement {
-  label: string, 
-  path: string,
-  icon: ReactNode
+  label: string;
+  path: string;
+  icon: ReactNode;
 }
 
-const certification: DrawerElement = {label: 'Certifications', path: '/certifications', icon: <WorkspacePremiumIcon/>}
-const training: DrawerElement = {label: 'Training', path: '/training', icon: <DirectionsRunIcon/>}
-const drawerContent: DrawerElement[] = [certification, training ]
+const certification: DrawerElement = {
+  label: 'Certifications',
+  path: '/certifications',
+  icon: <WorkspacePremiumIcon />,
+};
+const training: DrawerElement = {
+  label: 'Training',
+  path: '/training',
+  icon: <DirectionsRunIcon />,
+};
+const drawerContent: DrawerElement[] = [training, certification];
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -39,38 +47,40 @@ function NavigationBar() {
     setOpen(newOpen);
   };
 
-  const handleClickMainMenu =()=> {
+  const handleClickMainMenu = () => {
     navigate('/');
-  }
+  };
 
-  const handleClick =(link: string)=> {
+  const handleClick = (link: string) => {
     navigate(link);
-  }
+  };
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-          <ListItem disablePadding>
-            <ListItemButton onClick={handleClickMainMenu}>
-              <ListItemIcon>
-              <KeyboardIcon/>
-              </ListItemIcon>
-              <ListItemText primary={'Pro Typing'} />
-            </ListItemButton>
-          </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleClickMainMenu}>
+            <ListItemIcon>
+              <KeyboardIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Pro Typing'} />
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
       <List>
         {drawerContent.map((item: DrawerElement, index) => {
           return (
             <ListItem key={index} disablePadding>
-            <ListItemButton onClick={() => {handleClick(item.path)}}>
-              <ListItemIcon>
-              {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          </ListItem>
+              <ListItemButton
+                onClick={() => {
+                  handleClick(item.path);
+                }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            </ListItem>
           );
         })}
       </List>
@@ -99,7 +109,7 @@ function NavigationBar() {
             </Typography>
           </Toolbar>
         </AppBar>
-      </Box >
+      </Box>
       <Box sx={{ mt: 8 }}></Box>
     </ThemeProvider>
   );

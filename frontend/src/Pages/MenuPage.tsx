@@ -1,11 +1,18 @@
 import Box from '@mui/material/Box/Box';
 import NavigationBar from '../Components/NavigationBar';
-import typingVideo from '../assets/home-page-animation.mp4'
+import typingVideo from '../assets/home-page-animation.mp4';
 import Grid2 from '@mui/material/Grid2/Grid2';
 import rocketImage from '../assets/space-man.jpeg';
 import Button from '@mui/material/Button/Button';
+import { useNavigate } from 'react-router';
 
-function MenuPage () {
+function MenuPage() {
+  const navigate = useNavigate();
+
+  const navigateToTraining = () => {
+    navigate('/training');
+  };
+
   return (
     <>
       <NavigationBar />
@@ -19,7 +26,8 @@ function MenuPage () {
             sx={{ borderRadius: '30px' }}
           />
         </Grid2>
-        <Grid2 size={{ xs: 12, sm: 6, md: 6 }}
+        <Grid2
+          size={{ xs: 12, sm: 6, md: 6 }}
           sx={{
             backgroundColor: '#081221',
             borderRadius: '30px',
@@ -28,10 +36,27 @@ function MenuPage () {
             alignContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            padding: 4
-          }}>
-          <h3 style={{ display: 'flex', justifyContent: 'center', textAlign: 'center', alignContent: 'center', alignItems: 'center' }}>Reach a speed higher than you could ever imagine</h3>
-          <Button sx={{mt: 3}} variant='contained'>Get certified</Button>
+            padding: 4,
+          }}
+        >
+          <h3
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Reach a speed higher than you could ever imagine
+          </h3>
+          <Button
+            onClick={navigateToTraining}
+            sx={{ mt: 3 }}
+            variant="contained"
+          >
+            Start Training
+          </Button>
         </Grid2>
       </Grid2>
       <Box sx={{ width: '100%', maxWidth: 800, margin: '0 auto' }}>
