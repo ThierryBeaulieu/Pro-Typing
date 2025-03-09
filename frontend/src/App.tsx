@@ -1,15 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-import CertificationPage from './pages/CertificationPage.tsx';
-import CertificationsPage from './pages/CertificationsPage.tsx';
-import TrainingPage from './pages/TrainingPage.tsx';
-import TypingPage from './pages/TypingPage.tsx';
-import ErrorPage from './pages/ErrorPage.tsx';
-import TestPage from './pages/TestPage.tsx';
-import MenuPage from './pages/MenuPage.tsx';
-import darkTheme from './DarkTheme.tsx';
+import CertificationPage from './pages/CertificationPage';
+import CertificationsPage from './pages/CertificationsPage';
+import TrainingPage from './pages/TrainingPage';
+import TypingPage from './pages/TypingPage';
+import ErrorPage from './pages/ErrorPage';
+import darkTheme from './DarkTheme';
+import TestPage from './pages/TestPage';
+import MenuPage from './pages/MenuPage';
 
 function App() {
   const routes = [
