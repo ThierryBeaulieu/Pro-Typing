@@ -30,6 +30,11 @@ function TypingContent() {
   const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
   const sentence: string = dummyText['home-page'];
 
+  const didPassTest = () => {
+    if (precision > 95 && wpm > 60) return CertificationState.Completed;
+    return CertificationState.Failed;
+  };
+
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =
       sentenceToWords(sentence)
@@ -136,7 +141,7 @@ function TypingContent() {
     <>
       {isTypingDone ? (
         <CertificationResult
-          result={CertificationState.Failed}
+          result={didPassTest()}
           wpm={wpm}
           accuracy={precision}
         />
