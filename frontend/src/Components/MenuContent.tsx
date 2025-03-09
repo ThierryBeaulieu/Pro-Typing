@@ -82,6 +82,16 @@ function MenuContent() {
 
       <Grid2 container spacing={4} margin={4}>
         <Grid2 size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
+          <ImageWrapper imageName={rocketImage} />
+        </Grid2>
+
+        <TextWrapper
+          path={'/certifications'}
+          text={'Show your impressive skills to your future employer'}
+          buttonTxt={'Get Certified'}
+        />
+
+        <Grid2 size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
           <ImageWrapper imageName={drivingImage} />
         </Grid2>
 
@@ -89,16 +99,6 @@ function MenuContent() {
           path={'/training'}
           text={'Reach a speed higher than you could ever imagine'}
           buttonTxt={'Start Training'}
-        />
-
-        <Grid2 size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
-          <ImageWrapper imageName={rocketImage} />
-        </Grid2>
-
-        <TextWrapper
-          path={'/certifications'}
-          text={'Show you impressive skills to your future employer'}
-          buttonTxt={'Get Certified'}
         />
       </Grid2>
     </>
