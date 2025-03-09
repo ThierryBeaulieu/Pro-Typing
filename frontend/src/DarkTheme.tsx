@@ -15,7 +15,7 @@ const darkTheme = createTheme({
       main: '#1976d2',
     },
     secondary: {
-      main: '#FFD700', // Gold color
+      main: '#FFD700',
     },
   },
 });
