@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box/Box';
 import { useParams } from 'react-router';
-import { Button } from '@mui/material';
+import { Button, Grid2 } from '@mui/material';
 import manWorking from '../assets/man_working.png';
 import { useState } from 'react';
 import TypingContent from './TypingContent';
@@ -23,26 +23,35 @@ function CertificationMenu() {
 
   if (certificationState === pageState.PreCertification) {
     return (
-      <Box className="certification-disclaimer">
-        <Box>
-          <h1>Certification {wpm} WPM</h1>
-          <p style={{ padding: '0px 0px 20px ' }}>
-            You are about to start the {wpm} words per minute certification.
-            Start whenever you feel ready. To obtain the certification, you will
-            need an average of {wpm} words per minute with an accuracy of 95%.
-          </p>
-          <Button onClick={handleStartCertificationClick} variant="contained">
-            Start Certification
-          </Button>
-        </Box>
-        <Box sx={{ width: 330, height: 300 }}>
-          <img
-            src={manWorking}
-            alt="Illustration of a man working"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </Box>
-      </Box>
+      <>
+        <Grid2 container spacing={3}>
+          <Grid2 size={{ xs: 12, sm: 7, md: 7, lg: 8, xl: 8 }}>
+            <h1>Certification {wpm} WPM</h1>
+            <p style={{ padding: '0px 0px 20px ' }}>
+              You are about to start the {wpm} words per minute certification.
+              Start whenever you feel ready. To obtain the certification, you
+              will need an average of {wpm} words per minute with an accuracy of
+              95%.
+            </p>
+            <Box display={'flex'} justifyContent={'center'}>
+              <Button
+                onClick={handleStartCertificationClick}
+                variant="contained"
+              >
+                Start Certification
+              </Button>
+            </Box>
+          </Grid2>
+          <Grid2 size={{ xs: 12, sm: 5, md: 5, lg: 4, xl: 4 }}>
+            <Box
+              width={'100%'}
+              component="img"
+              alt="certification-image"
+              src={manWorking}
+            />
+          </Grid2>
+        </Grid2>
+      </>
     );
   } else {
     return <TypingContent></TypingContent>;
