@@ -133,7 +133,7 @@ function Redirection({
         }}
       >
         <Button
-          onClick={() => handleClick('/certification')}
+          onClick={() => handleClick(`/certification/${range}`)}
           variant="contained"
         >
           Try Again
