@@ -10,9 +10,18 @@ interface CertificationResultProp {
   result: CertificationState;
   accuracy: number;
   wpm: number;
+  range: string;
 }
 
-function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
+function Certificate({
+  wpm,
+  accuracy,
+  range,
+}: {
+  wpm: number;
+  accuracy: number;
+  range: string;
+}) {
   const navigate = useNavigate();
 
   const handleDownload = () => {
@@ -33,7 +42,7 @@ function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
       <Grid2 container spacing={3}>
         <Grid2 size={{ xs: 12, sm: 7, md: 7, lg: 8, xl: 8 }}>
           <Box>
-            <h2>Certification results</h2>
+            <h2>Certification {range} WPM</h2>
             <h3 style={{ paddingTop: 5 }}>
               You achieve {wpm} words per minute with an accuracy of {accuracy}%
             </h3>
@@ -72,7 +81,15 @@ function Certificate({ wpm, accuracy }: { wpm: number; accuracy: number }) {
   );
 }
 
-function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
+function Redirection({
+  wpm,
+  accuracy,
+  range,
+}: {
+  wpm: number;
+  accuracy: number;
+  range: string;
+}) {
   const navigate = useNavigate();
 
   const handleClick = (link: string) => {
@@ -87,14 +104,14 @@ function Redirection({ wpm, accuracy }: { wpm: number; accuracy: number }) {
       <Grid2 container spacing={3}>
         <Grid2 size={{ xs: 12, sm: 7, md: 7, lg: 8, xl: 8 }}>
           <Box>
-            <h2>Certification results</h2>
+            <h2>Certification {range}</h2>
             <h3 style={{ paddingTop: 5 }}>
               You achieve {wpm} words per minute with an accuracy of {accuracy}%
             </h3>
           </Box>
           <Box paddingTop={4}>
             Unfortunately, this wasn't enough to achieve the minimum
-            requirements for this certification
+            requirements for this certification.
           </Box>
         </Grid2>
         <Grid2 size={{ xs: 12, sm: 5, md: 5, lg: 4, xl: 4 }}>
@@ -133,13 +150,14 @@ function CertificationResult({
   result,
   accuracy,
   wpm,
+  range,
 }: CertificationResultProp) {
   return (
     <Box padding={3}>
       {result === CertificationState.Completed ? (
-        <Certificate wpm={wpm} accuracy={accuracy} />
+        <Certificate wpm={wpm} accuracy={accuracy} range={range} />
       ) : (
-        <Redirection wpm={wpm} accuracy={accuracy} />
+        <Redirection wpm={wpm} accuracy={accuracy} range={range} />
       )}
     </Box>
   );

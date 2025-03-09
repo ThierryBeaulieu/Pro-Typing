@@ -162,6 +162,7 @@ function TypingContent() {
           result={didPassTest()}
           wpm={wpm}
           accuracy={precision}
+          range={range!}
         />
       ) : (
         <Box>
