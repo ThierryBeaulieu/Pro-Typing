@@ -77,7 +77,7 @@ function CertificationsMenu() {
                 {isCertificationObtained(subCertification.wordsPerMinute[0]) ? (
                   <Button
                     color={'secondary'}
-                    variant="outlined"
+                    variant="contained"
                     onClick={() =>
                       handleCertificationClick(subCertification.wordsPerMinute)
                     }
@@ -86,7 +86,7 @@ function CertificationsMenu() {
                   </Button>
                 ) : (
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     onClick={() =>
                       handleCertificationClick(subCertification.wordsPerMinute)
                     }
