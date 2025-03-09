@@ -17,7 +17,7 @@ function App() {
     { path: '/', element: <MenuPage /> },
     { path: '/error', element: <ErrorPage /> },
     {
-      path: '/training/:wpm',
+      path: '/training/',
       element: <TrainingPage />,
     },
     {
