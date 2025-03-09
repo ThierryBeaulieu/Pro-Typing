@@ -5,6 +5,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
+import CertificationResult from './CertificationResult';
+import CertificationState from '../enum/certificationState';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -25,6 +27,7 @@ function TypingContent() {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [timerId, setTimerId] = useState<number | null>(null);
+  const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
   const sentence: string = dummyText['home-page'];
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
@@ -110,6 +113,7 @@ function TypingContent() {
     if (correctChar.length === sentence.length && timerId !== null) {
       clearInterval(timerId);
       setTimerId(null);
+      setIsTypingDone(true);
     }
   }, [correctChar.length, sentence.length, timerId]);
 
@@ -130,48 +134,60 @@ function TypingContent() {
 
   return (
     <>
-      <Box className="paragraph wrapper">
-        {sentenceToWords(sentence).map((word: string, wordIndex: number) => (
-          <div className="word" key={wordIndex}>
-            {word.split('').map((letter, letterIndex) => (
-              <div className="letter-wrapper" key={letterIndex}>
-                <span
-                  className={`letter ${isCorrectChar(wordIndex, letterIndex)} ${isActiveChar(wordIndex, letterIndex)}`}
-                >
-                  {letter}
-                </span>
-              </div>
-            ))}
-          </div>
-        ))}
-      </Box>
-      <Box
-        paddingTop={30}
-        sx={{
-          color: 'grey',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <h2
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            fontWeight: 400,
-          }}
-        >
-          Precision: {precision}%
-        </h2>
-        <h2
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            fontWeight: 400,
-          }}
-        >
-          WPM: {wpm}
-        </h2>
-      </Box>
+      {isTypingDone ? (
+        <CertificationResult
+          result={CertificationState.Failed}
+          wpm={20}
+          accuracy={84}
+        ></CertificationResult>
+      ) : (
+        <Box>
+          <Box className="paragraph wrapper">
+            {sentenceToWords(sentence).map(
+              (word: string, wordIndex: number) => (
+                <div className="word" key={wordIndex}>
+                  {word.split('').map((letter, letterIndex) => (
+                    <div className="letter-wrapper" key={letterIndex}>
+                      <span
+                        className={`letter ${isCorrectChar(wordIndex, letterIndex)} ${isActiveChar(wordIndex, letterIndex)}`}
+                      >
+                        {letter}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ),
+            )}
+          </Box>
+          <Box
+            paddingTop={30}
+            sx={{
+              color: 'grey',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <h2
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                fontWeight: 400,
+              }}
+            >
+              Precision: {precision}%
+            </h2>
+            <h2
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                fontWeight: 400,
+              }}
+            >
+              WPM: {wpm}
+            </h2>
+          </Box>
+        </Box>
+      )}
     </>
   );
 }
