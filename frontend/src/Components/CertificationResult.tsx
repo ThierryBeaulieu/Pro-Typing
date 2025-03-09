@@ -37,10 +37,6 @@ function Certificate({
     navigate('/certifications');
   };
 
-  const handleMainMenu = () => {
-    navigate('/');
-  };
-
   return (
     <>
       <Grid2 container spacing={3}>
