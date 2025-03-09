@@ -66,6 +66,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_64E4AB7C9E904A89B3A5B7F37B7D68F4 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BBBAA75BE2B747E397F4E2825303EB73 }}
 
+      - name: Unzip artifact for deployment
+        run: ls
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
