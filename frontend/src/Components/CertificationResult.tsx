@@ -51,6 +51,9 @@ function Certificate({
             Congratulations! You are now the proud owner of this certificate.
             Feel free to share it on LinkedIn, Indeed or other social media.
           </Box>
+          <Box paddingTop={2} display="flex" justifyContent={'center'}>
+            <Button variant="contained">Main menu</Button>
+          </Box>
         </Grid2>
         <Grid2 size={{ xs: 12, sm: 5, md: 5, lg: 4, xl: 4 }}>
           <Box
