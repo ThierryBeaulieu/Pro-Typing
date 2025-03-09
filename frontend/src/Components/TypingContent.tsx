@@ -21,6 +21,9 @@ function sentenceToWords(text: string): string[] {
 function TypingContent() {
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [timerId, setTimerId] = useState<number | null>(null);
   const sentence: string = dummyText['home-page'];
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
@@ -82,6 +85,16 @@ function TypingContent() {
         } else {
           setCorrectChar((prev) => [...prev, false]);
         }
+
+        // Start timer on first keystroke
+        if (startTime === null) {
+          const now = Date.now();
+          setStartTime(now);
+          const id = setInterval(() => {
+            setElapsedTime(Math.floor((Date.now() - now) / 1000));
+          }, 1000);
+          setTimerId(id);
+        }
       }
     };
 
@@ -89,7 +102,31 @@ function TypingContent() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [correctChar.length, sentence, userInput]);
+  }, [correctChar.length, sentence, userInput, startTime]);
+
+  useEffect(() => {
+    // Stop timer when sentence is completed
+    if (correctChar.length === sentence.length && timerId !== null) {
+      clearInterval(timerId);
+      setTimerId(null);
+    }
+  }, [correctChar.length, sentence.length, timerId]);
+
+  useEffect(() => {
+    // Cleanup timer on component unmount
+    return () => {
+      if (timerId) {
+        clearInterval(timerId);
+      }
+    };
+  }, [timerId]);
+
+  // Calculate stats
+  const correct = correctChar.filter((c) => c).length;
+  const totalTyped = correctChar.length;
+  const precision =
+    totalTyped > 0 ? Math.round((correct / totalTyped) * 100) : 0;
+  const wpm = elapsedTime > 0 ? Math.round((correct * 12) / elapsedTime) : 0;
 
   return (
     <>
@@ -107,6 +144,10 @@ function TypingContent() {
             ))}
           </div>
         ))}
+      </div>
+      <div className="stats">
+        <div>Precision: {precision}%</div>
+        <div>WPM: {wpm}</div>
       </div>
     </>
   );
