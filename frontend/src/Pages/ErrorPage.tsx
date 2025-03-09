@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import NavigationBar from '../components/NavigationBar';
+import NavigationBar from '../Components/NavigationBar';
 import { Typography, Container, Box, Button } from '@mui/material';
 
 function ErrorPage() {

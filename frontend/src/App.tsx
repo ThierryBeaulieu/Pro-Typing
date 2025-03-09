@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import CertificationPage from './pages/CertificationPage';
-import CertificationsPage from './pages/CertificationsPage';
-import TrainingPage from './pages/TrainingPage';
-import TypingPage from './pages/TypingPage';
-import ErrorPage from './pages/ErrorPage';
+import CertificationPage from './Pages/CertificationPage';
+import CertificationsPage from './Pages/CertificationsPage';
+import TrainingPage from './Pages/TrainingPage';
+import TypingPage from './Pages/TypingPage';
+import ErrorPage from './Pages/ErrorPage';
 import darkTheme from './DarkTheme';
-import TestPage from './pages/TestPage';
+import TestPage from './Pages/TestPage';
 
 function App() {
   const routes = [

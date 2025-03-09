@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box/Box';
-import CertificationsMenu from '../components/CertificationsMenu';
-import NavigationBar from '../components/NavigationBar';
+import CertificationsMenu from '../Components/CertificationsMenu';
+import NavigationBar from '../Components/NavigationBar';
 
 function CertificationsPage() {
   return (

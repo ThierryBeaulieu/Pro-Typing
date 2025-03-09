@@ -1,5 +1,5 @@
-import TypingContent from '../components/TypingContent';
-import NavigationBar from '../components/NavigationBar';
+import TypingContent from '../Components/TypingContent';
+import NavigationBar from '../Components/NavigationBar';
 import Box from '@mui/material/Box/Box';
 
 function TypingPage() {
