@@ -2,11 +2,8 @@ import Box from '@mui/material/Box/Box';
 import { useParams } from 'react-router';
 import { Button } from '@mui/material';
 import manWorking from '../assets/man_working.png';
-import { useEffect, useState } from 'react';
-import CircularProgressText from './CircularProgressText';
-import TypingContent from './TypingContent';
-
-const DEFAULT_TIMING: number = 0; // todo change in production
+import { useState } from 'react';
+import TypingContent from '../components/TypingContent';
 
 enum pageState {
   PreCertification,
@@ -19,32 +16,12 @@ function CertificationMenu() {
   const [certificationState, setCertificationState] = useState<pageState>(
     pageState.PreCertification,
   );
-  const [timeLeft, setTimeLeft] = useState<number>(0);
-
-  useEffect(() => {
-    if (
-      timeLeft === 0 &&
-      certificationState === pageState.PreppingCertification
-    ) {
-      setCertificationState(pageState.Certification);
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, certificationState]);
 
   const handleStartCertificationClick = () => {
-    setCertificationState(pageState.PreppingCertification);
-    setTimeLeft(DEFAULT_TIMING);
+    setCertificationState(pageState.Certification);
   };
 
-  const handleGoBackClick = () => {
-    setCertificationState(pageState.PreCertification);
-  };
+
 
   if (certificationState === pageState.PreCertification) {
     return (
@@ -67,23 +44,6 @@ function CertificationMenu() {
             style={{ width: '100%', height: '100%' }}
           />
         </Box>
-      </Box>
-    );
-  } else if (certificationState === pageState.PreppingCertification) {
-    return (
-      <Box
-        display={'flex'}
-        justifyContent={'center'}
-        flexDirection={'column'}
-        alignItems={'center'}
-      >
-        <h1>Certification starts in</h1>
-        <Box display={'flex'} justifyContent={'center'} padding={'5vh 0 4vh 0'}>
-          <CircularProgressText text={timeLeft.toString()} />
-        </Box>
-        <Button onClick={handleGoBackClick} variant="contained">
-          Go back
-        </Button>
       </Box>
     );
   } else {

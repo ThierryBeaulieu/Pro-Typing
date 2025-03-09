@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box/Box';
-import NavigationBar from '../Components/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 import { useParams } from 'react-router';
 
 function TrainingPage() {
