@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import dummyText from '../Database/database.json';
+import dummyText from '../database/database.json';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
