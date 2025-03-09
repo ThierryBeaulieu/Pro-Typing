@@ -32,6 +32,12 @@ function CertificationsMenu() {
     navigate(`/certification/${min}-${max}`);
   };
 
+  const isCertificationObtained = (wpm: number) => {
+    const certification: string | null = localStorage.getItem(wpm.toString());
+
+    return certification === null ? false : true;
+  };
+
   return (
     <>
       <h1>Certifications</h1>
@@ -69,15 +75,26 @@ function CertificationsMenu() {
                   flexDirection: 'column',
                 }}
               >
-                <Button
-                  color={'secondary'}
-                  variant="outlined"
-                  onClick={() =>
-                    handleCertificationClick(subCertification.wordsPerMinute)
-                  }
-                >
-                  Take Certification
-                </Button>
+                {isCertificationObtained(subCertification.wordsPerMinute[0]) ? (
+                  <Button
+                    color={'secondary'}
+                    variant="outlined"
+                    onClick={() =>
+                      handleCertificationClick(subCertification.wordsPerMinute)
+                    }
+                  >
+                    Retake Certification
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    onClick={() =>
+                      handleCertificationClick(subCertification.wordsPerMinute)
+                    }
+                  >
+                    Take Certification
+                  </Button>
+                )}
               </Box>
             </Box>
           </Grid2>
