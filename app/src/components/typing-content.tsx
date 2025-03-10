@@ -6,7 +6,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
 import CertificationResult from './certification-result';
-import CertificationState from '../enum/certificationState';
+import CertificationState from '../enum/certification-state';
 import { useLocation, useNavigate, useParams } from 'react-router';
 
 function sentenceToWords(text: string): string[] {
