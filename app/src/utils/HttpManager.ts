@@ -1,4 +1,4 @@
-import { SERVER_URL } from './Consts.js';
+import { SERVER_URL } from './';
 
 export const HTTPInterface = {
   SERVER_URL: `${SERVER_URL}/api`,
