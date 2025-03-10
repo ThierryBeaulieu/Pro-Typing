@@ -17,8 +17,6 @@ class CertificationService {
   }
 }
 
-export default new CertificationService();
-
 const certifications: CertificationWrapper[] = [
   {
     name: 'Advanced',
@@ -141,3 +139,5 @@ const certifications: CertificationWrapper[] = [
     ],
   },
 ];
+
+export default certifications;
