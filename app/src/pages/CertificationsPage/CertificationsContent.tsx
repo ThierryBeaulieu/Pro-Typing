@@ -11,7 +11,7 @@ import MotorCycle from '../../assets/certifications-type/motorcycle.png';
 import TrainDriving from '../../assets/certifications-type/train.png';
 
 import { useNavigate } from 'react-router';
-import majorCertifications from '../../services/CertificationsService';
+import majorCertifications from '../../services/CertificationService';
 
 type CertificationCardType = {
   image: string;
