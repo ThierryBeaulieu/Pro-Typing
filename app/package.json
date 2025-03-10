@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "test": "vitest --config vitest.config.ts",
+    "test": "vitest",
     "coverage": "vitest run --coverage",
     "preview": "vite preview"
   },
