@@ -1,22 +1,5 @@
 import { CertificationWrapper } from '../interfaces/CertificationsInterface';
 
-import { HTTPInterface } from '../interfaces/HTTPInterface';
-
-class CertificationService {
-  private certificationsBaseURL: string = 'certifications';
-
-  async fetchAllCertifications(): Promise<CertificationWrapper[]> {
-    const allCertifications = await HTTPInterface.GET(
-      `${this.certificationsBaseURL}`,
-    );
-    return allCertifications;
-  }
-
-  async getCertifications(): Promise<CertificationWrapper[]> {
-    return certifications;
-  }
-}
-
 const certifications: CertificationWrapper[] = [
   {
     name: 'Advanced',
