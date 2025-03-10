@@ -5,6 +5,7 @@ import rocketImage from '../assets/space-man.jpeg';
 import drivingImage from '../assets/driving-man.jpeg';
 import Button from '@mui/material/Button/Button';
 import { useNavigate } from 'react-router';
+import TypeBetter from '../assets/type-better.png';
 
 function ImageWrapper({ imageName }: { imageName: string }) {
   return (
@@ -78,6 +79,11 @@ function MenuContent() {
         <video autoPlay muted playsInline loop style={{ width: '100%' }}>
           <source src={typingVideo} type="video/mp4" />
           Your browser does not support the video tag.
+          <img
+            src={TypeBetter}
+            alt="Video not supported"
+            style={{ width: '100%' }}
+          />
         </video>
       </Box>
 
