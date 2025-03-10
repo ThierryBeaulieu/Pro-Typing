@@ -30,8 +30,6 @@ jobs:
           cd app
           npm install
           npm run build
-          ls -R
-          find . -name "*.test.tsx"
           npm run test
           npm run coverage
 
