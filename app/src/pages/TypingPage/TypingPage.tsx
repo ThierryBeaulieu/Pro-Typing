@@ -1,5 +1,5 @@
-import TypingContent from '../components/typing-content';
-import NavigationBar from '../components/navigation-bar';
+import TypingPageContent from './TypingPageContent';
+import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import Box from '@mui/material/Box/Box';
 
 function TypingPage() {
@@ -7,7 +7,7 @@ function TypingPage() {
     <>
       <NavigationBar />
       <Box className="progression">
-        <TypingContent />
+        <TypingPageContent />
       </Box>
     </>
   );

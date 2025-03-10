@@ -1,13 +1,13 @@
 import { Box, Button, Grid2 } from '@mui/material';
-import CertificationState from '../enum/certification-state';
-import Congrats from '../assets/congrats.jpeg';
-import StillWorkToDo from '../assets/work-to-do.jpeg';
+import CertificationState from '../../enum/CertificationState';
+import Congrats from '../../assets/congrats.jpeg';
+import StillWorkToDo from '../../assets/work-to-do.jpeg';
 import { useNavigate } from 'react-router';
-import PdfCertification from '../assets/pro-typing-certificate.pdf';
-import CertificateImage from '../assets/certificate.png';
+import PdfCertification from '../../assets/pro-typing-certificate.pdf';
+import CertificateImage from '../../assets/certificate.png';
 import { useEffect } from 'react';
 
-interface CertificationResultProp {
+interface TypingResultProp {
   result: CertificationState;
   accuracy: number;
   wpm: number;
@@ -160,12 +160,7 @@ function Redirection({
   );
 }
 
-function CertificationResult({
-  result,
-  accuracy,
-  wpm,
-  range,
-}: CertificationResultProp) {
+function TypingResult({ result, accuracy, wpm, range }: TypingResultProp) {
   return (
     <Box padding={3}>
       {result === CertificationState.Completed ? (
@@ -177,4 +172,4 @@ function CertificationResult({
   );
 }
 
-export default CertificationResult;
+export default TypingResult;

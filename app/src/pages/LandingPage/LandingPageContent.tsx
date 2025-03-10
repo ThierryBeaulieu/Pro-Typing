@@ -1,23 +1,11 @@
 import Box from '@mui/material/Box/Box';
-import typingVideo from '../assets/home-page-animation-2.mp4';
+import typingVideo from '../../assets/home-page-animation-2.mp4';
 import Grid2 from '@mui/material/Grid2/Grid2';
-import rocketImage from '../assets/space-man.jpeg';
-import drivingImage from '../assets/driving-man.jpeg';
+import rocketImage from '../../assets/certifications-type/space-man.jpeg';
+import drivingImage from '../../assets/certifications-type/driving-man.jpeg';
 import Button from '@mui/material/Button/Button';
 import { useNavigate } from 'react-router';
-import TypeBetter from '../assets/type-better.png';
-
-function ImageWrapper({ imageName }: { imageName: string }) {
-  return (
-    <Box
-      width={'100%'}
-      component="img"
-      alt="certification-image"
-      src={imageName}
-      sx={{ borderRadius: '30px' }}
-    />
-  );
-}
+import TypeBetter from '../../assets/type-better.png';
 
 type TextWrapperProps = {
   path: string;
@@ -65,6 +53,32 @@ function TextWrapper({ path, text, buttonTxt }: TextWrapperProps) {
   );
 }
 
+function ImageWrapper({ imageName }: { imageName: string }) {
+  return (
+    <Box
+      width={'100%'}
+      component="img"
+      alt="certification-image"
+      src={imageName}
+      sx={{ borderRadius: '30px' }}
+    />
+  );
+}
+
+function VideoWrapper() {
+  return (
+    <video autoPlay muted playsInline loop style={{ width: '100%' }}>
+      <source src={typingVideo} type="video/mp4" />
+      Your browser does not support the video tag.
+      <img
+        src={TypeBetter}
+        alt="Video not supported"
+        style={{ width: '100%' }}
+      />
+    </video>
+  );
+}
+
 function MenuContent() {
   return (
     <>
@@ -76,15 +90,7 @@ function MenuContent() {
           maxWidth: 800,
         }}
       >
-        <video autoPlay muted playsInline loop style={{ width: '100%' }}>
-          <source src={typingVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-          <img
-            src={TypeBetter}
-            alt="Video not supported"
-            style={{ width: '100%' }}
-          />
-        </video>
+        <VideoWrapper />
       </Box>
 
       <Grid2 container spacing={4} margin={4}>

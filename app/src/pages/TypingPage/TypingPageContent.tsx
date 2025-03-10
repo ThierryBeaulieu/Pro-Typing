@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import text from '../database/database.json';
+import text from '../../database/database.json';
+
+import Box from '@mui/material/Box/Box';
+import TypingResult from './TypingResult';
+import CertificationState from '../../enum/CertificationState';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
-import Box from '@mui/material/Box/Box';
-import CertificationResult from './certification-result';
-import CertificationState from '../enum/certification-state';
-import { useLocation, useNavigate, useParams } from 'react-router';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -171,7 +172,7 @@ function TypingContent() {
   return (
     <>
       {isTypingDone ? (
-        <CertificationResult
+        <TypingResult
           result={didPassTest()}
           wpm={wpm}
           accuracy={precision}
