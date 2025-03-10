@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import NavigationBar from '../Components/NavigationBar';
+import NavigationBar from '../components/navigation-bar';
 import { Typography, Container, Box, Button } from '@mui/material';
 
 function NotFoundPage() {

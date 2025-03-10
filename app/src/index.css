@@ -14,7 +14,6 @@
   --tile: #515151;
 }
 
-/*Progression Page*/
 .progression-wrapper {
   margin-bottom: 4vh;
   margin-top: 4vh;
@@ -22,26 +21,6 @@
   margin-right: 10vw;
 }
 
-.line-level {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-bottom: 5vh;
-}
-
-.arrow-and-box {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-
-.arrow {
-  padding-left: 20px;
-  width: 30px;
-  padding-right: 20px;
-}
-
-/*Underligned*/
 .wrapper {
   max-width: 1280px;
   margin: 0 auto;
@@ -100,22 +79,4 @@
   min-height: 49px;
   color: var(--red-letter);
   border-color: var(--red-tile);
-}
-
-/* certification */
-.typist-section {
-  display: flex;
-  flex-direction: column;
-  margin-top: 3vh;
-}
-
-.typist-category {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.certification-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

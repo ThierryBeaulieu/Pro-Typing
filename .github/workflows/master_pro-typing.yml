@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -24,10 +25,12 @@ jobs:
           node-version: '22.x'
 
       - name: npm install, build, and test
+
         run: |
           cd app
           npm install
           npm run build
+          npm run test
 
       - name: Zip artifact for deployment
         run: zip release.zip ./app/dist/* -r
@@ -56,7 +59,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -71,4 +74,3 @@ jobs:
           app-name: 'pro-typing'
           slot-name: 'Production'
           package: ./app/dist
-          

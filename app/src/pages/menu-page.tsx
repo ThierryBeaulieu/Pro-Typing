@@ -1,6 +1,6 @@
-import NavigationBar from '../Components/NavigationBar';
+import NavigationBar from '../components/navigation-bar';
 
-import MenuContent from '../Components/MenuContent';
+import MenuContent from '../components/menu-content';
 
 function MenuPage() {
   return (

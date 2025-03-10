@@ -1,5 +1,5 @@
 import { Box, Button, Grid2 } from '@mui/material';
-import CertificationState from '../enum/certificationState';
+import CertificationState from '../enum/certification-state';
 import Congrats from '../assets/congrats.jpeg';
 import StillWorkToDo from '../assets/work-to-do.jpeg';
 import { useNavigate } from 'react-router';

@@ -1,4 +1,4 @@
-import certifications from '../interfaces/MajorCertifications';
+import certifications from '../interfaces/major-certification';
 import { Box, Button, Grid2 } from '@mui/material';
 import RunningMan from '../assets/running-man.jpeg';
 import BikeMan from '../assets/cycling-man.jpeg';

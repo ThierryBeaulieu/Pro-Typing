@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Button, Grid2 } from '@mui/material';
 import manWorking from '../assets/man_working.png';
 import { useState } from 'react';
-import TypingContent from './TypingContent';
+import TypingContent from './typing-content';
 
 enum pageState {
   PreCertification,
