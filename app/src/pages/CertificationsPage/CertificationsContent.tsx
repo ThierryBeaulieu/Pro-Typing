@@ -1,14 +1,14 @@
 import certifications from '../../interfaces/MajorCertification';
 import { Box, Button, Grid2 } from '@mui/material';
-import RunningMan from '../../assets/running-man.jpeg';
-import BikeMan from '../../assets/cycling-man.jpeg';
-import SpaceMan from '../../assets/space-man.jpeg';
-import SkateBoard from '../../assets/skate-board.png';
-import DivingMan from '../../assets/diving-man.jpeg';
-import DrivingMan from '../../assets/driving-man.jpeg';
-import FighterJet from '../../assets/fighter-jet.png';
-import MotorCycle from '../../assets/motorcycle.png';
-import TrainDriving from '../../assets/train.png';
+import RunningMan from '../../assets/certifications-type/running-man.jpeg';
+import BikeMan from '../../assets/certifications-type/cycling-man.jpeg';
+import SpaceMan from '../../assets/certifications-type/space-man.jpeg';
+import SkateBoard from '../../assets/certifications-type/skate-board.png';
+import DivingMan from '../../assets/certifications-type/diving-man.jpeg';
+import DrivingMan from '../../assets/certifications-type/driving-man.jpeg';
+import FighterJet from '../../assets/certifications-type/fighter-jet.png';
+import MotorCycle from '../../assets/certifications-type/motorcycle.png';
+import TrainDriving from '../../assets/certifications-type/train.png';
 
 import { useNavigate } from 'react-router';
 
