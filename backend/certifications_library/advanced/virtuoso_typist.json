@@ -1,0 +1,19 @@
+{
+    "anglais": {
+        "1": {
+            "sentence": "History is a testament to humanity’s ability to overcome adversity. Whether rebuilding after wars, natural disasters, or personal hardships, resilience fuels progress. Psychological studies reveal that adaptability, perseverance, and emotional intelligence are crucial to enduring setbacks."
+        },
+        "2": {
+            "sentence": "Mythology has shaped civilizations, literature, and philosophical thought for millennia. Ancient myths from Greece, Egypt, and Norse traditions continue to inspire modern storytelling, from cinema to literature."
+        },
+        "3": {
+            "sentence": "Mathematics is the foundation of modern life, influencing everything from architecture to artificial intelligence. The Fibonacci sequence appears in nature, probability dictates financial markets, and algorithms drive technological advancement."
+        },
+        "4": {
+            "sentence": "The human brain is a complex and powerful organ, capable of processing immense amounts of information. Neuroscientists study memory formation, retrieval, and cognitive efficiency to uncover ways to optimize learning."
+        },
+        "5": {
+            "sentence": "Food transcends nourishment—it embodies history, identity, and creativity. The evolution of cuisine reflects migration, trade, and technological progress. From ancient spice routes to contemporary fusion dishes, culinary traditions illustrate the rich interplay between societies."
+        }
+    }
+}
