@@ -15,7 +15,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import Divider from '@mui/material/Divider';
-import darkTheme from '../DarkTheme';
+import darkTheme from '../dark-theme';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';

@@ -5,7 +5,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
-import CertificationResult from './CertificationResult';
+import CertificationResult from './certification-result';
 import CertificationState from '../enum/certificationState';
 import { useLocation, useNavigate, useParams } from 'react-router';
 
