@@ -31,7 +31,6 @@ jobs:
           npm install
           npm run build
           npm run test
-          npm run coverage
 
       - name: Zip artifact for deployment
         run: zip release.zip ./app/dist/* -r
