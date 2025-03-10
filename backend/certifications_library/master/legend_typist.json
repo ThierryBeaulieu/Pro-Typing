@@ -1,0 +1,19 @@
+{
+    "anglais": {
+        "1": {
+            "sentence": "The interplay of time and space is a concept that has bewildered and inspired scholars for centuries, especially with the advent of relativity theory and quantum mechanics. Albert Einstein’s theory of relativity fundamentally altered our understanding of the universe, demonstrating that time is not an absolute constant but is instead relative"
+        },
+        "2": {
+            "sentence": "Moreover, the curvature of space-time, predicted by Einstein, has been experimentally verified through phenomena like gravitational lensing and the detection of gravitational waves, signaling a new era of scientific discovery."
+        },
+        "3": {
+            "sentence": "At the intersection of philosophy and epistemology, the question of knowledge—its sources, limits, and certainty—remains one of the most debated topics. The renowned philosopher René Descartes famously questioned the nature of existence, culminating in his conclusion \"Cogito, ergo sum\" (\"I think, therefore I am\")."
+        },
+        "4": {
+            "sentence": "In the world of genetics, breakthroughs in CRISPR technology have opened new frontiers in the ability to edit genes with unprecedented precision. This innovation holds immense potential for treating genetic diseases, enhancing agricultural productivity, and even altering the human genome."
+        },
+        "5": {
+            "sentence": "Yet, the ethical considerations are vast. Should we alter the genetic code of humans or other organisms? What are the long-term consequences of genetic manipulation on the environment and biodiversity? The debate over bioethics is fraught with challenges, as the line between scientific progress and moral responsibility becomes increasingly difficult to navigate."
+        }
+    }
+}

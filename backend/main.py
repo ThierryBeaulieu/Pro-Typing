@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from get_sentences_certificates import GetCertificate
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+headers = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET'])
 def home():
@@ -15,7 +17,11 @@ def get_data():
 
 @app.route('/data', methods=['POST'])
 def post_data():
-    data = request.json
+    data = GetCertificate(
+        type_level=request.form.get("type"),    #str
+        title_certification=request.form.get("certificate_id")  #int
+    ).getCertificateSentence()
+    #Exemple: type="advanced"(for advanced level), certificate_id=2(for advanced level on certificate )
     return jsonify({"received": data}), 201
 
 if __name__ == '__main__':
