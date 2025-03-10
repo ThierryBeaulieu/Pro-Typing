@@ -7,7 +7,7 @@ import '@fontsource/roboto/500.css';
 import Box from '@mui/material/Box/Box';
 import CertificationResult from './CertificationResult';
 import CertificationState from '../enum/certificationState';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -22,13 +22,6 @@ function sentenceToWords(text: string): string[] {
   return fullSentence;
 }
 
-const initSentence = () => {
-  const sentences: string[] = text['texts'];
-  const sentenceIndex = Math.floor(Math.random() * sentences.length);
-  return sentences[sentenceIndex];
-};
-const sentence: string = initSentence();
-
 function TypingContent() {
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
@@ -40,6 +33,20 @@ function TypingContent() {
   const [wpm, setWPM] = useState<number>(0);
   const { range } = useParams();
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const initSentence = () => {
+    const sentences: string[] = text['texts'];
+    const sentenceIndex = Math.floor(Math.random() * sentences.length);
+    return sentences[sentenceIndex];
+  };
+
+  const [sentence, setSentence] = useState<string>(initSentence());
+
+  useEffect(() => {
+    setSentence(initSentence());
+  }, [location]);
 
   const didPassTest = () => {
     const wordsPerMinuteRange: string[] | undefined = range?.split('-');
@@ -54,8 +61,6 @@ function TypingContent() {
     }
     return CertificationState.Failed;
   };
-
-  initSentence();
 
   function isCorrectChar(wordIndex: number, letterIndex: number) {
     const charIndex =
