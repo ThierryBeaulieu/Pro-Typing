@@ -1,19 +1,9 @@
-interface MajorCertification {
-  name: string;
-  subCertifications: Certification[];
-}
+import { CertificationWrapper } from '../interfaces/CertificationsInterface';
 
-interface Certification {
-  name: string;
-  range: string;
-  description: string;
-  wordsPerMinute: number[];
-}
-
-const majorCertifications: MajorCertification[] = [
+const majorCertifications: CertificationWrapper[] = [
   {
     name: 'Advanced',
-    subCertifications: [
+    certifications: [
       {
         name: 'Average Typist',
         range: '40-55 words per minute',
@@ -81,7 +71,7 @@ const majorCertifications: MajorCertification[] = [
   },
   {
     name: 'Master',
-    subCertifications: [
+    certifications: [
       {
         name: 'Grandmaster Typist',
         range: '220-235 words per minute',
@@ -107,7 +97,7 @@ const majorCertifications: MajorCertification[] = [
   },
   {
     name: 'World Record',
-    subCertifications: [
+    certifications: [
       {
         name: 'Hall of Fame Typist',
         range: '280-295 words per minute',

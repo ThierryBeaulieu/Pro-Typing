@@ -6,7 +6,7 @@ import CertificationsPage from './pages/CertificationsPage/CertificationsPage';
 import TrainingPage from './pages/TrainingPage/TrainingPage';
 import TypingPage from './pages/TypingPage/TypingPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
-import darkTheme from './utils/dark-theme';
+import darkTheme from './utils/DarkTheme';
 import TestPage from './pages/TestPage/TestPage';
 import MenuPage from './pages/LandingPage/LandingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
