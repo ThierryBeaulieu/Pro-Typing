@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box/Box';
-import typingVideo from '../assets/home-page-animation-2.mp4';
+import typingVideo from '../../assets/home-page-animation-2.mp4';
 import Grid2 from '@mui/material/Grid2/Grid2';
-import rocketImage from '../assets/space-man.jpeg';
-import drivingImage from '../assets/driving-man.jpeg';
+import rocketImage from '../../assets/space-man.jpeg';
+import drivingImage from '../../assets/driving-man.jpeg';
 import Button from '@mui/material/Button/Button';
 import { useNavigate } from 'react-router';
-import TypeBetter from '../assets/type-better.png';
+import TypeBetter from '../../assets/type-better.png';
 
 function ImageWrapper({ imageName }: { imageName: string }) {
   return (

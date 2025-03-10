@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
-import NavigationBar from '../components/navigation-bar';
+import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import { Typography, Container, Box, Button } from '@mui/material';
 
-function NotFoundPage() {
+function ErrorPage() {
   return (
     <>
       <NavigationBar />
       <Container maxWidth="sm">
         <Box sx={{ textAlign: 'center', mt: 5 }}>
-          <Typography variant="h3">404 - Page Not Found</Typography>
+          <Typography variant="h3">400 - Error occured</Typography>
           <Typography variant="h6" color="textSecondary">
-            The page you are looking for does not exist.
+            An issue happened, please try again
           </Typography>
           <Button variant="contained" component={Link} to="/" sx={{ mt: 3 }}>
             Main Menu
@@ -21,4 +21,4 @@ function NotFoundPage() {
   );
 }
 
-export default NotFoundPage;
+export default ErrorPage;

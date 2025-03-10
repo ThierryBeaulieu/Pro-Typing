@@ -1,18 +1,18 @@
-import certifications from '../interfaces/major-certification';
+import certifications from '../../interfaces/MajorCertification';
 import { Box, Button, Grid2 } from '@mui/material';
-import RunningMan from '../assets/running-man.jpeg';
-import BikeMan from '../assets/cycling-man.jpeg';
-import SpaceMan from '../assets/space-man.jpeg';
-import SkateBoard from '../assets/skate-board.png';
-import DivingMan from '../assets/diving-man.jpeg';
-import DrivingMan from '../assets/driving-man.jpeg';
-import FighterJet from '../assets/fighter-jet.png';
-import MotorCycle from '../assets/motorcylce.png';
-import TrainDriving from '../assets/train.png';
+import RunningMan from '../../assets/running-man.jpeg';
+import BikeMan from '../../assets/cycling-man.jpeg';
+import SpaceMan from '../../assets/space-man.jpeg';
+import SkateBoard from '../../assets/skate-board.png';
+import DivingMan from '../../assets/diving-man.jpeg';
+import DrivingMan from '../../assets/driving-man.jpeg';
+import FighterJet from '../../assets/fighter-jet.png';
+import MotorCycle from '../../assets/motorcycle.png';
+import TrainDriving from '../../assets/train.png';
 
 import { useNavigate } from 'react-router';
 
-function CertificationsMenu() {
+function CertificationsContent() {
   const images: string[] = [
     RunningMan,
     SkateBoard,
@@ -103,4 +103,4 @@ function CertificationsMenu() {
   );
 }
 
-export default CertificationsMenu;
+export default CertificationsContent;

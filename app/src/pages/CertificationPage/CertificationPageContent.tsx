@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box/Box';
 import { useParams } from 'react-router';
 import { Button, Grid2 } from '@mui/material';
-import manWorking from '../assets/man_working.png';
+import manWorking from '../../assets/man_working.png';
 import { useState } from 'react';
-import TypingContent from './typing-content';
+import TypingContent from '../TypingPage/TypingPageContent';
 
 enum pageState {
   PreCertification,

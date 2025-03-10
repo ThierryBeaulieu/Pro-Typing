@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box/Box';
-import CertificationsMenu from '../components/certifications-menu';
-import NavigationBar from '../components/navigation-bar';
+import CertificationsContent from './CertificationsContent';
+import NavigationBar from '../../components/NavigationBar/NavigationBar';
 
 function CertificationsPage() {
   return (
     <>
       <NavigationBar />
       <Box className="progression-wrapper">
-        <CertificationsMenu />
+        <CertificationsContent />
       </Box>
     </>
   );
