@@ -71,7 +71,7 @@ function CertificationCard({ image, data }: CertificationCardType) {
               variant="contained"
               onClick={() => handleCertificationClick(data.wordsPerMinute)}
             >
-              Completed
+              Take Again
             </Button>
           ) : (
             <Button
