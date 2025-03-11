@@ -106,11 +106,7 @@ function Redirection({
 }) {
   const navigate = useNavigate();
 
-  const handleClick = (link: string, range: string = '') => {
-    if (range.length !== 0) {
-      window.location.href = `/certification/${range}`;
-    }
-
+  const handleClick = (link: string) => {
     navigate(link);
   };
   return (
@@ -147,7 +143,7 @@ function Redirection({
         }}
       >
         <Button
-          onClick={() => handleClick(`/certification`, range)}
+          onClick={() => handleClick(`/certification/${range}`)}
           variant="contained"
         >
           Try Again
