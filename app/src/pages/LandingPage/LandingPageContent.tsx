@@ -1,11 +1,9 @@
 import Box from '@mui/material/Box/Box';
-import typingVideo from '../../assets/home-page-animation-2.mp4';
 import Grid2 from '@mui/material/Grid2/Grid2';
 import rocketImage from '../../assets/certifications-type/space-man.jpeg';
 import drivingImage from '../../assets/certifications-type/driving-man.jpeg';
 import Button from '@mui/material/Button/Button';
 import { useNavigate } from 'react-router';
-import TypeBetter from '../../assets/type-better.png';
 import { Typography } from '@mui/material';
 
 type TextWrapperProps = {
@@ -63,20 +61,6 @@ function ImageWrapper({ imageName }: { imageName: string }) {
       src={imageName}
       sx={{ borderRadius: '30px' }}
     />
-  );
-}
-
-function VideoWrapper() {
-  return (
-    <video autoPlay muted playsInline loop style={{ width: '100%' }}>
-      <source src={typingVideo} type="video/mp4" />
-      Your browser does not support the video tag.
-      <img
-        src={TypeBetter}
-        alt="Video not supported"
-        style={{ width: '100%' }}
-      />
-    </video>
   );
 }
 
