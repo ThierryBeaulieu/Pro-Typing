@@ -16,7 +16,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import Divider from '@mui/material/Divider';
 import darkTheme from '../../utils/DarkTheme';
-import KeyboardIcon from '@mui/icons-material/Keyboard';
+import KeyboardIcon from '../../assets/logo.svg';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import { useNavigate } from 'react-router';
@@ -38,6 +38,19 @@ const training: DrawerElement = {
   icon: <DirectionsRunIcon />,
 };
 const drawerContent: DrawerElement[] = [training, certification];
+
+function Icon() {
+  return (
+    <>
+      <Box
+        width={'30px'}
+        component="img"
+        alt="certification-image"
+        src={KeyboardIcon}
+      />
+    </>
+  );
+}
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -61,7 +74,7 @@ function NavigationBar() {
         <ListItem disablePadding>
           <ListItemButton onClick={handleClickMainMenu}>
             <ListItemIcon>
-              <KeyboardIcon />
+              <Icon />
             </ListItemIcon>
             <ListItemText primary={'Pro Typing'} />
           </ListItemButton>
