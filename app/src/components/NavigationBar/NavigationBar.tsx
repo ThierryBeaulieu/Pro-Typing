@@ -103,7 +103,13 @@ function NavigationBar() {
   return (
     <ThemeProvider theme={darkTheme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed">
+        <AppBar
+          sx={{
+            background:
+              'linear-gradient(to top right, #fb4621,#cd4caa,  #2eadf9)',
+          }}
+          position="fixed"
+        >
           <Toolbar variant="dense">
             <IconButton
               edge="start"
