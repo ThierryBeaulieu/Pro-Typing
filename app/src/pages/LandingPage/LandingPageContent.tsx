@@ -6,6 +6,7 @@ import drivingImage from '../../assets/certifications-type/driving-man.jpeg';
 import Button from '@mui/material/Button/Button';
 import { useNavigate } from 'react-router';
 import TypeBetter from '../../assets/type-better.png';
+import { Typography } from '@mui/material';
 
 type TextWrapperProps = {
   path: string;
@@ -85,12 +86,25 @@ function MenuContent() {
       <Box paddingTop={1}></Box>
       <Box
         sx={{
-          width: { xs: '90%', sm: '80%', md: '70%', lg: '60%', xl: '70%' },
-          margin: { xs: '5%', sm: '10%', md: 'auto' },
-          maxWidth: 800,
+          display: 'flex',
+          justifyContent: 'center',
+          alignContent: 'center',
+          alignItems: 'center',
         }}
       >
-        <VideoWrapper />
+        <Typography
+          sx={{
+            fontSize: {
+              xs: '26px',
+              sm: '36px',
+              md: '48px',
+              lg: '64px',
+              xl: '80px',
+            },
+          }}
+        >
+          Type Better and Faster
+        </Typography>
       </Box>
 
       <Grid2 container spacing={4} margin={4}>
