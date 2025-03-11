@@ -143,10 +143,10 @@ function Redirection({
         }}
       >
         <Button
-          onClick={() => handleClick(`/certification/${range}`)}
+          onClick={() => handleClick(`/certifications/`)}
           variant="contained"
         >
-          Try Again
+          Certifications
         </Button>
         <Button onClick={() => handleClick('/')} variant="contained">
           Main Menu
