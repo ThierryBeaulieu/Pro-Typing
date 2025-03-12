@@ -84,10 +84,10 @@ function Certificate({
         src={CertificateImage}
       />
       <Box width={'100%'} display={'flex'} justifyContent={'space-between'}>
-        <Button onClick={handleDownload} variant="outlined">
+        <Button onClick={handleDownload} variant="contained">
           Download
         </Button>
-        <Button onClick={handleRedirection} variant="outlined">
+        <Button onClick={handleRedirection} variant="contained">
           Take another certification
         </Button>
       </Box>
