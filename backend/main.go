@@ -2,31 +2,24 @@ package main
 
 import (
 	"backend/models"
+	"encoding/json"
 	"fmt"
-	"os"
 )
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 func main() {
 
 	var fileManager models.DatabaseManager = models.FileManager{}
 
-	fmt.Println(fileManager.Test())
+	var certifications []models.Certification = fileManager.FetchAllCertifications()
+	fmt.Println(certifications)
 
-	d1 := []byte("hello\ngo\n")
-	err := os.WriteFile("/tmp/dat1", d1, 0644)
-	check(err)
+	jsonBytes, err := json.Marshal(certifications)
 
-	f, err := os.Create("/tmp/dat2")
-	check(err)
-	defer f.Close()
-
-	fmt.Print("hello world\n")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println(string(jsonBytes))
 
 	/*
 		r := gin.Default()
