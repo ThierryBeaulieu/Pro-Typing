@@ -6,11 +6,6 @@ import (
 	"os"
 )
 
-type DatabaseManager interface {
-	fetchAllCertifications() []models.Certification
-	fetchAllCertificationsCompleted() []models.CertificationComplete
-}
-
 func check(e error) {
 	if e != nil {
 		panic(e)
@@ -18,6 +13,10 @@ func check(e error) {
 }
 
 func main() {
+
+	var fileManager models.DatabaseManager = models.FileManager{}
+
+	fmt.Println(fileManager.Test())
 
 	d1 := []byte("hello\ngo\n")
 	err := os.WriteFile("/tmp/dat1", d1, 0644)
