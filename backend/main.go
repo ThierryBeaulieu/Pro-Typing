@@ -1,41 +1,39 @@
 package main
 
 import (
+	"backend/models"
 	"fmt"
-	"net/http"
-	"time"
-
-	"github.com/gin-gonic/gin"
+	"os"
 )
 
-// Custom middleware
-func LoggerMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		start := time.Now()
+type DatabaseManager interface {
+	fetchAllCertifications() []models.Certification
+	fetchAllCertificationsCompleted() []models.CertificationComplete
+}
 
-		// Process request
-		c.Next()
-
-		// After request
-		duration := time.Since(start)
-		fmt.Printf("Request: %s %s | Duration: %v\n", c.Request.Method, c.Request.URL, duration)
+func check(e error) {
+	if e != nil {
+		panic(e)
 	}
 }
 
 func main() {
-	r := gin.Default()
 
-	r.Use(LoggerMiddleware())
+	d1 := []byte("hello\ngo\n")
+	err := os.WriteFile("/tmp/dat1", d1, 0644)
+	check(err)
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"image": "pong",
-		})
-	})
+	f, err := os.Create("/tmp/dat2")
+	check(err)
+	defer f.Close()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "Hello, World!"})
-	})
+	fmt.Print("hello world\n")
 
-	r.Run(":3000")
+	/*
+		r := gin.Default()
+
+		routes.CertificationsRoute(r.Group("/certifications"))
+
+		r.Run(":3000")
+	*/
 }
