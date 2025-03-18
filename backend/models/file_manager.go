@@ -8,7 +8,7 @@ type FileManager struct {
 }
 
 func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS) []Certification {
-	return nil
+	return []Certification{}
 }
 
 func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS) []CertificationComplete {
