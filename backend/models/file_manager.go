@@ -1,9 +1,31 @@
 package models
 
+import (
+	"encoding/json"
+	"log"
+	"os"
+)
+
 type FileManager struct{}
 
 func (f FileManager) FetchAllCertifications() []Certification {
-	return nil
+	localDatabasePath := "database/certifications.json"
+
+	data, err := os.ReadFile(localDatabasePath)
+
+	if err != nil {
+		log.Fatalf("Error while reading the file: %v", err)
+	}
+
+	var certifications []Certification
+
+	err = json.Unmarshal(data, &certifications)
+
+	if err != nil {
+		log.Fatalf("Error unmarshalling JSON: %v", err)
+	}
+
+	return certifications
 }
 
 func (f FileManager) FetchAllCertificationsCompleted() []CertificationComplete {
