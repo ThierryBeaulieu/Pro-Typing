@@ -14,6 +14,20 @@ func GetStubData() []byte {
 			"description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 			"range": "40-55 words per minute",
 			"img": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+		},
+		{
+			"id": "11a26b4c-2795-4621-8e65-e16dfa2ff989",
+			"name": "Certified Typist",
+			"description": "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
+			"range": "60-75 words per minute",
+			"img": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+		},
+		{
+			"id": "7552a1fc-c2eb-4a26-b11b-8565c5cbc583",
+			"name": "Proficient Typist",
+			"description": "This range includes about 15-20% of people. You are well above average and typing at a proficient speed.",
+			"range": "80-85 words per minute",
+			"img": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
 		}
 	]`)
 	return data
@@ -28,7 +42,7 @@ func TestFileManager(t *testing.T) {
 
 		fileManager := models.FileManager{}
 
-		want := 1
+		want := 3
 		got := len(fileManager.FetchAllCertifications(fs))
 
 		if want != got {
