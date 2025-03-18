@@ -1,14 +1,26 @@
-package models
+package models_test
 
 import (
+	"backend/models"
 	"testing"
+	"testing/fstest"
 )
 
 func TestFileManager(t *testing.T) {
 
 	t.Run("Fetch all certifications", func(t *testing.T) {
+		fs := fstest.MapFS{
+			"database/certifications.json": {Data: []byte("[]")},
+		}
 
-		fileManager := FileManager{}
+		fileManager := models.FileManager{}
+
+		want := 0
+		got := len(fileManager.FetchAllCertifications(fs))
+
+		if want != got {
+			t.Errorf("got %d posts, wanted %d posts", got, want)
+		}
 
 	})
 
