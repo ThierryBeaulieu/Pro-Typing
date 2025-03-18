@@ -30,7 +30,24 @@ func (f FileManager) FetchAllCertifications() []Certification {
 }
 
 func (f FileManager) FetchAllCertificationsCompleted() []CertificationComplete {
-	return nil
+	certificationsCompletedPath := "database/certifications_completed.json"
+
+	data, err := os.ReadFile(certificationsCompletedPath)
+
+	if err != nil {
+		log.Printf("Error while reading the file: %v", err)
+		return nil
+	}
+
+	var certificationsCompleted []CertificationComplete
+
+	err = json.Unmarshal(data, &certificationsCompleted)
+	if err != nil {
+		log.Printf("Error unmarshalling JSON: %v", err)
+		return nil
+	}
+
+	return certificationsCompleted
 }
 
 func (f FileManager) FetchCertification(ID string) Certification {
