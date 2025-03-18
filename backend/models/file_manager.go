@@ -10,7 +10,7 @@ type FileManager struct {
 }
 
 func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS) []Certification {
-	data, _ := fs.ReadFile(fileSystem, ".")
+	data, _ := fs.ReadFile(fileSystem, "database/certifications.json")
 
 	var certifications []Certification
 	json.Unmarshal(data, &certifications)
