@@ -14,15 +14,16 @@ func (f FileManager) FetchAllCertifications() []Certification {
 	data, err := os.ReadFile(localDatabasePath)
 
 	if err != nil {
-		log.Fatalf("Error while reading the file: %v", err)
+		log.Printf("Error while reading the file: %v", err)
+		return nil
 	}
 
 	var certifications []Certification
 
 	err = json.Unmarshal(data, &certifications)
-
 	if err != nil {
-		log.Fatalf("Error unmarshalling JSON: %v", err)
+		log.Printf("Error unmarshalling JSON: %v", err)
+		return nil
 	}
 
 	return certifications
