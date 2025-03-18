@@ -23,7 +23,7 @@ func (f FileManager) FetchAllCertifications() []Certification {
 
 		return certifications
 	*/
-	return nil
+	return []Certification{}
 }
 
 func (f FileManager) FetchAllCertificationsCompleted() []CertificationComplete {
@@ -46,7 +46,7 @@ func (f FileManager) FetchAllCertificationsCompleted() []CertificationComplete {
 				}
 		        return certificationsCompleted
 	*/
-	return nil
+	return []CertificationComplete{}
 }
 
 func (f FileManager) FetchCertification(ID string) *Certification {

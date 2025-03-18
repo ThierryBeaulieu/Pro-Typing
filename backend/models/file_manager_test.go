@@ -5,12 +5,13 @@ import (
 	"testing"
 )
 
-func FileManagerTest(t *testing.T) {
+func TestFileManager(t *testing.T) {
 
 	t.Run("Fetch all certifications", func(t *testing.T) {
 
 		fileManager := FileManager{}
 		var got []Certification = fileManager.FetchAllCertifications()
+
 		var want []Certification = []Certification{}
 
 		if !reflect.DeepEqual(got, want) {
