@@ -14,6 +14,9 @@ func main() {
 
 	certificationsCompleted := fileManager.FetchAllCertificationsCompleted()
 	fmt.Println(certificationsCompleted)
+
+	certification := fileManager.FetchCertification("d1181969-6ae4-4a2f-9bb7-4e692aa278e7")
+	fmt.Println(certification)
 	/*
 		r := gin.Default()
 

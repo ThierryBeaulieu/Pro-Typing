@@ -50,9 +50,16 @@ func (f FileManager) FetchAllCertificationsCompleted() []CertificationComplete {
 	return certificationsCompleted
 }
 
-func (f FileManager) FetchCertification(ID string) Certification {
-	certification := Certification{}
-	return certification
+func (f FileManager) FetchCertification(ID string) *Certification {
+	certifications := f.FetchAllCertifications()
+
+	for _, certification := range certifications {
+		if certification.ID == ID {
+			return &certification
+		}
+	}
+
+	return nil
 }
 
 func (f FileManager) Test() string {
