@@ -5,7 +5,7 @@
   "scripts": {
     "start": "go run main.go",
     "test": "go test ./... -v",
-    "coverage": "go test ./... -cover"
+    "coverage": "go test ./... -coverprofile=coverage/coverage.out && go tool cover -html=coverage/coverage.out"
   },
   "author": "",
   "license": "ISC"
