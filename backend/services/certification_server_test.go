@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestFileManager(t *testing.T) {
+func TestCertificationServer(t *testing.T) {
 
 	t.Run("returns Floyd's score", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/players/Floyd", nil)
