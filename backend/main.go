@@ -1,15 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"io"
-	"os"
+	"log"
+	"net/http"
 )
 
-func Countdown(out io.Writer) {
-	fmt.Fprint(out, "3")
-}
-
 func main() {
-	Countdown(os.Stdout)
+	handler := http.HandlerFunc(CertificationServer)
+	log.Fatal(http.ListenAndServe(":5000", handler))
 }
