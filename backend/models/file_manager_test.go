@@ -117,6 +117,18 @@ func TestFileManager(t *testing.T) {
 
 	t.Run("Fetch all certifications completed", func(t *testing.T) {
 
+		path := "database/certifications.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte("[{'bad content'}]")},
+		}
+
+		want := 0
+		fileManager := models.FileManager{}
+		got := fileManager.FetchAllCertificationsCompleted(fs)
+
+		if want != len(got) {
+			t.Errorf("got %d certification completed, wanted %d certification completed", len(got), want)
+		}
 	})
 
 	t.Run("Fetch a specified certifications", func(t *testing.T) {

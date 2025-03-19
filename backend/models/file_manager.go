@@ -27,7 +27,8 @@ func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string
 }
 
 func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS) []CertificationComplete {
-	return nil
+    
+	return []CertificationComplete{}
 }
 
 func (f FileManager) FetchCertification(ID string) *Certification {
