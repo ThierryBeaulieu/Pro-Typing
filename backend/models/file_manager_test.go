@@ -37,6 +37,18 @@ func TestFileManager(t *testing.T) {
 		return data
 	}
 
+	getStubCertification := func(t *testing.T) models.Certification {
+		t.Helper()
+
+		return models.Certification{
+			ID:          "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+			Name:        "Average Typist",
+			Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+			Range:       "40-55 words per minute",
+			Img:         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+		}
+	}
+
 	getStubJSONCertificationCompleted := func(t testing.TB) []byte {
 		t.Helper()
 		data := []byte(`[
@@ -51,15 +63,11 @@ func TestFileManager(t *testing.T) {
 		return data
 	}
 
-	getStubCertification := func(t *testing.T) models.Certification {
+	getStubCertificationCompleted := func(t *testing.T) models.CertificationComplete {
 		t.Helper()
 
-		return models.Certification{
-			ID:          "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-			Name:        "Average Typist",
-			Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
-			Range:       "40-55 words per minute",
-			Img:         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+		return models.CertificationComplete{
+			ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
 		}
 	}
 
@@ -142,6 +150,22 @@ func TestFileManager(t *testing.T) {
 
 		if want != len(got) {
 			t.Errorf("got %d certification completed, wanted %d certification completed", len(got), want)
+		}
+	})
+
+	t.Run("Fetch All Completed Certification should have the same content IDs", func(t *testing.T) {
+
+		path := "database/certifications_completed.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte(getStubJSONCertificationCompleted(t))},
+		}
+
+		want := getStubCertificationCompleted(t)
+		fileManager := models.FileManager{}
+		got := fileManager.FetchAllCertificationsCompleted(fs, path)
+
+		if reflect.DeepEqual(got, want) {
+			t.Errorf("got %v certification completed, wanted %v certification completed", got, want)
 		}
 	})
 
