@@ -63,12 +63,20 @@ func TestFileManager(t *testing.T) {
 		return data
 	}
 
-	getStubCertificationCompleted := func(t *testing.T) models.CertificationComplete {
+	getStubCertificationCompleted := func(t *testing.T) []models.CertificationComplete {
 		t.Helper()
 
-		return models.CertificationComplete{
+		var certifications []models.CertificationComplete
+
+		certifications = append(certifications, models.CertificationComplete{
+			ID: "11a26b4c-2795-4621-8e65-e16dfa2ff989",
+		})
+
+		certifications = append(certifications, models.CertificationComplete{
 			ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-		}
+		})
+
+		return certifications
 	}
 
 	t.Run("Fetch all certifications should return the same number of verifications", func(t *testing.T) {
@@ -164,12 +172,24 @@ func TestFileManager(t *testing.T) {
 		fileManager := models.FileManager{}
 		got := fileManager.FetchAllCertificationsCompleted(fs, path)
 
-		if reflect.DeepEqual(got, want) {
+		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %v certification completed, wanted %v certification completed", got, want)
 		}
 	})
 
 	t.Run("Fetch a specified certifications", func(t *testing.T) {
+		path := "database/certifications_completed.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte(getStubJSONCertificationCompleted(t))},
+		}
 
+		ID := "ld1181969-6ae4-4a2f-9bb7-4e692aa278e7"
+		want := getStubCertification(t)
+		fileManager := models.FileManager{}
+		got := fileManager.FetchCertification(ID, fs, path)
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v certification completed, wanted %v certification completed", got, want)
+		}
 	})
 }

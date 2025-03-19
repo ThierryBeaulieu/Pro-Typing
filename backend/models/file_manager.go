@@ -34,6 +34,6 @@ func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS, pa
 	return certificationsComplete
 }
 
-func (f FileManager) FetchCertification(ID string) *Certification {
+func (f FileManager) FetchCertification(ID string, fileSystem fstest.MapFS, path string) *Certification {
 	return nil
 }
