@@ -186,9 +186,9 @@ func TestFileManager(t *testing.T) {
 		ID := "d1181969-6ae4-4a2f-9bb7-4e692aa278e7"
 		want := getStubCertification(t)
 		fileManager := models.FileManager{}
-		got := *fileManager.FetchCertification(ID, fs, path)
+		got, _ := fileManager.FetchCertification(ID, fs, path)
 
-		if !reflect.DeepEqual(got, want) {
+		if !reflect.DeepEqual(*got, want) {
 			t.Errorf("got %v certification, wanted %v certification", got, want)
 		}
 	})
@@ -201,10 +201,34 @@ func TestFileManager(t *testing.T) {
 
 		ID := "xxx-xxx-xxx"
 		fileManager := models.FileManager{}
-		got := fileManager.FetchCertification(ID, fs, path)
+		got, err := fileManager.FetchCertification(ID, fs, path)
 
 		if got != nil {
 			t.Errorf("got %v certification, wanted nil", got)
+		}
+
+		if err != nil {
+			t.Errorf("got %v Error, wanted nil", err)
+		}
+	})
+
+	t.Run("Fetch a specified certifications should return an error if an issue is returned", func(t *testing.T) {
+		correctPath := "database/certifications.json"
+		wrongPath := "database/cert.json"
+		fs := fstest.MapFS{
+			correctPath: {Data: []byte(getStubJSONCertification(t))},
+		}
+
+		ID := "xxx-xxx-xxx"
+		fileManager := models.FileManager{}
+		got, err := fileManager.FetchCertification(ID, fs, wrongPath)
+
+		if got != nil {
+			t.Errorf("got %v certification, wanted nil", got)
+		}
+
+		if err == nil {
+			t.Errorf("got %v certification instead of returning an error", got)
 		}
 	})
 }
