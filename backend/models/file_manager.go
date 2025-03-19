@@ -35,5 +35,13 @@ func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS, pa
 }
 
 func (f FileManager) FetchCertification(ID string, fileSystem fstest.MapFS, path string) *Certification {
+	certifications, _ := f.FetchAllCertifications(fileSystem, path)
+
+	for _, certification := range certifications {
+		if certification.ID == ID {
+			return &certification
+		}
+	}
+
 	return nil
 }

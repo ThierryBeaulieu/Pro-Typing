@@ -177,19 +177,34 @@ func TestFileManager(t *testing.T) {
 		}
 	})
 
-	t.Run("Fetch a specified certifications", func(t *testing.T) {
-		path := "database/certifications_completed.json"
+	t.Run("Fetch a specified certifications should return a properly identified certification", func(t *testing.T) {
+		path := "database/certifications.json"
 		fs := fstest.MapFS{
-			path: {Data: []byte(getStubJSONCertificationCompleted(t))},
+			path: {Data: []byte(getStubJSONCertification(t))},
 		}
 
-		ID := "ld1181969-6ae4-4a2f-9bb7-4e692aa278e7"
+		ID := "d1181969-6ae4-4a2f-9bb7-4e692aa278e7"
 		want := getStubCertification(t)
+		fileManager := models.FileManager{}
+		got := *fileManager.FetchCertification(ID, fs, path)
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v certification, wanted %v certification", got, want)
+		}
+	})
+
+	t.Run("Fetch a specified certifications should return nil if the certification is not present", func(t *testing.T) {
+		path := "database/certifications.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte(getStubJSONCertification(t))},
+		}
+
+		ID := "xxx-xxx-xxx"
 		fileManager := models.FileManager{}
 		got := fileManager.FetchCertification(ID, fs, path)
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v certification completed, wanted %v certification completed", got, want)
+		if got != nil {
+			t.Errorf("got %v certification, wanted nil", got)
 		}
 	})
 }
