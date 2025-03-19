@@ -37,6 +37,20 @@ func TestFileManager(t *testing.T) {
 		return data
 	}
 
+	getStubJSONCertificationCompleted := func(t testing.TB) []byte {
+		t.Helper()
+		data := []byte(`[
+			{
+				"id": "11a26b4c-2795-4621-8e65-e16dfa2ff989"
+			},
+			{
+				"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7"
+			}
+			]
+			`)
+		return data
+	}
+
 	getStubCertification := func(t *testing.T) models.Certification {
 		t.Helper()
 
@@ -117,14 +131,14 @@ func TestFileManager(t *testing.T) {
 
 	t.Run("Fetch all certifications completed", func(t *testing.T) {
 
-		path := "database/certifications.json"
+		path := "database/certifications_completed.json"
 		fs := fstest.MapFS{
-			path: {Data: []byte("[{'bad content'}]")},
+			path: {Data: []byte(getStubJSONCertificationCompleted(t))},
 		}
 
-		want := 0
+		want := 2
 		fileManager := models.FileManager{}
-		got := fileManager.FetchAllCertificationsCompleted(fs)
+		got := fileManager.FetchAllCertificationsCompleted(fs, path)
 
 		if want != len(got) {
 			t.Errorf("got %d certification completed, wanted %d certification completed", len(got), want)

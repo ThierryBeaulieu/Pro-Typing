@@ -26,9 +26,12 @@ func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string
 	return certifications, err
 }
 
-func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS) []CertificationComplete {
-    
-	return []CertificationComplete{}
+func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS, path string) []CertificationComplete {
+	data, _ := fs.ReadFile(fileSystem, path)
+
+	var certificationsComplete []CertificationComplete
+	json.Unmarshal(data, &certificationsComplete)
+	return certificationsComplete
 }
 
 func (f FileManager) FetchCertification(ID string) *Certification {
