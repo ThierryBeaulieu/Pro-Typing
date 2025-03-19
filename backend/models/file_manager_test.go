@@ -36,14 +36,16 @@ func GetStubData() []byte {
 func TestFileManager(t *testing.T) {
 
 	t.Run("Fetch all certifications", func(t *testing.T) {
+
+		path := "database/certifications.json"
 		fs := fstest.MapFS{
-			"database/certifications.json": {Data: []byte(GetStubData())},
+			path: {Data: []byte(GetStubData())},
 		}
 
 		fileManager := models.FileManager{}
 
 		want := 3
-		got := len(fileManager.FetchAllCertifications(fs))
+		got := len(fileManager.FetchAllCertifications(fs, path))
 
 		if want != got {
 			t.Errorf("got %d certification, wanted %d certification", got, want)

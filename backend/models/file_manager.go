@@ -9,8 +9,8 @@ import (
 type FileManager struct {
 }
 
-func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS) []Certification {
-	data, _ := fs.ReadFile(fileSystem, "database/certifications.json")
+func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string) []Certification {
+	data, _ := fs.ReadFile(fileSystem, path)
 
 	var certifications []Certification
 	json.Unmarshal(data, &certifications)
