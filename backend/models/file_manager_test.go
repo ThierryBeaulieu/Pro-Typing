@@ -2,6 +2,7 @@ package models_test
 
 import (
 	"backend/models"
+	"reflect"
 	"testing"
 	"testing/fstest"
 )
@@ -35,7 +36,7 @@ func GetStubData() []byte {
 
 func TestFileManager(t *testing.T) {
 
-	t.Run("Fetch all certifications", func(t *testing.T) {
+	t.Run("Fetch all certifications should return the same number of verifications", func(t *testing.T) {
 
 		path := "database/certifications.json"
 		fs := fstest.MapFS{
@@ -50,7 +51,30 @@ func TestFileManager(t *testing.T) {
 		if want != got {
 			t.Errorf("got %d certification, wanted %d certification", got, want)
 		}
+	})
 
+	t.Run("Fetch all certifications should contain the same information", func(t *testing.T) {
+
+		path := "database/certifications.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte(GetStubData())},
+		}
+
+		fileManager := models.FileManager{}
+
+		want := models.Certification{
+			ID:          "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+			Name:        "Average Typist",
+			Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+			Range:       "40-55 words per minute",
+			Img:         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+		}
+
+		got := fileManager.FetchAllCertifications(fs, path)[0]
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("got %v certification, wanted %v certification", got, want)
+		}
 	})
 
 	t.Run("Fetch all certifications completed", func(t *testing.T) {
