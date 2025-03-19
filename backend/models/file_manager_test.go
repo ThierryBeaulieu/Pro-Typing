@@ -77,14 +77,41 @@ func TestFileManager(t *testing.T) {
 
 		want := getStubCertification(t)
 
-		got, err := fileManager.FetchAllCertifications(fs, path)
-
-		if err != nil {
-			t.Errorf("got error %v instead of certification", got)
-		}
+		got, _ := fileManager.FetchAllCertifications(fs, path)
 
 		if !reflect.DeepEqual(want, got[0]) {
 			t.Errorf("got %v certification, wanted %v certification", got, want)
+		}
+	})
+
+	t.Run("Fetch all certification should return an error if the path is not correct", func(t *testing.T) {
+
+		correctPath := "database/certifications.json"
+		wrongPath := "database/cert.json"
+		fs := fstest.MapFS{
+			correctPath: {Data: []byte(getStubJSONCertification(t))},
+		}
+
+		fileManager := models.FileManager{}
+		got, err := fileManager.FetchAllCertifications(fs, wrongPath)
+
+		if err == nil {
+			t.Errorf("got %v certification instead of returning an error", got)
+		}
+	})
+
+	t.Run("Fetch all certification should return an error if the content of the file is wrong", func(t *testing.T) {
+
+		path := "database/certifications.json"
+		fs := fstest.MapFS{
+			path: {Data: []byte("[{'bad content'}]")},
+		}
+
+		fileManager := models.FileManager{}
+		got, err := fileManager.FetchAllCertifications(fs, path)
+
+		if err == nil {
+			t.Errorf("got %v certification instead of returning an error", got)
 		}
 	})
 
