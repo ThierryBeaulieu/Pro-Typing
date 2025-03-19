@@ -59,10 +59,10 @@ func TestFileManager(t *testing.T) {
 		fileManager := models.FileManager{}
 
 		want := 3
-		got := len(fileManager.FetchAllCertifications(fs, path))
+		got, _ := fileManager.FetchAllCertifications(fs, path)
 
-		if want != got {
-			t.Errorf("got %d certification, wanted %d certification", got, want)
+		if want != len(got) {
+			t.Errorf("got %d certification, wanted %d certification", len(got), want)
 		}
 	})
 
@@ -77,9 +77,13 @@ func TestFileManager(t *testing.T) {
 
 		want := getStubCertification(t)
 
-		got := fileManager.FetchAllCertifications(fs, path)[0]
+		got, err := fileManager.FetchAllCertifications(fs, path)
 
-		if !reflect.DeepEqual(want, got) {
+		if err != nil {
+			t.Errorf("got error %v instead of certification", got)
+		}
+
+		if !reflect.DeepEqual(want, got[0]) {
 			t.Errorf("got %v certification, wanted %v certification", got, want)
 		}
 	})

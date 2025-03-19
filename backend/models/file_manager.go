@@ -9,13 +9,21 @@ import (
 type FileManager struct {
 }
 
-func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string) []Certification {
-	data, _ := fs.ReadFile(fileSystem, path)
+func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string) ([]Certification, error) {
+	data, err := fs.ReadFile(fileSystem, path)
+
+	if err != nil {
+		return nil, err
+	}
 
 	var certifications []Certification
-	json.Unmarshal(data, &certifications)
+	err = json.Unmarshal(data, &certifications)
 
-	return certifications
+	if err != nil {
+		return nil, err
+	}
+
+	return certifications, err
 }
 
 func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS) []CertificationComplete {
