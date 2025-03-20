@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Golang command line shortcuts",
   "scripts": {
-    "start": "go run main.go",
+    "start": "go run .",
     "test": "go test ./... -v",
     "coverage": "go test ./... -coverprofile=coverage/coverage.out && go tool cover -html=coverage/coverage.out"
   },
