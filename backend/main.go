@@ -13,6 +13,6 @@ func main() {
 	ExecuteTask(task1)
 	ExecuteTask(task2)
 
-	handler := http.HandlerFunc(services.CertificationServer)
-	log.Fatal(http.ListenAndServe(":5001", handler))
+	server := &services.PlayerServer{}
+	log.Fatal(http.ListenAndServe(":5000", server))
 }
