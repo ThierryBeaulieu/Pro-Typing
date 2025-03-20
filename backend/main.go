@@ -1,10 +1,15 @@
 package main
 
 import (
-	"backend/services"
 	"log"
 	"net/http"
 )
+
+type InMemoryPlayerStore struct{}
+
+func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
+	return 123
+}
 
 func main() {
 
@@ -13,6 +18,7 @@ func main() {
 	ExecuteTask(task1)
 	ExecuteTask(task2)
 
-	server := &services.PlayerServer{}
+	var memory InMemoryPlayerStore = InMemoryPlayerStore{}
+	server := &PlayerServer{&memory}
 	log.Fatal(http.ListenAndServe(":5001", server))
 }
