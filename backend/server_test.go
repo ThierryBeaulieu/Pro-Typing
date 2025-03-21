@@ -23,7 +23,7 @@ func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]
 		Name:        "Average Typist",
 		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 		Range:       "40-55 words per minute",
-		Img:         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="}
+		Img:         ""}
 	return []models.Certification{certification1}, nil
 }
 
@@ -42,7 +42,7 @@ func TestCertificationServer(t *testing.T) {
 		server.ServeHTTP(response, request)
 
 		got := response.Body.String()
-		want := `[{"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7", "name": "Average Typist", "description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.", "range": "40-55 words per minute", "img": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="}]`
+		want := `[{"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7", "name": "Average Typist", "description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.", "range": "40-55 words per minute", "img": ""}]`
 
 		got = strings.Join(strings.Fields(got), "")
 		want = strings.Join(strings.Fields(want), "")
@@ -51,4 +51,5 @@ func TestCertificationServer(t *testing.T) {
 			t.Errorf("got %q, want %q", got, want)
 		}
 	})
+
 }
