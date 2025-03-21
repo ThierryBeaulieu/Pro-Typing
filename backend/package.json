@@ -4,7 +4,7 @@
   "description": "Golang command line shortcuts",
   "scripts": {
     "start": "go run .",
-    "test": "go test ./... -v",
+    "test": "source gotest.sh && gotest ./... -v",
     "coverage": "go test ./... -coverprofile=coverage/coverage.out && go tool cover -html=coverage/coverage.out"
   },
   "author": "",
