@@ -3,13 +3,12 @@ package models
 import (
 	"encoding/json"
 	"io/fs"
-	"testing/fstest"
 )
 
 type FileManager struct {
 }
 
-func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string) ([]Certification, error) {
+func (f FileManager) FetchAllCertifications(fileSystem fs.FS, path string) ([]Certification, error) {
 	data, err := fs.ReadFile(fileSystem, path)
 
 	if err != nil {
@@ -26,7 +25,7 @@ func (f FileManager) FetchAllCertifications(fileSystem fstest.MapFS, path string
 	return certifications, err
 }
 
-func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS, path string) []CertificationComplete {
+func (f FileManager) FetchAllCertificationsCompleted(fileSystem fs.FS, path string) []CertificationComplete {
 	data, _ := fs.ReadFile(fileSystem, path)
 
 	var certificationsComplete []CertificationComplete
@@ -34,7 +33,7 @@ func (f FileManager) FetchAllCertificationsCompleted(fileSystem fstest.MapFS, pa
 	return certificationsComplete
 }
 
-func (f FileManager) FetchCertification(ID string, fileSystem fstest.MapFS, path string) (*Certification, error) {
+func (f FileManager) FetchCertification(ID string, fileSystem fs.FS, path string) (*Certification, error) {
 	certifications, err := f.FetchAllCertifications(fileSystem, path)
 
 	if err != nil {

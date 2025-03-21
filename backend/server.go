@@ -4,6 +4,7 @@ import (
 	"backend/models"
 	"encoding/json"
 	"net/http"
+	"os"
 )
 
 type CertificationServer struct {
@@ -11,8 +12,7 @@ type CertificationServer struct {
 }
 
 func (p *CertificationServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
-	certifications := p.fileManager.FetchAllCertifications()
+	certifications, _ := p.fileManager.FetchAllCertifications(os.DirFS("database"), "certifications.json")
 	out, _ := json.Marshal(certifications)
 	w.Write([]byte(out))
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/models"
+	"io/fs"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -12,21 +13,21 @@ import (
 type DatabaseStub struct {
 }
 
-func (d *DatabaseStub) FetchCertification(ID string) *models.Certification {
-	return nil
+func (d *DatabaseStub) FetchCertification(ID string, fileSystem fs.FS, path string) (*models.Certification, error) {
+	return nil, nil
 }
 
-func (d *DatabaseStub) FetchAllCertifications() []models.Certification {
+func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]models.Certification, error) {
 
 	certification1 := models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
 		Name:        "Average Typist",
 		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 		Range:       "40-55 words per minute",
 		Img:         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="}
-	return []models.Certification{certification1}
+	return []models.Certification{certification1}, nil
 }
 
-func (d *DatabaseStub) FetchAllCertificationsCompleted() []models.CertificationComplete {
+func (d *DatabaseStub) FetchAllCertificationsCompleted(fileSystem fs.FS, path string) []models.CertificationComplete {
 	return nil
 }
 
