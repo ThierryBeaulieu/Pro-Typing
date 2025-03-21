@@ -7,9 +7,7 @@ import (
 )
 
 func main() {
-
 	fileManager := models.FileManager{}
-
-	server := &CertificationServer{fileManager}
+	server := NewCertificationServer(fileManager)
 	log.Fatal(http.ListenAndServe(":5001", server))
 }

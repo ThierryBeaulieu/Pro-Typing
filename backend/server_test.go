@@ -2,7 +2,6 @@ package main
 
 import (
 	"backend/models"
-	"fmt"
 	"io/fs"
 	"net/http"
 	"net/http/httptest"
@@ -15,7 +14,12 @@ type DatabaseStub struct {
 }
 
 func (d *DatabaseStub) FetchCertification(ID string, fileSystem fs.FS, path string) (*models.Certification, error) {
-	return nil, nil
+	certification1 := models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+		Name:        "Average Typist",
+		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+		Range:       "40-55 words per minute",
+		ImgID:       "running-man.jpeg"}
+	return &certification1, nil
 }
 
 func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]models.Certification, error) {
@@ -39,7 +43,7 @@ func TestCertificationServer(t *testing.T) {
 
 		var database DatabaseStub
 
-		server := CertificationServer{&database}
+		server := NewCertificationServer(&database)
 		server.ServeHTTP(response, request)
 
 		got := response.Body.String()
@@ -61,13 +65,12 @@ func TestCertificationServer(t *testing.T) {
 	})
 
 	t.Run("returns a specific certifications", func(t *testing.T) {
-		param := "60-75"
-		request, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("certification/%s", param), nil)
+		request, _ := http.NewRequest(http.MethodGet, "/certification", nil)
 		response := httptest.NewRecorder()
 
 		var database DatabaseStub
 
-		server := CertificationServer{&database}
+		server := NewCertificationServer(&database)
 		server.ServeHTTP(response, request)
 
 		got := response.Body.String()
