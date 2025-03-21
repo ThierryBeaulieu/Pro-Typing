@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/models"
+	"fmt"
 	"io/fs"
 	"net/http"
 	"net/http/httptest"
@@ -55,7 +56,35 @@ func TestCertificationServer(t *testing.T) {
 		want = strings.Join(strings.Fields(want), "")
 
 		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %q, want %q", got, want)
+			t.Errorf("\nGot %q\nWant %q", got, want)
+		}
+	})
+
+	t.Run("returns a specific certifications", func(t *testing.T) {
+		param := "60-75"
+		request, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("certification/%s", param), nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := CertificationServer{&database}
+		server.ServeHTTP(response, request)
+
+		got := response.Body.String()
+
+		want := `{
+			"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+			"name": "Average Typist",
+			"description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+			"range": "40-55 words per minute",
+			"imgID": "running-man.jpeg"
+		}`
+
+		got = strings.Join(strings.Fields(got), "")
+		want = strings.Join(strings.Fields(want), "")
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("\nGot %q\nWant %q", got, want)
 		}
 	})
 
