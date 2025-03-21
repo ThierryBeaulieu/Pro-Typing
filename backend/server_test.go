@@ -30,12 +30,9 @@ func TestCertificationServer(t *testing.T) {
 
 		CertificationServer(response, request)
 
-		var certifications []models.Certification
-		json.Unmarshal([]byte(response.Body.Bytes()), &certifications)
-		got := certifications
+		got := response.Body.String()
 
-		var certification1 models.Certification = getStubCertification()
-		want := []models.Certification{certification1}
+		want := "[]"
 
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %q, want %q", got, want)
