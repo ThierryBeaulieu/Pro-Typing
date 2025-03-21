@@ -19,10 +19,19 @@ ALL_TESTS_PASSED="✅ ALL TESTS PASSED"
 TESTS_FAILED="❌ TESTS FAILED"
 
 gotest() {
-  go test "$@" | sed -e "s/PASS/$(printf "${COLOR_GREEN}PASS${COLOR_RESET}")/g" \
-                     -e "s/FAIL/$(printf "${COLOR_RED}FAIL${COLOR_RESET}")/g" \
-                     -e "s/RUN/$(printf "${COLOR_CYAN}RUN${COLOR_RESET}")/g" \
-                     | GREP_COLOR="01;33" egrep --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
+  go test "$@" | while IFS= read -r line; do
+    if [[ "$line" =~ ^ok ]]; then
+      # If the line starts with "ok", make the entire line green
+      echo -e "${COLOR_GREEN}$line${COLOR_RESET}"
+    else
+      # Apply colors for PASS, FAIL, and RUN as before
+      echo "$line" | sed -e "s/--- PASS/$(printf "${COLOR_GREEN}--- PASS${COLOR_RESET}")/g" \
+                         -e "s/PASS/$(printf "${COLOR_GREEN}PASS${COLOR_RESET}")/g" \
+                         -e "s/FAIL/$(printf "${COLOR_RED}FAIL${COLOR_RESET}")/g" \
+                         -e "s/=== RUN/$(printf "${COLOR_CYAN}=== RUN${COLOR_RESET}")/g" \
+                         | GREP_COLOR="01;33" egrep --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
+    fi
+  done
 }
 
 # If the script is executed directly, run gotest with provided arguments

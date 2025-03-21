@@ -32,7 +32,7 @@ func TestCertificationServer(t *testing.T) {
 
 		got := response.Body.String()
 
-		want := "["
+		want := "]"
 
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %q, want %q", got, want)
