@@ -17,21 +17,21 @@ func TestFileManager(t *testing.T) {
 				"name": "Average Typist",
 				"description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 				"range": "40-55 words per minute",
-				"imgSrc": "running-man.jpeg"
+				"imgID": "running-man.jpeg"
 			},
 			{
 				"id": "11a26b4c-2795-4621-8e65-e16dfa2ff989",
 				"name": "Certified Typist",
 				"description": "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
 				"range": "60-75 words per minute",
-				"imgSrc": "skate-board.png"
+				"imgID": "skate-board.png"
 			},
 			{
 				"id": "7552a1fc-c2eb-4a26-b11b-8565c5cbc583",
 				"name": "Proficient Typist",
 				"description": "This range includes about 15-20% of people. You are well above average and typing at a proficient speed.",
 				"range": "80-85 words per minute",
-				"imgSrc": "cycling-man.jpeg"
+				"imgID": "cycling-man.jpeg"
 			}
 		]`)
 		return data
@@ -45,7 +45,7 @@ func TestFileManager(t *testing.T) {
 			Name:        "Average Typist",
 			Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 			Range:       "40-55 words per minute",
-			ImgSrc:      "running-man.jpeg",
+			ImgID:       "running-man.jpeg",
 		}
 	}
 
