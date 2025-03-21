@@ -4,8 +4,9 @@
   "description": "Golang command line shortcuts",
   "scripts": {
     "start": "go run .",
-    "test": "source gotest.sh && gotest ./... -v",
-    "coverage": "go test ./... -coverprofile=coverage/coverage.out && go tool cover -html=coverage/coverage.out"
+    "test": "./gotest.sh ./... -v",
+    "cover": "./gotest.sh ./... -cover",
+    "coverage": "./gotest.sh ./... -coverprofile=coverage/coverage.out && go tool cover -html=coverage/coverage.out"
   },
   "author": "",
   "license": "ISC"
