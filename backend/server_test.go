@@ -28,7 +28,8 @@ func TestCertificationServer(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/certifications", nil)
 		response := httptest.NewRecorder()
 
-		CertificationServer(response, request)
+		var server CertificationServer
+		server.ServeHTTP(response, request)
 
 		got := response.Body.String()
 
