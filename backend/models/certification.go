@@ -5,7 +5,7 @@ type Certification struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Range       string `json:"range"`
-	Img         string `json:"img"`
+	ImgSrc      string `json:"imgSrc"`
 }
 
 type CertificationComplete struct {
