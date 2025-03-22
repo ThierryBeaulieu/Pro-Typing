@@ -26,6 +26,10 @@ var certification2 models.Certification = models.Certification{ID: "11a26b4c-279
 	ImgID:       "skate-board.png"}
 
 func (d *DatabaseStub) FetchCertification(ID string, fileSystem fs.FS, path string) (*models.Certification, error) {
+	if ID == "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" {
+		return nil, nil
+	}
+
 	return &certification1, nil
 }
 
@@ -71,7 +75,7 @@ func TestCertificationServer(t *testing.T) {
 	})
 
 	t.Run("returns a specific certifications", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodGet, "/certification", nil)
+		request, _ := http.NewRequest(http.MethodGet, "/certification/d1181969-6ae4-4a2f-9bb7-4e692aa278e7", nil)
 		response := httptest.NewRecorder()
 
 		var database DatabaseStub
@@ -93,7 +97,7 @@ func TestCertificationServer(t *testing.T) {
 	})
 
 	t.Run("returns 404 on missing certification", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodGet, "/certification", nil)
+		request, _ := http.NewRequest(http.MethodGet, "/certification/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", nil)
 		response := httptest.NewRecorder()
 
 		var database DatabaseStub
