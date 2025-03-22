@@ -13,28 +13,24 @@ import (
 type DatabaseStub struct {
 }
 
+var certification1 models.Certification = models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+	Name:        "Average Typist",
+	Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+	Range:       "40-55 words per minute",
+	ImgID:       "running-man.jpeg"}
+
+var certification2 models.Certification = models.Certification{ID: "11a26b4c-2795-4621-8e65-e16dfa2ff989",
+	Name:        "Certified Typist",
+	Description: "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
+	Range:       "60-75 words per minute",
+	ImgID:       "skate-board.png"}
+
 func (d *DatabaseStub) FetchCertification(ID string, fileSystem fs.FS, path string) (*models.Certification, error) {
-	certification1 := models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-		Name:        "Average Typist",
-		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
-		Range:       "40-55 words per minute",
-		ImgID:       "running-man.jpeg"}
 	return &certification1, nil
 }
 
 func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]models.Certification, error) {
 
-	certification1 := models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-		Name:        "Average Typist",
-		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
-		Range:       "40-55 words per minute",
-		ImgID:       "running-man.jpeg"}
-
-	certification2 := models.Certification{ID: "11a26b4c-2795-4621-8e65-e16dfa2ff989",
-		Name:        "Certified Typist",
-		Description: "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
-		Range:       "60-75 words per minute",
-		ImgID:       "skate-board.png"}
 	return []models.Certification{certification1, certification2}, nil
 }
 
@@ -71,12 +67,7 @@ func TestCertificationServer(t *testing.T) {
 			}
 		]`
 
-		got = strings.Join(strings.Fields(got), "")
-		want = strings.Join(strings.Fields(want), "")
-
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("\nGot %q\nWant %q", got, want)
-		}
+		assertBodyEqual(t, got, want)
 	})
 
 	t.Run("returns a specific certifications", func(t *testing.T) {
@@ -98,12 +89,16 @@ func TestCertificationServer(t *testing.T) {
 			"imgID": "running-man.jpeg"
 		}`
 
-		got = strings.Join(strings.Fields(got), "")
-		want = strings.Join(strings.Fields(want), "")
-
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("\nGot %q\nWant %q", got, want)
-		}
+		assertBodyEqual(t, got, want)
 	})
 
+}
+
+func assertBodyEqual(t *testing.T, got string, want string) {
+	got = strings.Join(strings.Fields(got), "")
+	want = strings.Join(strings.Fields(want), "")
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("\nGot %q\nWant %q", got, want)
+	}
 }
