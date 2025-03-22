@@ -96,6 +96,21 @@ func TestCertificationServer(t *testing.T) {
 		assertBodyEqual(t, got, want)
 	})
 
+	t.Run("when returning a certification, the content-type should be a json", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/certification/d1181969-6ae4-4a2f-9bb7-4e692aa278e7", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Header().Get("Content-Type")
+		want := "application/json"
+
+		assertContentTypeEqual(t, got, want)
+	})
+
 	t.Run("returns 404 on missing certification", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/certification/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", nil)
 		response := httptest.NewRecorder()
@@ -125,5 +140,11 @@ func assertBodyEqual(t *testing.T, got string, want string) {
 func assertCodeEqual(t *testing.T, got int, want int) {
 	if got != want {
 		t.Errorf("\nGot Return Code %d\nWant Return Code %d", got, want)
+	}
+}
+
+func assertContentTypeEqual(t *testing.T, got string, want string) {
+	if got != want {
+		t.Errorf("\nGot Return Content-Type %s\nWant Return Content-Type %s", got, want)
 	}
 }
