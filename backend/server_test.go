@@ -92,6 +92,21 @@ func TestCertificationServer(t *testing.T) {
 		assertBodyEqual(t, got, want)
 	})
 
+	t.Run("returns 404 on missing certification", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/certification", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Code
+		want := http.StatusNotFound
+
+		assertCodeEqual(t, got, want)
+	})
+
 }
 
 func assertBodyEqual(t *testing.T, got string, want string) {
@@ -100,5 +115,11 @@ func assertBodyEqual(t *testing.T, got string, want string) {
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("\nGot %q\nWant %q", got, want)
+	}
+}
+
+func assertCodeEqual(t *testing.T, got int, want int) {
+	if got != want {
+		t.Errorf("\nGot Return Code %d\nWant Return Code %d", got, want)
 	}
 }
