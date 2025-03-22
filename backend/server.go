@@ -38,6 +38,7 @@ func (p *CertificationServer) handleCertifications(w http.ResponseWriter, r *htt
 	log.Println("Handle Certifications request")
 	certifications, _ := p.fileManager.FetchAllCertifications(os.DirFS("database"), "certifications.json")
 	out, _ := json.Marshal(certifications)
+	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(out))
 }
 
@@ -57,6 +58,8 @@ func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 
 	out, _ := json.Marshal(certification)
 	w.Write([]byte(out))

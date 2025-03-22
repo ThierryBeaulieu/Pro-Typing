@@ -111,6 +111,21 @@ func TestCertificationServer(t *testing.T) {
 		assertContentTypeEqual(t, got, want)
 	})
 
+	t.Run("when returning all certifications, the content-type should be a json", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/certifications", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Header().Get("Content-Type")
+		want := "application/json"
+
+		assertContentTypeEqual(t, got, want)
+	})
+
 	t.Run("returns 404 on missing certification", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/certification/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", nil)
 		response := httptest.NewRecorder()
