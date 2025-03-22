@@ -29,7 +29,13 @@ func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]
 		Description: "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
 		Range:       "40-55 words per minute",
 		ImgID:       "running-man.jpeg"}
-	return []models.Certification{certification1}, nil
+
+	certification2 := models.Certification{ID: "11a26b4c-2795-4621-8e65-e16dfa2ff989",
+		Name:        "Certified Typist",
+		Description: "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
+		Range:       "60-75 words per minute",
+		ImgID:       "skate-board.png"}
+	return []models.Certification{certification1, certification2}, nil
 }
 
 func (d *DatabaseStub) FetchAllCertificationsCompleted(fileSystem fs.FS, path string) []models.CertificationComplete {
@@ -48,13 +54,22 @@ func TestCertificationServer(t *testing.T) {
 
 		got := response.Body.String()
 
-		want := `[{
-			"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-			"name": "Average Typist",
-			"description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
-			"range": "40-55 words per minute",
-			"imgID": "running-man.jpeg"
-		}]`
+		want := `[
+			{
+				"id": "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
+				"name": "Average Typist",
+				"description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
+				"range": "40-55 words per minute",
+				"imgID": "running-man.jpeg"
+			},
+			{
+				"id": "11a26b4c-2795-4621-8e65-e16dfa2ff989",
+				"name": "Certified Typist",
+				"description": "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
+				"range": "60-75 words per minute",
+				"imgID": "skate-board.png"
+			}
+		]`
 
 		got = strings.Join(strings.Fields(got), "")
 		want = strings.Join(strings.Fields(want), "")
