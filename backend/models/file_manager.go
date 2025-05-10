@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"io/fs"
+	"log"
 )
 
 type FileManager struct {
@@ -15,20 +16,21 @@ func (f FileManager) FetchThumbnail(ID string, fileSystem fs.FS, path string) (*
 		return nil, err
 	}
 
-	var thumbnail Thumbnail
-	err = json.Unmarshal(data, &thumbnail)
+	var thumbnails []Thumbnail
+	err = json.Unmarshal(data, &thumbnails)
+
+	log.Println(err)
 
 	if err != nil {
 		return nil, err
 	}
 
-	if thumbnail.Base64 != nil {
-		return &thumbnail, err
+	for _, thumbnail := range thumbnails {
+		if thumbnail.ID == ID {
+			return &thumbnail, nil
+		}
 	}
-
-	*thumbnail.Base64 = "hello world"
-
-	return &thumbnail, err
+	return nil, nil
 
 }
 

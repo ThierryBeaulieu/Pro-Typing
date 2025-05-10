@@ -4,20 +4,20 @@
     "name": "Average Typist",
     "description": "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
     "range": "40-55 words per minute",
-    "imgSrc": ""
+    "imgID": "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5"
   },
   {
     "id": "11a26b4c-2795-4621-8e65-e16dfa2ff989",
     "name": "Certified Typist",
     "description": "This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level.",
     "range": "60-75 words per minute",
-    "imgSrc": ""
+    "imgID": "39db54a6-c7f6-4311-8e6a-b4879cf9f21d"
   },
   {
     "id": "7552a1fc-c2eb-4a26-b11b-8565c5cbc583",
     "name": "Proficient Typist",
     "description": "This range includes about 15-20% of people. You are well above average and typing at a proficient speed.",
     "range": "80-85 words per minute",
-    "imgSrc": ""
+    "imgID": "149b12d3-8f7d-4e2e-99ae-d1fd0f8ac8e4"
   }
 ]
