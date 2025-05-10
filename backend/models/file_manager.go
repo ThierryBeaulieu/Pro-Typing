@@ -8,6 +8,30 @@ import (
 type FileManager struct {
 }
 
+func (f FileManager) FetchThumbnail(ID string, fileSystem fs.FS, path string) (*Thumbnail, error) {
+	data, err := fs.ReadFile(fileSystem, path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var thumbnail Thumbnail
+	err = json.Unmarshal(data, &thumbnail)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if thumbnail.Base64 != nil {
+		return &thumbnail, err
+	}
+
+	*thumbnail.Base64 = "hello world"
+
+	return &thumbnail, err
+
+}
+
 func (f FileManager) FetchAllCertifications(fileSystem fs.FS, path string) ([]Certification, error) {
 	data, err := fs.ReadFile(fileSystem, path)
 

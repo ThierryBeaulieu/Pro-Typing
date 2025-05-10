@@ -42,7 +42,20 @@ func (p *CertificationServer) handleDefault(w http.ResponseWriter, r *http.Reque
 
 func (p *CertificationServer) handleAsset(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle Asset request")
-	w.Write([]byte("img1"))
+
+	thumbnailID := strings.TrimPrefix(r.URL.Path, "/asset/")
+
+	thumbnail, err := p.fileManager.FetchThumbnail(thumbnailID, os.DirFS("database"), "thumbnails.json")
+
+	if thumbnail == nil || err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+
+	out, _ := json.Marshal(thumbnail)
+	w.Write([]byte(out))
 }
 
 func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http.Request) {
