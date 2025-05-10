@@ -1,38 +1,38 @@
 [
   {
     "id": "149b12d3-8f7d-4e2e-99ae-d1fd0f8ac8e4",
-    "thumbnailName": "cycling-man.jpeg"
+    "fileName": "cycling-man.jpeg"
   },
   {
     "id": "b992b616-d511-4ced-b7c3-2dd2848349f3",
-    "thumbnailName": "diving-man.jpeg"
+    "fileName": "diving-man.jpeg"
   },
   {
     "id": "70bddba1-3b1b-4ca1-8079-21501a648dd1",
-    "thumbnailName": "driving-man.jpeg"
+    "fileName": "driving-man.jpeg"
   },
   {
     "id": "8a19b540-ba99-4717-8134-7c1c2aa80fa1 ",
-    "thumbnailName": "fighter-jet.png"
+    "fileName": "fighter-jet.png"
   },
   {
     "id": "58567869-8efe-41c3-ba0e-c8a8ea970a7f",
-    "thumbnailName": "motorcycle.png"
+    "fileName": "motorcycle.png"
   },
   {
     "id": "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5",
-    "thumbnailName": "running-man.jpeg"
+    "fileName": "running-man.jpeg"
   },
   {
     "id": "39db54a6-c7f6-4311-8e6a-b4879cf9f21d",
-    "thumbnailName": "skate-board.png"
+    "fileName": "skate-board.png"
   },
   {
     "id": "cb93654e-7178-4584-860a-59a65e5c0e41",
-    "thumbnailName": "space-man.jpeg"
+    "fileName": "space-man.jpeg"
   },
   {
     "id": "68ddd36b-f3bb-4657-81e8-fb62eef1edd5",
-    "thumbnailName": "train.png"
+    "fileName": "train.png"
   }
 ]
