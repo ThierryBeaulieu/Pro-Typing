@@ -34,7 +34,6 @@ func (d *DatabaseStub) FetchCertification(ID string, fileSystem fs.FS, path stri
 }
 
 func (d *DatabaseStub) FetchAllCertifications(fileSystem fs.FS, path string) ([]models.Certification, error) {
-
 	return []models.Certification{certification1, certification2}, nil
 }
 
@@ -43,6 +42,23 @@ func (d *DatabaseStub) FetchAllCertificationsCompleted(fileSystem fs.FS, path st
 }
 
 func TestCertificationServer(t *testing.T) {
+
+	t.Run("returns hello world when no url is specified", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Body.String()
+
+		want := `hello world`
+
+		assertBodyEqual(t, got, want)
+	})
+
 	t.Run("returns list of available certifications", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/certifications", nil)
 		response := httptest.NewRecorder()

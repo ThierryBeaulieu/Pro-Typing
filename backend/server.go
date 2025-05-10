@@ -44,7 +44,7 @@ func (p *CertificationServer) handleCertifications(w http.ResponseWriter, r *htt
 
 func (p *CertificationServer) handleDefault(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle Default request")
-	w.Write([]byte(""))
+	w.Write([]byte("hello world"))
 }
 
 func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http.Request) {
