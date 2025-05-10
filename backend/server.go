@@ -30,21 +30,19 @@ func (p *CertificationServer) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 
 func (p *CertificationServer) routes() {
 	p.mux.HandleFunc("/", p.handleDefault)
-	p.mux.HandleFunc("/certifications", p.handleCertifications)
+	p.mux.HandleFunc("/asset/", p.handleAsset)
 	p.mux.HandleFunc("/certification/", p.handleCertification)
-}
-
-func (p *CertificationServer) handleCertifications(w http.ResponseWriter, r *http.Request) {
-	log.Println("Handle Certifications request")
-	certifications, _ := p.fileManager.FetchAllCertifications(os.DirFS("database"), "certifications.json")
-	out, _ := json.Marshal(certifications)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(out))
+	p.mux.HandleFunc("/certifications", p.handleCertifications)
 }
 
 func (p *CertificationServer) handleDefault(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle Default request")
 	w.Write([]byte("hello world"))
+}
+
+func (p *CertificationServer) handleAsset(w http.ResponseWriter, r *http.Request) {
+	log.Println("Handle Asset request")
+	w.Write([]byte("img1"))
 }
 
 func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http.Request) {
@@ -62,5 +60,13 @@ func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http
 	w.Header().Set("Content-Type", "application/json")
 
 	out, _ := json.Marshal(certification)
+	w.Write([]byte(out))
+}
+
+func (p *CertificationServer) handleCertifications(w http.ResponseWriter, r *http.Request) {
+	log.Println("Handle Certifications request")
+	certifications, _ := p.fileManager.FetchAllCertifications(os.DirFS("database"), "certifications.json")
+	out, _ := json.Marshal(certifications)
+	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(out))
 }
