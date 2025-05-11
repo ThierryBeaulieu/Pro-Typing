@@ -37,7 +37,7 @@ func (p *CertificationServer) routes() {
 
 func (p *CertificationServer) handleDefault(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle Default request")
-	w.Write([]byte("version 1.0.1"))
+	w.Write([]byte("version 1.0.2"))
 }
 
 func (p *CertificationServer) handleAsset(w http.ResponseWriter, r *http.Request) {
