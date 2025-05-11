@@ -5,8 +5,8 @@
   "scripts": {
     "docker:run": "docker run --publish 8080:8080 pro-typing-backend:multistage",
     "docker:build": "docker build -t pro-typing-backend:multistage -f Dockerfile.multistage .",
-    "docker:tag": "docker tag pro-typing-backend:multistage thierrybeaulieu/pro-typing-backend:v1.0",
-    "docker:push": "docker push thierrybeaulieu/pro-typing-backend:v1.0",
+    "docker:tag": "docker tag pro-typing-backend:multistage thierrybeaulieu/pro-typing-backend:multistage",
+    "docker:push": "docker push thierrybeaulieu/pro-typing-backend:multistage",
     "deploy": "npm run docker:build && npm run docker:tag && npm run docker:push",
     "start": "go run .",
     "test": "./gotest.sh ./... -v",

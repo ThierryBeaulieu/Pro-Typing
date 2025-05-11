@@ -9,5 +9,5 @@ import (
 func main() {
 	fileManager := models.FileManager{}
 	server := NewCertificationServer(fileManager)
-	log.Fatal(http.ListenAndServe(":8080", server))
+	log.Fatal(http.ListenAndServe(":80", server))
 }
