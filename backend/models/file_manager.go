@@ -1,8 +1,11 @@
 package models
 
 import (
+	b64 "encoding/base64"
 	"encoding/json"
 	"io/fs"
+	"log"
+	"os"
 )
 
 type FileManager struct {
@@ -24,6 +27,16 @@ func (f FileManager) FetchThumbnail(ID string, fileSystem fs.FS, path string) (*
 
 	for _, thumbnail := range thumbnails {
 		if thumbnail.ID == ID {
+			assetFileSystem := os.DirFS("assets")
+			imgPath := "certifications-thumbnail/" + thumbnail.FileName
+			log.Println(imgPath)
+			rawImg, err := fs.ReadFile(assetFileSystem, imgPath)
+
+			if rawImg == nil || err != nil {
+				return &thumbnail, nil
+			}
+
+			thumbnail.Base64 = b64.StdEncoding.EncodeToString([]byte(rawImg))
 			return &thumbnail, nil
 		}
 	}

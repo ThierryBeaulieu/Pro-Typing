@@ -16,7 +16,7 @@ type DatabaseStub struct {
 var thumbnail1 models.Thumbnail = models.Thumbnail{
 	ID:       "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5",
 	FileName: "running-man.jpeg",
-	Base64:   nil,
+	Base64:   "",
 }
 
 var certification1 models.Certification = models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
