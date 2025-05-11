@@ -56,7 +56,7 @@ func (d *DatabaseStub) FetchAllCertificationsCompleted(fileSystem fs.FS, path st
 
 func TestCertificationServer(t *testing.T) {
 
-	t.Run("returns hello world when no url is specified", func(t *testing.T) {
+	t.Run("returns the version of the server when no url is specified", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/", nil)
 		response := httptest.NewRecorder()
 
@@ -67,7 +67,7 @@ func TestCertificationServer(t *testing.T) {
 
 		got := response.Body.String()
 
-		want := `hello world`
+		want := `version 1.0.0`
 
 		assertBodyEqual(t, got, want)
 	})
