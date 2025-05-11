@@ -204,6 +204,21 @@ func TestCertificationServer(t *testing.T) {
 		assertBodyEqual(t, got, want)
 	})
 
+	t.Run("returns 404 on missing thumbnail", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/asset/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Code
+		want := http.StatusNotFound
+
+		assertCodeEqual(t, got, want)
+	})
+
 }
 
 func assertBodyEqual(t *testing.T, got string, want string) {
