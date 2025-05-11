@@ -16,7 +16,7 @@ type DatabaseStub struct {
 var thumbnail1 models.Thumbnail = models.Thumbnail{
 	ID:       "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5",
 	FileName: "running-man.jpeg",
-	Base64:   "",
+	Base64:   "base64-img",
 }
 
 var certification1 models.Certification = models.Certification{ID: "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
@@ -183,6 +183,27 @@ func TestCertificationServer(t *testing.T) {
 
 		assertContentTypeEqual(t, got, want)
 	})
+
+	t.Run("should return a specific thumbnail", func(t *testing.T) {
+		request, _ := http.NewRequest(http.MethodGet, "/asset/1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5", nil)
+		response := httptest.NewRecorder()
+
+		var database DatabaseStub
+
+		server := NewCertificationServer(&database)
+		server.ServeHTTP(response, request)
+
+		got := response.Body.String()
+
+		want := `{
+			"id": "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5",
+			"fileName": "running-man.jpeg",
+			"base64": "base64-img"
+		}`
+
+		assertBodyEqual(t, got, want)
+	})
+
 }
 
 func assertBodyEqual(t *testing.T, got string, want string) {
