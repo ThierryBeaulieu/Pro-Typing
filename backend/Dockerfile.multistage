@@ -14,7 +14,6 @@ RUN go mod download
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o pro-typing-backend
-#RUN CGO_ENABLED=0 GOOS=linux go build -o pro-typing-backend
 
 ##
 ## Run the tests in the container
