@@ -67,7 +67,7 @@ func TestCertificationServer(t *testing.T) {
 
 		got := response.Body.String()
 
-		want := `version 1.0.0`
+		want := `version 1.0.1`
 
 		assertBodyEqual(t, got, want)
 	})
