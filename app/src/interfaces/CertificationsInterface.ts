@@ -1,6 +1,9 @@
-export interface CertificationWrapper {
+export interface CertificationsRequest {
+  id: string;
   name: string;
-  certifications: Certification[];
+  description: string;
+  range: string;
+  imgID: string;
 }
 
 export interface Certification {
