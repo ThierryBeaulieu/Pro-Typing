@@ -193,7 +193,7 @@ func TestFileManager(t *testing.T) {
 		}
 	})
 
-	t.Run("Fetch a specified certifications should return nil if the certification is not present", func(t *testing.T) {
+	t.Run("Fetch a specified certification should return nil if the certification is not present", func(t *testing.T) {
 		path := "database/certifications.json"
 		fs := fstest.MapFS{
 			path: {Data: []byte(getStubJSONCertification(t))},
@@ -212,7 +212,7 @@ func TestFileManager(t *testing.T) {
 		}
 	})
 
-	t.Run("Fetch a specified certifications should return an error if an issue is returned", func(t *testing.T) {
+	t.Run("Fetch a certification should return an error if an issue is returned", func(t *testing.T) {
 		correctPath := "database/certifications.json"
 		wrongPath := "database/cert.json"
 		fs := fstest.MapFS{

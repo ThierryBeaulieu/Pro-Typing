@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Golang command line shortcuts",
   "scripts": {
+    "docker": "docker run --publish 8080:8080 pro-typing-backend:multistage",
+    "build": "docker build -t pro-typing-backend:multistage -f Dockerfile.multistage .",
     "start": "go run .",
     "test": "./gotest.sh ./... -v",
     "cover": "./gotest.sh ./... -cover",
