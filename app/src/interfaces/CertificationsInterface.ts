@@ -1,4 +1,4 @@
-export interface CertificationsRequest {
+export interface CertificationRequest {
   id: string;
   name: string;
   description: string;
