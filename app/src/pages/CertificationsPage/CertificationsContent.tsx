@@ -1,21 +1,20 @@
 import { Certification } from '../../interfaces/CertificationsInterface';
-import { Box, Button, Grid2 } from '@mui/material';
+import {
+  CircularProgress,
+  Box,
+  Button,
+  Grid2,
+  Typography,
+} from '@mui/material';
 
 import { useEffect, useState } from 'react';
 import certificationService from '../../services/CertificationService';
 
-// todo : refactor so that the endpoint
 type CertificationType = {
   data: Certification;
 };
 
 function CertificationCard({ data }: CertificationType) {
-  // const navigate = useNavigate();
-  //
-  // const handleCertificationClick = () => {
-  //   // todo : handle redirection
-  // };
-
   const isCertificationObtained = (wpm: number) => {
     const certification: string | null = localStorage.getItem(wpm.toString());
     return certification === null ? false : true;
@@ -71,24 +70,40 @@ function CertificationCard({ data }: CertificationType) {
 
 function CertificationsContent() {
   const [certifications, setCertifications] = useState<Certification[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     certificationService
       .fetchAllCertifications()
       .then((data) => setCertifications(data))
-      .catch((error) => console.error('error parsing certifications', error));
+      .catch((error) => console.error('Error parsing certifications', error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <>
-      <h1>Certifications</h1>
-      <Grid2 container spacing={4}>
-        {certifications.map((data, index) => (
-          <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
-            <CertificationCard data={data} />
-          </Grid2>
-        ))}
-      </Grid2>
+      <Typography variant="h3" gutterBottom>
+        Certifications
+      </Typography>
+
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="50vh"
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Grid2 container spacing={4}>
+          {certifications.map((data, index) => (
+            <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
+              <CertificationCard data={data} />
+            </Grid2>
+          ))}
+        </Grid2>
+      )}
     </>
   );
 }
