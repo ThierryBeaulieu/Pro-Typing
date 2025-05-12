@@ -1,31 +1,20 @@
 import { Certification } from '../../interfaces/CertificationsInterface';
 import { Box, Button, Grid2 } from '@mui/material';
-import RunningMan from '../../assets/certifications-type/running-man.jpeg';
-import BikeMan from '../../assets/certifications-type/cycling-man.jpeg';
-import SpaceMan from '../../assets/certifications-type/space-man.jpeg';
-import SkateBoard from '../../assets/certifications-type/skate-board.png';
-import DivingMan from '../../assets/certifications-type/diving-man.jpeg';
-import DrivingMan from '../../assets/certifications-type/driving-man.jpeg';
-import FighterJet from '../../assets/certifications-type/fighter-jet.png';
-import MotorCycle from '../../assets/certifications-type/motorcycle.png';
-import TrainDriving from '../../assets/certifications-type/train.png';
 
-import { useNavigate } from 'react-router';
-import majorCertifications from '../../services/CertificationService';
+import { useEffect, useState } from 'react';
+import certificationService from '../../services/CertificationService';
 
-type CertificationCardType = {
-  image: string;
+// todo : refactor so that the endpoint
+type CertificationType = {
   data: Certification;
 };
 
-function CertificationCard({ image, data }: CertificationCardType) {
-  const navigate = useNavigate();
-
-  const handleCertificationClick = (wordsPerMinute: number[]) => {
-    const min = wordsPerMinute[0];
-    const max = wordsPerMinute[wordsPerMinute.length - 1];
-    navigate(`/certification/${min}-${max}`);
-  };
+function CertificationCard({ data }: CertificationType) {
+  // const navigate = useNavigate();
+  //
+  // const handleCertificationClick = () => {
+  //   // todo : handle redirection
+  // };
 
   const isCertificationObtained = (wpm: number) => {
     const certification: string | null = localStorage.getItem(wpm.toString());
@@ -46,7 +35,7 @@ function CertificationCard({ image, data }: CertificationCardType) {
           width={'100%'}
           component="img"
           alt="certification-image"
-          src={image}
+          src={data.image}
         />
       </Box>
 
@@ -65,19 +54,12 @@ function CertificationCard({ image, data }: CertificationCardType) {
             flexDirection: 'column',
           }}
         >
-          {isCertificationObtained(data.wordsPerMinute[0]) ? (
-            <Button
-              color={'secondary'}
-              variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
-            >
+          {isCertificationObtained(50) ? (
+            <Button color={'secondary'} variant="contained" onClick={() => {}}>
               Complete again
             </Button>
           ) : (
-            <Button
-              variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
-            >
+            <Button variant="contained" onClick={() => {}}>
               Take Certification
             </Button>
           )}
@@ -88,26 +70,22 @@ function CertificationCard({ image, data }: CertificationCardType) {
 }
 
 function CertificationsContent() {
-  const certifications = majorCertifications;
+  const [certifications, setCertifications] = useState<Certification[]>([]);
 
-  const images: string[] = [
-    RunningMan,
-    SkateBoard,
-    BikeMan,
-    DivingMan,
-    MotorCycle,
-    DrivingMan,
-    TrainDriving,
-    FighterJet,
-    SpaceMan,
-  ];
+  useEffect(() => {
+    certificationService
+      .fetchAllCertifications()
+      .then((data) => setCertifications(data))
+      .catch((error) => console.error('error parsing certifications', error));
+  }, []);
+
   return (
     <>
       <h1>Certifications</h1>
       <Grid2 container spacing={4}>
-        {certifications[0].certifications.map((data, index) => (
+        {certifications.map((data, index) => (
           <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
-            <CertificationCard image={images[index]} data={data} />
+            <CertificationCard data={data} />
           </Grid2>
         ))}
       </Grid2>

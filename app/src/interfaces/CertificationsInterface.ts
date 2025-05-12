@@ -7,8 +7,9 @@ export interface CertificationsRequest {
 }
 
 export interface Certification {
+  id: string;
   name: string;
-  range: string;
   description: string;
-  wordsPerMinute: number[];
+  range: string;
+  image: string;
 }
