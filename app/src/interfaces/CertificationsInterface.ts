@@ -1,11 +1,15 @@
-export interface CertificationWrapper {
+export interface CertificationRequest {
+  id: string;
   name: string;
-  certifications: Certification[];
+  description: string;
+  range: string;
+  imgID: string;
 }
 
 export interface Certification {
+  id: string;
   name: string;
-  range: string;
   description: string;
-  wordsPerMinute: number[];
+  range: string;
+  image: string;
 }

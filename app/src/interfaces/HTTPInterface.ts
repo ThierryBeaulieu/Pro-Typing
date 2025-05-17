@@ -1,7 +1,7 @@
-import { SERVER_URL } from '../utils/Consts';
+import { PROD_SERVER_URL } from '../utils/Consts';
 
 export const HTTPInterface = {
-  SERVER_URL: `${SERVER_URL}/api`,
+  SERVER_URL: `${PROD_SERVER_URL}/`,
 
   GET: async function (endpoint: string) {
     const response = await fetch(`${this.SERVER_URL}/${endpoint}`);

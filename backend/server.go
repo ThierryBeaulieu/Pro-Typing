@@ -14,6 +14,12 @@ type CertificationServer struct {
 	mux         *http.ServeMux
 }
 
+func enableCors(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:8080")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+}
+
 func NewCertificationServer(fileManager models.DatabaseManager) *CertificationServer {
 	server := &CertificationServer{
 		fileManager: fileManager,
@@ -37,7 +43,7 @@ func (p *CertificationServer) routes() {
 
 func (p *CertificationServer) handleDefault(w http.ResponseWriter, r *http.Request) {
 	log.Println("Handle Default request")
-	w.Write([]byte("version 1.0.2"))
+	w.Write([]byte("version 1.0.3"))
 }
 
 func (p *CertificationServer) handleAsset(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +58,7 @@ func (p *CertificationServer) handleAsset(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	enableCors(w)
 	w.Header().Set("Content-Type", "application/json")
 
 	out, _ := json.Marshal(thumbnail)
@@ -70,6 +77,7 @@ func (p *CertificationServer) handleCertification(w http.ResponseWriter, r *http
 		return
 	}
 
+	enableCors(w)
 	w.Header().Set("Content-Type", "application/json")
 
 	out, _ := json.Marshal(certification)
@@ -80,6 +88,8 @@ func (p *CertificationServer) handleCertifications(w http.ResponseWriter, r *htt
 	log.Println("Handle Certifications request")
 	certifications, _ := p.fileManager.FetchAllCertifications(os.DirFS("database"), "certifications.json")
 	out, _ := json.Marshal(certifications)
+
+	enableCors(w)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(out))
 }

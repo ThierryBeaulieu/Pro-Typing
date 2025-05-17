@@ -4,11 +4,12 @@ import text from '../../database/database.json';
 import Box from '@mui/material/Box/Box';
 import TypingResult from './TypingResult';
 import CertificationState from '../../enum/CertificationState';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import { useLocation } from 'react-router';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
+import { Certification } from '../../interfaces/CertificationsInterface';
 
 function sentenceToWords(text: string): string[] {
   const words = text.split(' ');
@@ -23,7 +24,11 @@ function sentenceToWords(text: string): string[] {
   return fullSentence;
 }
 
-function TypingContent() {
+type CertificationType = {
+  data: Certification;
+};
+
+function TypingContent({ data }: CertificationType) {
   const [userInput, setUserInput] = useState<string>('');
   const [correctChar, setCorrectChar] = useState<boolean[]>([]);
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -32,8 +37,7 @@ function TypingContent() {
   const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
   const [precision, setPrecision] = useState<number>(0);
   const [wpm, setWPM] = useState<number>(0);
-  const { range } = useParams();
-  const navigate = useNavigate();
+  const [range, setRange] = useState<number[]>([]);
 
   const location = useLocation();
 
@@ -46,16 +50,14 @@ function TypingContent() {
   const [sentence, setSentence] = useState<string>(initSentence());
 
   useEffect(() => {
+    const rangePart = data.range.split(' ')[0]; // "60-75"
+    setRange(rangePart.split('-').map(Number)); // [60, 75]
+
     setSentence(initSentence());
-  }, [location]);
+  }, [location, data.range]);
 
   const didPassTest = () => {
-    const wordsPerMinuteRange: string[] | undefined = range?.split('-');
-    if (wordsPerMinuteRange === undefined) {
-      navigate('/error');
-      return CertificationState.Failed;
-    }
-    const minWPM: number = parseInt(wordsPerMinuteRange[0]);
+    const minWPM: number = range[0];
 
     if (precision >= 95 && wpm >= minWPM) {
       return CertificationState.Completed;
@@ -177,6 +179,7 @@ function TypingContent() {
           wpm={wpm}
           accuracy={precision}
           range={range!}
+          certificationID={data.id}
         />
       ) : (
         <Box>

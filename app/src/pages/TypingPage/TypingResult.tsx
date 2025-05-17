@@ -11,25 +11,28 @@ interface TypingResultProp {
   result: CertificationState;
   accuracy: number;
   wpm: number;
-  range: string;
+  range: number[];
+  certificationID: string;
 }
 
 function Certificate({
   wpm,
   accuracy,
   range,
+  certificationID,
 }: {
   wpm: number;
   accuracy: number;
-  range: string;
+  range: number[];
+  certificationID: string;
 }) {
-  const addCertification = (wpm: string) => {
-    localStorage.setItem(wpm, 'true');
+  const addCertification = (certificationID: string) => {
+    localStorage.setItem(certificationID, 'true');
   };
 
   useEffect(() => {
-    addCertification(range.split('-')[0]);
-  }, []);
+    addCertification(certificationID);
+  }, [certificationID]);
 
   const navigate = useNavigate();
 
@@ -102,7 +105,7 @@ function Redirection({
 }: {
   wpm: number;
   accuracy: number;
-  range: string;
+  range: number[];
 }) {
   const navigate = useNavigate();
 
@@ -156,11 +159,22 @@ function Redirection({
   );
 }
 
-function TypingResult({ result, accuracy, wpm, range }: TypingResultProp) {
+function TypingResult({
+  result,
+  accuracy,
+  wpm,
+  range,
+  certificationID,
+}: TypingResultProp) {
   return (
     <Box padding={3}>
       {result === CertificationState.Completed ? (
-        <Certificate wpm={wpm} accuracy={accuracy} range={range} />
+        <Certificate
+          wpm={wpm}
+          accuracy={accuracy}
+          range={range}
+          certificationID={certificationID}
+        />
       ) : (
         <Redirection wpm={wpm} accuracy={accuracy} range={range} />
       )}

@@ -1,35 +1,29 @@
 import { Certification } from '../../interfaces/CertificationsInterface';
-import { Box, Button, Grid2 } from '@mui/material';
-import RunningMan from '../../assets/certifications-type/running-man.jpeg';
-import BikeMan from '../../assets/certifications-type/cycling-man.jpeg';
-import SpaceMan from '../../assets/certifications-type/space-man.jpeg';
-import SkateBoard from '../../assets/certifications-type/skate-board.png';
-import DivingMan from '../../assets/certifications-type/diving-man.jpeg';
-import DrivingMan from '../../assets/certifications-type/driving-man.jpeg';
-import FighterJet from '../../assets/certifications-type/fighter-jet.png';
-import MotorCycle from '../../assets/certifications-type/motorcycle.png';
-import TrainDriving from '../../assets/certifications-type/train.png';
-
+import {
+  CircularProgress,
+  Box,
+  Button,
+  Grid2,
+  Typography,
+} from '@mui/material';
 import { useNavigate } from 'react-router';
-import majorCertifications from '../../services/CertificationService';
+import { useEffect, useState } from 'react';
+import certificationService from '../../services/CertificationService';
 
-type CertificationCardType = {
-  image: string;
+type CertificationType = {
   data: Certification;
 };
 
-function CertificationCard({ image, data }: CertificationCardType) {
+function CertificationCard({ data }: CertificationType) {
   const navigate = useNavigate();
 
-  const handleCertificationClick = (wordsPerMinute: number[]) => {
-    const min = wordsPerMinute[0];
-    const max = wordsPerMinute[wordsPerMinute.length - 1];
-    navigate(`/certification/${min}-${max}`);
+  const isCertificationObtained = (certificationID: string) => {
+    const certification: string | null = localStorage.getItem(certificationID);
+    return certification === null ? false : true;
   };
 
-  const isCertificationObtained = (wpm: number) => {
-    const certification: string | null = localStorage.getItem(wpm.toString());
-    return certification === null ? false : true;
+  const handleCertificationClick = (id: string) => {
+    navigate(`../certification/${id}`);
   };
 
   return (
@@ -46,7 +40,7 @@ function CertificationCard({ image, data }: CertificationCardType) {
           width={'100%'}
           component="img"
           alt="certification-image"
-          src={image}
+          src={data.image}
         />
       </Box>
 
@@ -65,18 +59,22 @@ function CertificationCard({ image, data }: CertificationCardType) {
             flexDirection: 'column',
           }}
         >
-          {isCertificationObtained(data.wordsPerMinute[0]) ? (
+          {isCertificationObtained(data.id) ? (
             <Button
               color={'secondary'}
               variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
+              onClick={() => {
+                handleCertificationClick(data.id);
+              }}
             >
               Complete again
             </Button>
           ) : (
             <Button
               variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
+              onClick={() => {
+                handleCertificationClick(data.id);
+              }}
             >
               Take Certification
             </Button>
@@ -88,29 +86,41 @@ function CertificationCard({ image, data }: CertificationCardType) {
 }
 
 function CertificationsContent() {
-  const certifications = majorCertifications;
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const images: string[] = [
-    RunningMan,
-    SkateBoard,
-    BikeMan,
-    DivingMan,
-    MotorCycle,
-    DrivingMan,
-    TrainDriving,
-    FighterJet,
-    SpaceMan,
-  ];
+  useEffect(() => {
+    certificationService
+      .fetchAllCertifications()
+      .then((data) => setCertifications(data))
+      .catch((error) => console.error('Error parsing certifications', error))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
-      <h1>Certifications</h1>
-      <Grid2 container spacing={4}>
-        {certifications[0].certifications.map((data, index) => (
-          <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
-            <CertificationCard image={images[index]} data={data} />
-          </Grid2>
-        ))}
-      </Grid2>
+      <Typography variant="h3" gutterBottom>
+        Certifications
+      </Typography>
+
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="50vh"
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Grid2 container spacing={4}>
+          {certifications.map((data, index) => (
+            <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3 }}>
+              <CertificationCard data={data} />
+            </Grid2>
+          ))}
+        </Grid2>
+      )}
     </>
   );
 }
