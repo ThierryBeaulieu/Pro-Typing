@@ -50,6 +50,8 @@ function TypingContent() {
   }, [location]);
 
   const didPassTest = () => {
+    // fix the logic here so that it is secure instead of using interval in params
+    // which can be a big security issue
     const wordsPerMinuteRange: string[] | undefined = range?.split('-');
     if (wordsPerMinuteRange === undefined) {
       navigate('/error');
