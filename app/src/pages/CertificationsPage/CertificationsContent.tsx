@@ -6,7 +6,7 @@ import {
   Grid2,
   Typography,
 } from '@mui/material';
-
+import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import certificationService from '../../services/CertificationService';
 
@@ -15,9 +15,16 @@ type CertificationType = {
 };
 
 function CertificationCard({ data }: CertificationType) {
+  const navigate = useNavigate();
+
+  // todo: keep track of all certifications done.
   const isCertificationObtained = (wpm: number) => {
     const certification: string | null = localStorage.getItem(wpm.toString());
     return certification === null ? false : true;
+  };
+
+  const handleCertificationClick = (id: string) => {
+    navigate(`../certification/${id}`);
   };
 
   return (
@@ -54,11 +61,22 @@ function CertificationCard({ data }: CertificationType) {
           }}
         >
           {isCertificationObtained(50) ? (
-            <Button color={'secondary'} variant="contained" onClick={() => {}}>
+            <Button
+              color={'secondary'}
+              variant="contained"
+              onClick={() => {
+                handleCertificationClick(data.id);
+              }}
+            >
               Complete again
             </Button>
           ) : (
-            <Button variant="contained" onClick={() => {}}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                handleCertificationClick(data.id);
+              }}
+            >
               Take Certification
             </Button>
           )}
