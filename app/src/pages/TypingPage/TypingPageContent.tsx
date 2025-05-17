@@ -179,6 +179,7 @@ function TypingContent({ data }: CertificationType) {
           wpm={wpm}
           accuracy={precision}
           range={range!}
+          certificationID={data.id}
         />
       ) : (
         <Box>

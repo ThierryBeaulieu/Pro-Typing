@@ -17,9 +17,8 @@ type CertificationType = {
 function CertificationCard({ data }: CertificationType) {
   const navigate = useNavigate();
 
-  // todo: keep track of all certifications done.
-  const isCertificationObtained = (wpm: number) => {
-    const certification: string | null = localStorage.getItem(wpm.toString());
+  const isCertificationObtained = (certificationID: string) => {
+    const certification: string | null = localStorage.getItem(certificationID);
     return certification === null ? false : true;
   };
 
@@ -60,7 +59,7 @@ function CertificationCard({ data }: CertificationType) {
             flexDirection: 'column',
           }}
         >
-          {isCertificationObtained(50) ? (
+          {isCertificationObtained(data.id) ? (
             <Button
               color={'secondary'}
               variant="contained"
