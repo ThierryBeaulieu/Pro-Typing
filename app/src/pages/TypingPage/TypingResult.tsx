@@ -11,7 +11,7 @@ interface TypingResultProp {
   result: CertificationState;
   accuracy: number;
   wpm: number;
-  range: string;
+  range: number[];
 }
 
 function Certificate({
@@ -21,15 +21,15 @@ function Certificate({
 }: {
   wpm: number;
   accuracy: number;
-  range: string;
+  range: number[];
 }) {
   const addCertification = (wpm: string) => {
     localStorage.setItem(wpm, 'true');
   };
 
   useEffect(() => {
-    addCertification(range.split('-')[0]);
-  }, []);
+    addCertification(range[0].toString());
+  }, [range]);
 
   const navigate = useNavigate();
 
@@ -102,7 +102,7 @@ function Redirection({
 }: {
   wpm: number;
   accuracy: number;
-  range: string;
+  range: number[];
 }) {
   const navigate = useNavigate();
 

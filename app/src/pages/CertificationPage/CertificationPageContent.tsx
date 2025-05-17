@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import TypingContent from '../TypingPage/TypingPageContent';
 import certificationService from '../../services/CertificationService';
 import { Certification } from '../../interfaces/CertificationsInterface';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 enum pageState {
   PreCertification,
@@ -91,7 +92,10 @@ function CertificationMenu() {
       </>
     );
   } else {
-    return <TypingContent></TypingContent>;
+    if (certification === undefined) {
+      return <ErrorPage></ErrorPage>;
+    }
+    return <TypingContent data={certification}></TypingContent>;
   }
 }
 
