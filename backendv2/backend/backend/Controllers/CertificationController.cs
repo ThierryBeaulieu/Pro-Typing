@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using backend.Schemas;
 using System.Text.Json;
+using backend.Services;
+
 
 namespace backend.Controllers
 {
@@ -16,24 +18,9 @@ namespace backend.Controllers
         [HttpGet]
         public IEnumerable<Certification> Get()
         {
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            string databasePath = "Database/database.json";
-
-            if (!System.IO.File.Exists(databasePath))
-            {
-                // Optionally return an empty list or throw an error
-                return new List<Certification>();
-            }
-
-            string databaseJson = System.IO.File.ReadAllText(databasePath);
-            List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
-
-            return certifications ?? new List<Certification>();
+            var service = CertificationService.Instance;
+            List<Certification> certifications = service.FetchAllCertifications();
+            return certifications;
         }
 
         // GET api/certification/6b18c787-e28b-4bc2-abea-3899a1fa5da5
