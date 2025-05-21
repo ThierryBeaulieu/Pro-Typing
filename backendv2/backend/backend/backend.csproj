@@ -21,4 +21,7 @@
     <Folder Include="Schemas\" />
     <Folder Include="Database\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
 </Project>
