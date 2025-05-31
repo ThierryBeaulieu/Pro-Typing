@@ -9,27 +9,18 @@ namespace backend.Services
         public List<Certification> FetchAllCertifications();
     }
 
+
     public class CertificationService: ICertificationService
     {
+        private readonly IDatabaseService _databaseService;
+
+        public CertificationService(IDatabaseService databaseService)
+        {
+            _databaseService = databaseService;
+        }
         public List<Certification> FetchAllCertifications()
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            string databasePath = "Database/database.json";
-
-            if (!System.IO.File.Exists(databasePath))
-            {
-                // Optionally return an empty list or throw an error
-                return new List<Certification>();
-            }
-
-            string databaseJson = System.IO.File.ReadAllText(databasePath);
-            List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
-
-            return certifications ?? new List<Certification>();
+            return _databaseService.FetchAllCertifications();
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace APITests;
+
+using backend.Schemas;
 using backend.Services;
+using Moq;
 
 public class CertificationServiceTests
 {
@@ -7,14 +10,40 @@ public class CertificationServiceTests
 
     public CertificationServiceTests()
     {
-        _certificationService = new CertificationService();
+
+        Certification cert1 = new()
+        {
+            ID = "id1",
+            Name = "name",
+            Description = "description",
+            Range = "range",
+            ImgID = "imgID"
+        };
+        Certification cert2 = new()
+        {
+            ID = "id2",
+            Name = "name",
+            Description = "description",
+            Range = "range",
+            ImgID = "imgID"
+        };
+        var stubData = new List<Certification>()
+        {
+            cert1, cert2
+        };
+
+        var databaseMoq = new Mock<IDatabaseService>();
+        databaseMoq.Setup(service => service.FetchAllCertifications())
+            .Returns(stubData);
+
+        _certificationService = new CertificationService(databaseMoq.Object);
     }
 
     [Fact]
-    public void Test1()
+    public void FetchAllCertification_ShouldReturnAllCertifications()
     {
         var result = _certificationService.FetchAllCertifications();
 
-        // todo verify that we are calling the right services
+        Assert.Equal(2, result.Count);
     }
 }
