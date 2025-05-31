@@ -41,7 +41,7 @@ public class CertificationControllerTests
     }
 
     [Fact]
-    public void Test1()
+    public void Controller_ShouldFetchAllCertifications()
     {
         IEnumerable<Certification> items = _controller.Get();
         Assert.NotNull(items);
