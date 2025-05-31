@@ -8,6 +8,6 @@ namespace backend.Services
     {
         public Task<IReadOnlyList<Certification>> FetchAllCertifications();
 
-        public Task<IReadOnlyList<Certification>> FetchCertificationById(string id);
+        public Task<Certification> FetchCertificationById(string id);
     }
 }

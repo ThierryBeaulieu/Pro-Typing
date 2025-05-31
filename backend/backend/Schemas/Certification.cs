@@ -3,22 +3,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace backend.Schemas
 {
-    public class Certification
+    public record Certification
     {
         [Required]
-        public string ID { get; set; } = string.Empty;
+        public string ID { get; init; } = string.Empty;
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; init; } = string.Empty;
 
         [Required]
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; init; } = string.Empty;
 
         [Required]
-        public string Range { get; set; } = string.Empty;
+        public string Range { get; init; } = string.Empty;
 
         [Required]
-        public string ImgID { get; set; } = string.Empty;
+        public string ImgID { get; init; } = string.Empty;
 
     }
 }
