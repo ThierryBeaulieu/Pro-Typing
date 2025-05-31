@@ -96,3 +96,17 @@
 /Users/thierry/Desktop/Pro-Typing/backend/APITests/obj/Debug/net7.0/APITests.pdb
 /Users/thierry/Desktop/Pro-Typing/backend/APITests/obj/Debug/net7.0/APITests.genruntimeconfig.cache
 /Users/thierry/Desktop/Pro-Typing/backend/APITests/obj/Debug/net7.0/ref/APITests.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/CoverletSourceRootsMapping
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/backend.deps.json
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/backend.runtimeconfig.json
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/appsettings.Development.json
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/appsettings.json
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Database/Database.json
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/backend
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/backend.dll
+/Users/thierry/Desktop/Pro-Typing/backend/APITests/bin/Debug/net7.0/backend.pdb
