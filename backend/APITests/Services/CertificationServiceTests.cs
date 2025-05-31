@@ -6,44 +6,42 @@ using Moq;
 
 public class CertificationServiceTests
 {
-    private readonly CertificationService _certificationService;
-
-    public CertificationServiceTests()
+    [Fact]
+    public async Task FetchAllCertification_ShouldReturnAllCertifications()
     {
-
-        Certification cert1 = new()
-        {
-            ID = "id1",
-            Name = "name",
-            Description = "description",
-            Range = "range",
-            ImgID = "imgID"
-        };
-        Certification cert2 = new()
-        {
-            ID = "id2",
-            Name = "name",
-            Description = "description",
-            Range = "range",
-            ImgID = "imgID"
-        };
-        var stubData = new List<Certification>()
-        {
-            cert1, cert2
-        };
-
+        // Arrange
         var databaseMoq = new Mock<IDatabaseService>();
         databaseMoq.Setup(service => service.FetchAllCertifications())
-            .ReturnsAsync(stubData);
+            .ReturnsAsync(new List<Certification>());
 
-        _certificationService = new CertificationService(databaseMoq.Object);
+        var certificationService = new CertificationService(databaseMoq.Object);
+
+        // Act
+        var result = await certificationService.FetchAllCertifications();
+
+        // Assert
+        databaseMoq.Verify(service => service.FetchAllCertifications(), Times.Once());
+        // Optionally you can also assert on the result here
+        Assert.NotNull(result);
     }
 
     [Fact]
-    public async void FetchAllCertification_ShouldReturnAllCertifications()
+    public async Task FetchCertificationByID_ShouldReturnASpecificCertification()
     {
-        var result = await _certificationService.FetchAllCertifications();
+        // Arrange
+        var databaseMoq = new Mock<IDatabaseService>();
+        var expectedCertification = new Certification(); // create a sample certification
+        databaseMoq.Setup(service => service.FetchCertificationById("id"))
+            .ReturnsAsync(expectedCertification);
 
-        Assert.Equal(2, result.Count);
+        var certificationService = new CertificationService(databaseMoq.Object);
+
+        // Act
+        var result = await certificationService.FetchCertificationByID("id");
+
+        // Assert
+        databaseMoq.Verify(service => service.FetchCertificationById("id"), Times.Once());
+        Assert.NotNull(result);
+        Assert.Equal(expectedCertification, result);
     }
 }

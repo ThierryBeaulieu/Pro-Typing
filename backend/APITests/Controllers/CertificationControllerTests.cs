@@ -2,6 +2,7 @@
 using backend.Controllers;
 using backend.Schemas;
 using backend.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 public class CertificationControllerTests
@@ -32,10 +33,11 @@ public class CertificationControllerTests
             cert1, cert2
         };
 
+        var loggerMoq = new Mock<ILogger<CertificationController>>();
         var certificationMoq = new Mock<ICertificationService>();
         certificationMoq.Setup(service => service.FetchAllCertifications())
             .ReturnsAsync(stubData);
-        _controller = new CertificationController(certificationMoq.Object);
+        _controller = new CertificationController(certificationMoq.Object, loggerMoq.Object);
 
     }
 

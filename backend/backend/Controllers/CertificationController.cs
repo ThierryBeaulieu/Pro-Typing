@@ -14,10 +14,12 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class CertificationController : Controller
     {
+        private readonly ILogger<CertificationController> _logger;
         private readonly ICertificationService _service;
 
-        public CertificationController(ICertificationService service)
+        public CertificationController(ICertificationService service, ILogger<CertificationController> logger)
         {
+            _logger = logger;
             _service = service;
         }
 
@@ -31,21 +33,27 @@ namespace backend.Controllers
 
         // GET api/certification/6b18c787-e28b-4bc2-abea-3899a1fa5da5
         [HttpGet("{id}")]
-        public Certification Get(string id)
+        public async Task<IActionResult> Get(string id)
         {
-
-            Certification certification = new()
+            try
             {
-                ID = "d1181969-6ae4-4a2f-9bb7-4e692aa278e7",
-                Name = "Average Typist",
-                Description = "This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person.",
-                Range = "40-55 words per minute",
-                ImgID = "1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5"
-            };
+                var certification = await _service.FetchCertificationByID(id);
 
-            return certification;
+                if (certification == null)
+                {
+                    return NotFound(new { message = $"Certification with ID {id} not found." });
+                }
+
+                return Ok(certification);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ideally using a logger, here just an example)
+                Console.Error.WriteLine($"Error in Get(id): {ex.Message}\n{ex.StackTrace}");
+
+                return StatusCode(500, new { message = "An error occurred while processing your request." });
+            }
         }
-
 
     }
 }

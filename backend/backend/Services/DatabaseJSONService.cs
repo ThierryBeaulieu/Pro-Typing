@@ -5,9 +5,9 @@ namespace backend.Services
 
 {
     public class DatabaseJSONService : IDatabaseService
-	{
+    {
         public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
-		{
+        {
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
