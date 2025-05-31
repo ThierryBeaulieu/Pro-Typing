@@ -34,15 +34,15 @@ public class CertificationServiceTests
 
         var databaseMoq = new Mock<IDatabaseService>();
         databaseMoq.Setup(service => service.FetchAllCertifications())
-            .Returns(stubData);
+            .ReturnsAsync(stubData);
 
         _certificationService = new CertificationService(databaseMoq.Object);
     }
 
     [Fact]
-    public void FetchAllCertification_ShouldReturnAllCertifications()
+    public async void FetchAllCertification_ShouldReturnAllCertifications()
     {
-        var result = _certificationService.FetchAllCertifications();
+        var result = await _certificationService.FetchAllCertifications();
 
         Assert.Equal(2, result.Count);
     }

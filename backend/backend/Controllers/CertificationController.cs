@@ -23,9 +23,9 @@ namespace backend.Controllers
 
         // GET: api/certification
         [HttpGet]
-        public IEnumerable<Certification> Get()
+        public async Task<IEnumerable<Certification>> Get()
         {
-            List<Certification> certifications = _service.FetchAllCertifications();
+            IReadOnlyList<Certification> certifications = await _service.FetchAllCertifications();
             return certifications;
         }
 

@@ -6,6 +6,6 @@ namespace backend.Services
 {
     public interface IDatabaseService
     {
-        public List<Certification> FetchAllCertifications();
+        public Task<IReadOnlyList<Certification>> FetchAllCertifications();
     }
 }

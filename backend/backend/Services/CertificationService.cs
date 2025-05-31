@@ -6,9 +6,8 @@ namespace backend.Services
 {
     public interface ICertificationService
     {
-        public List<Certification> FetchAllCertifications();
+        public Task<IReadOnlyList<Certification>> FetchAllCertifications();
     }
-
 
     public class CertificationService: ICertificationService
     {
@@ -18,9 +17,9 @@ namespace backend.Services
         {
             _databaseService = databaseService;
         }
-        public List<Certification> FetchAllCertifications()
+        public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
         {
-            return _databaseService.FetchAllCertifications();
+            return await _databaseService.FetchAllCertifications();
         }
     }
 }

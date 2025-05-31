@@ -10,6 +10,7 @@ public class CertificationControllerTests
 
     public CertificationControllerTests()
     {
+
         Certification cert1 = new()
         {
             ID = "id1",
@@ -33,15 +34,15 @@ public class CertificationControllerTests
 
         var certificationMoq = new Mock<ICertificationService>();
         certificationMoq.Setup(service => service.FetchAllCertifications())
-            .Returns(stubData);
+            .ReturnsAsync(stubData);
         _controller = new CertificationController(certificationMoq.Object);
 
     }
 
     [Fact]
-    public void Controller_ShouldFetchAllCertifications()
+    public async void Controller_ShouldFetchAllCertifications()
     {
-        IEnumerable<Certification> items = _controller.Get();
+        IEnumerable<Certification> items = await _controller.Get();
         Assert.NotNull(items);
         Assert.Equal(2, items.Count());
     }

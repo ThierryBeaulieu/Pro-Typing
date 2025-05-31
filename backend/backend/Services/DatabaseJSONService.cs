@@ -10,7 +10,7 @@ namespace backend.Services
 		{
 		}
 
-        public List<Certification> FetchAllCertifications()
+        public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
 		{
             var options = new JsonSerializerOptions
             {
@@ -19,16 +19,20 @@ namespace backend.Services
 
             string databasePath = "Database/database.json";
 
-            if (!System.IO.File.Exists(databasePath))
+            if (!File.Exists(databasePath))
             {
-                // Optionally return an empty list or throw an error
-                return new List<Certification>();
+                throw new FileNotFoundException($"The database file was not found at path {databasePath}");
             }
 
-            string databaseJson = System.IO.File.ReadAllText(databasePath);
+            string databaseJson = await File.ReadAllTextAsync(databasePath);
             List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
 
-            return certifications ?? new List<Certification>();
+            if (certifications == null)
+            {
+                throw new JsonException("Failed to deserialize certifications: JSON content is invalid or empty.");
+            }
+
+            return certifications;
         }
     }
 }
