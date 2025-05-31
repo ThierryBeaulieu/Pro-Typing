@@ -10,8 +10,6 @@ public class CertificationControllerTests
 
     public CertificationControllerTests()
     {
-
-
         Certification cert1 = new()
         {
             ID = "id1",

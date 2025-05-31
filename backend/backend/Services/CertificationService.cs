@@ -9,7 +9,7 @@ namespace backend.Services
         public List<Certification> FetchAllCertifications();
     }
 
-    public class CertificationService
+    public class CertificationService: ICertificationService
     {
         public List<Certification> FetchAllCertifications()
         {
