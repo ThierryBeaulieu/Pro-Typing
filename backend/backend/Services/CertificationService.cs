@@ -4,21 +4,13 @@ using backend.Schemas;
 
 namespace backend.Services
 {
+    public interface ICertificationService
+    {
+        public List<Certification> FetchAllCertifications();
+    }
+
     public class CertificationService
     {
-
-        private static readonly CertificationService instance = new CertificationService();
-
-        private CertificationService() { }
-
-        public static CertificationService Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
         public List<Certification> FetchAllCertifications()
         {
             var options = new JsonSerializerOptions

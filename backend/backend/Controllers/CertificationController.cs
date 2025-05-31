@@ -14,12 +14,18 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class CertificationController : Controller
     {
+        private readonly ICertificationService _service;
+
+        public CertificationController(ICertificationService service)
+        {
+            _service = service;
+        }
+
         // GET: api/certification
         [HttpGet]
         public IEnumerable<Certification> Get()
         {
-            var service = CertificationService.Instance;
-            List<Certification> certifications = service.FetchAllCertifications();
+            List<Certification> certifications = _service.FetchAllCertifications();
             return certifications;
         }
 
