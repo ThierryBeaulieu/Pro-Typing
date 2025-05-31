@@ -6,10 +6,6 @@ namespace backend.Services
 {
     public class DatabaseJSONService : IDatabaseService
 	{
-		public DatabaseJSONService()
-		{
-		}
-
         public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
 		{
             var options = new JsonSerializerOptions
@@ -33,6 +29,11 @@ namespace backend.Services
             }
 
             return certifications;
+        }
+
+        public async Task<IReadOnlyList<Certification>> FetchCertificationById(string id)
+        {
+            return new List<Certification>();
         }
     }
 }
