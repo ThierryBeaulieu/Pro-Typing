@@ -21,7 +21,6 @@ public class CertificationServiceTests
 
         // Assert
         databaseMoq.Verify(service => service.FetchAllCertifications(), Times.Once());
-        // Optionally you can also assert on the result here
         Assert.NotNull(result);
     }
 
