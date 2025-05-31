@@ -59,7 +59,7 @@ public class CertificationControllerTests
     }
 
     [Fact]
-    public async Task Controller_WhenErrorOccurs_ShouldReturnError404()
+    public async Task FetchAllCertifications_WhenEmpty_ShouldReturnError500()
     {
 
         var loggerMoq = new Mock<ILogger<CertificationController>>();
@@ -71,9 +71,28 @@ public class CertificationControllerTests
         // Act
         var result = await controller.Get();
 
-        // Assert the type is  (HTTP 500)
+        // Assert
         var objectResult = Assert.IsType<ObjectResult>(result);
 
         Assert.Equal(500, objectResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task FetchCertificationByID_WhenEmpty_ShouldReturnError404()
+    {
+
+        var loggerMoq = new Mock<ILogger<CertificationController>>();
+        var certificationMoq = new Mock<ICertificationService>();
+        certificationMoq.Setup(service => service.FetchCertificationByID(It.IsAny<string>()))
+            .ReturnsAsync((Certification)null!);
+        var controller = new CertificationController(certificationMoq.Object, loggerMoq.Object);
+
+        // Act
+        var result = await controller.Get("id");
+
+        // Assert
+        var objectResult = Assert.IsType<NotFoundObjectResult>(result);
+
+        Assert.Equal(404, objectResult.StatusCode);
     }
 }
