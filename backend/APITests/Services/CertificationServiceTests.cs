@@ -29,8 +29,8 @@ public class CertificationServiceTests
     {
         // Arrange
         var databaseMoq = new Mock<IDatabaseService>();
-        var expectedCertification = new Certification(); // create a sample certification
-        databaseMoq.Setup(service => service.FetchCertificationById("id"))
+        var expectedCertification = new Certification();
+        databaseMoq.Setup(service => service.FetchCertificationById(It.IsAny<string>()))
             .ReturnsAsync(expectedCertification);
 
         var certificationService = new CertificationService(databaseMoq.Object);

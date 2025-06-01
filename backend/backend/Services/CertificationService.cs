@@ -8,7 +8,7 @@ namespace backend.Services
     {
         public Task<IReadOnlyList<Certification>> FetchAllCertifications();
 
-        public Task<Certification> FetchCertificationByID(string id);
+        public Task<Certification?> FetchCertificationByID(string id);
     }
 
     public class CertificationService : ICertificationService
@@ -25,7 +25,7 @@ namespace backend.Services
             return await _databaseService.FetchAllCertifications();
         }
 
-        public async Task<Certification> FetchCertificationByID(string id)
+        public async Task<Certification?> FetchCertificationByID(string id)
         {
             return await _databaseService.FetchCertificationById(id);
         }

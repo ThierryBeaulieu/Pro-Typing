@@ -37,15 +37,10 @@ namespace backend.Services
             return certifications;
         }
 
-        public async Task<Certification> FetchCertificationById(string id)
+        public async Task<Certification?> FetchCertificationById(string id)
         {
-
             IReadOnlyList<Certification> certifications = await FetchAllCertifications();
-
             var cert = certifications.FirstOrDefault(c => c.ID == id);
-            if (cert == null)
-                throw new KeyNotFoundException($"Certification with ID '{id}' not found.");
-
             return cert;
         }
     }
