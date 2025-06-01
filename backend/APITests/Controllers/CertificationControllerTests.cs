@@ -4,6 +4,7 @@ using backend.Schemas;
 using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using Moq;
 
 public class CertificationControllerTests
@@ -80,7 +81,6 @@ public class CertificationControllerTests
     [Fact]
     public async Task FetchCertificationByID_WhenEmpty_ShouldReturnError404()
     {
-
         var loggerMoq = new Mock<ILogger<CertificationController>>();
         var certificationMoq = new Mock<ICertificationService>();
         certificationMoq.Setup(service => service.FetchCertificationById(It.IsAny<string>()))
@@ -137,5 +137,47 @@ public class CertificationControllerTests
         var certifications = Assert.IsType<List<Certification>>(okResult.Value);
 
         Assert.Equal(9, certifications.Count);
+    }
+
+
+    [Fact]
+    public async Task FetchCertificationimg_IntegrationTest()
+    {
+        var stubJson = @"
+        [   
+            {
+              ""ID"": ""06cb4d77-42d7-4d9f-a515-97bf7b0d93b8"",
+              ""FileName"": ""space-man.jpeg"",
+              ""Base64"": """"
+            }
+        ]
+        ";
+
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync(stubJson);
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(true);
+
+        byte[] stub = new byte[] { 0x01, 0xFF, 0x00, 0x7A };
+        fileServiceMock.Setup(service => service.ReadAllBytesAsync(It.IsAny<string>()))
+        .ReturnsAsync(stub);
+
+        var databaseService = new DatabaseJSONService(fileServiceMock.Object);
+        var certificationService = new CertificationService(databaseService);
+
+
+        var logger = new Mock<ILogger<CertificationController>>();
+        var controller = new CertificationController(certificationService, logger.Object);
+
+        // Act
+        var result = await controller.GetCertificationImgById("06cb4d77-42d7-4d9f-a515-97bf7b0d93b8");
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var certificationImg = Assert.IsType<CertificationImg>(okResult.Value);
+
+        Assert.Equal("06cb4d77-42d7-4d9f-a515-97bf7b0d93b8", certificationImg.ID);
     }
 }

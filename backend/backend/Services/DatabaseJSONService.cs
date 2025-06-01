@@ -65,7 +65,6 @@ namespace backend.Services
             string base64img = Convert.ToBase64String(imageBytes);
 
             return base64img;
-
         }
 
         public async Task<CertificationImg?> FetchCertificationImgById(string id)
