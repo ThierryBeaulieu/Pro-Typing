@@ -21,4 +21,16 @@ namespace backend.Schemas
         public string ImgID { get; init; } = string.Empty;
 
     }
+
+    public record CertificationImg
+    {
+        [Required]
+        public string ID { get; init; } = string.Empty;
+
+        [Required]
+        public string FileName { get; init; } = string.Empty;
+
+        [Required]
+        public string Base64 { get; init; } = string.Empty;
+    }
 }
