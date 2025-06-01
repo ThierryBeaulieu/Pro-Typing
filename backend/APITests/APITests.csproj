@@ -29,9 +29,11 @@
   <ItemGroup>
     <None Remove="Services\" />
     <None Remove="Controllers\" />
+    <None Remove="TestData\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Controllers\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
 </Project>
