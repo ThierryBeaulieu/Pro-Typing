@@ -421,4 +421,5 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 
-# End of https://mrkandreev.name/snippets/gitignore-generator/#VisualStudio
+# coverage tools 
+coverage-report/
