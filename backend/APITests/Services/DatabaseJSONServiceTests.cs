@@ -72,7 +72,23 @@ public class DatabaseJSONServiceTests
     {
         var fileServiceMock = new Mock<IFileService>();
         fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
-            .ReturnsAsync("");
+            .ReturnsAsync("||");
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(true);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+
+        var exception = await Assert.ThrowsAsync<JsonException>(() =>
+          databaseJSONService.FetchAllCertifications());
+    }
+
+    [Fact]
+    public async void FetchAllCertification_WhenNullJSON_ShouldReturn500()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync("null");
 
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(true);
@@ -83,12 +99,5 @@ public class DatabaseJSONServiceTests
           databaseJSONService.FetchAllCertifications());
 
         Assert.Contains("Failed to deserialize certifications: JSON content is invalid or empty.", exception.Message);
-
-    }
-
-    [Fact]
-    public async void FetchAllCertification_WhenDeserializationFails_ShouldReturn500()
-    {
-        throw new NotImplementedException("TODO");
     }
 }
