@@ -1,22 +1,94 @@
 ﻿namespace APITests;
 
+using System.Text.Json;
 using backend.Schemas;
 using backend.Services;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 public class DatabaseJSONServiceTests
 {
-    private readonly DatabaseJSONService _databaseJSONService;
+    private readonly string _stubJson;
 
     public DatabaseJSONServiceTests()
     {
-        _databaseJSONService = new DatabaseJSONService();
+        _stubJson = @"
+        [
+            {
+            ""id"": ""d1181969-6ae4-4a2f-9bb7-4e692aa278e7"",
+            ""name"": ""Average Typist"",
+            ""description"": ""This range includes 40-50% of all people. This certification ensures that you are typing as fast as the average person."",
+            ""range"": ""40-55 words per minute"",
+            ""imgID"": ""1e0c8f97-9ec2-4353-b8eb-482b2a45c9c5""
+            },
+            {
+            ""id"": ""11a26b4c-2795-4621-8e65-e16dfa2ff989"",
+            ""name"": ""Certified Typist"",
+            ""description"": ""This range includes 25-30% of people. At this level, you are faster than the majority but not yet at the professional level."",
+            ""range"": ""60-75 words per minute"",
+            ""imgID"": ""39db54a6-c7f6-4311-8e6a-b4879cf9f21d""
+            }
+        ]";
     }
 
     [Fact]
     public async void FetchAllCertification_ShouldReturnAllCertifications()
     {
-        // todo
-        await _databaseJSONService.FetchAllCertifications();
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync(_stubJson);
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(true);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "path");
+
+        var result = await databaseJSONService.FetchAllCertifications();
+
+        Assert.Equal(2, result.Count);
+    }
+
+    [Fact]
+    public async void FetchAllCertification_WhenDatabaseIsntFound_ShouldReturn500()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync(_stubJson);
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(false);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+
+        var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
+            databaseJSONService.FetchAllCertifications());
+
+        Assert.Contains("The database file was not found at path test", exception.Message);
+    }
+
+
+    [Fact]
+    public async void FetchAllCertification_WhenCorruptedDataFormat_ShouldReturn500()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync("");
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(true);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+
+        var exception = await Assert.ThrowsAsync<JsonException>(() =>
+          databaseJSONService.FetchAllCertifications());
+
+        Assert.Contains("Failed to deserialize certifications: JSON content is invalid or empty.", exception.Message);
+
+    }
+
+    [Fact]
+    public async void FetchAllCertification_WhenDeserializationFails_ShouldReturn500()
+    {
+        throw new NotImplementedException("TODO");
     }
 }

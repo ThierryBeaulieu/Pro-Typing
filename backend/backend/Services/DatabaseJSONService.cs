@@ -24,7 +24,7 @@ namespace backend.Services
             if (!_fileService.Exists(_databasePath))
             {
                 throw new FileNotFoundException($"The database file was not found at path {_databasePath}");
-            }
+            }   
 
             string databaseJson = await _fileService.ReadAllTextAsync(_databasePath);
             List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
