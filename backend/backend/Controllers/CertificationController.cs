@@ -60,7 +60,7 @@ namespace backend.Controllers
         {
             try
             {
-                var certification = await _service.FetchCertificationByID(id);
+                var certification = await _service.FetchCertificationById(id);
 
                 if (certification == null)
                 {

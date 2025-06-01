@@ -83,7 +83,7 @@ public class CertificationControllerTests
 
         var loggerMoq = new Mock<ILogger<CertificationController>>();
         var certificationMoq = new Mock<ICertificationService>();
-        certificationMoq.Setup(service => service.FetchCertificationByID(It.IsAny<string>()))
+        certificationMoq.Setup(service => service.FetchCertificationById(It.IsAny<string>()))
             .ReturnsAsync((Certification)null!);
         var controller = new CertificationController(certificationMoq.Object, loggerMoq.Object);
 
@@ -94,5 +94,48 @@ public class CertificationControllerTests
         var objectResult = Assert.IsType<NotFoundObjectResult>(result);
 
         Assert.Equal(404, objectResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task FetchCertificationByID_IntegrationTest()
+    {
+        var fileService = new FileService();
+        var databaseService = new DatabaseJSONService(fileService);
+        var certificationService = new CertificationService(databaseService);
+
+
+        var logger = new Mock<ILogger<CertificationController>>();
+        var controller = new CertificationController(certificationService, logger.Object);
+
+        // Act
+        var testId = "d1181969-6ae4-4a2f-9bb7-4e692aa278e7";
+        var result = await controller.Get(testId);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var certification = Assert.IsType<Certification>(okResult.Value);
+
+        Assert.Equal(testId, certification.ID);
+    }
+
+    [Fact]
+    public async Task FetchCertifications_IntegrationTest()
+    {
+        var fileService = new FileService();
+        var databaseService = new DatabaseJSONService(fileService);
+        var certificationService = new CertificationService(databaseService);
+
+
+        var logger = new Mock<ILogger<CertificationController>>();
+        var controller = new CertificationController(certificationService, logger.Object);
+
+        // Act
+        var result = await controller.Get();
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var certifications = Assert.IsType<List<Certification>>(okResult.Value);
+
+        Assert.Equal(9, certifications.Count);
     }
 }

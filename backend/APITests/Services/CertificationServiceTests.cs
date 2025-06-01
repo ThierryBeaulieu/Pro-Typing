@@ -36,7 +36,7 @@ public class CertificationServiceTests
         var certificationService = new CertificationService(databaseMoq.Object);
 
         // Act
-        var result = await certificationService.FetchCertificationByID("id");
+        var result = await certificationService.FetchCertificationById("id");
 
         // Assert
         databaseMoq.Verify(service => service.FetchCertificationById("id"), Times.Once());

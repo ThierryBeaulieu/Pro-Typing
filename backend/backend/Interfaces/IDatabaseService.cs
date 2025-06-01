@@ -9,5 +9,7 @@ namespace backend.Services
         public Task<IReadOnlyList<Certification>> FetchAllCertifications();
 
         public Task<Certification?> FetchCertificationById(string id);
+
+        public Task<string?> FetchAssetById(string id);
     }
 }

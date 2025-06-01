@@ -8,7 +8,7 @@ namespace backend.Services
         private readonly IFileService _fileService;
         private readonly string _databasePath;
 
-        public DatabaseJSONService(IFileService fileService, string databasePath = "Database/database.json")
+        public DatabaseJSONService(IFileService fileService, string databasePath = "Database/certifications.json")
         {
             _fileService = fileService;
             _databasePath = databasePath;
@@ -42,6 +42,11 @@ namespace backend.Services
             IReadOnlyList<Certification> certifications = await FetchAllCertifications();
             var cert = certifications.FirstOrDefault(c => c.ID == id);
             return cert;
+        }
+
+        public async Task<string?> FetchAssetById(string id)
+        {
+            throw new NotImplementedException("not done yet");
         }
     }
 }
