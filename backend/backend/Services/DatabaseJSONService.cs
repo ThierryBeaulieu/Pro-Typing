@@ -6,12 +6,14 @@ namespace backend.Services
     public class DatabaseJSONService : IDatabaseService
     {
         private readonly IFileService _fileService;
-        private readonly string _databasePath;
+        private readonly string _certificationPath;
+        private readonly string _certificationImgPath;
 
-        public DatabaseJSONService(IFileService fileService, string databasePath = "Database/certifications.json")
+        public DatabaseJSONService(IFileService fileService)
         {
             _fileService = fileService;
-            _databasePath = databasePath;
+            _certificationPath = "Database/certifications.json";
+            _certificationImgPath = "Database/certificationImgs.json";
         }
 
         public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
@@ -21,12 +23,12 @@ namespace backend.Services
                 PropertyNameCaseInsensitive = true
             };
 
-            if (!_fileService.Exists(_databasePath))
+            if (!_fileService.Exists(_certificationPath))
             {
-                throw new FileNotFoundException($"The database file was not found at path {_databasePath}");
+                throw new FileNotFoundException($"The database file was not found at path {_certificationPath}");
             }   
 
-            string databaseJson = await _fileService.ReadAllTextAsync(_databasePath);
+            string databaseJson = await _fileService.ReadAllTextAsync(_certificationPath);
             List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
 
             if (certifications == null)

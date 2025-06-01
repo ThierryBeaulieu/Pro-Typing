@@ -18,11 +18,13 @@
     <None Remove="Schemas\" />
     <None Remove="Services\" />
     <None Remove="Interfaces\" />
+    <None Remove="Database\Assets\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
     <Folder Include="Schemas\" />
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Database\Assets\" />
   </ItemGroup>
 </Project>

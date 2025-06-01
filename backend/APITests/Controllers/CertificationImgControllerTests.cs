@@ -40,6 +40,5 @@ public class CertificationImgControllerTests
         var objectResult = Assert.IsType<NotFoundObjectResult>(result);
 
         Assert.Equal(404, objectResult.StatusCode);
-
     }
 }
