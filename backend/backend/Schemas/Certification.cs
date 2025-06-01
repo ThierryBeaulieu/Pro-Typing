@@ -31,6 +31,6 @@ namespace backend.Schemas
         public string FileName { get; init; } = string.Empty;
 
         [Required]
-        public string Base64 { get; init; } = string.Empty;
+        public string Base64 { get; set; } = string.Empty;
     }
 }

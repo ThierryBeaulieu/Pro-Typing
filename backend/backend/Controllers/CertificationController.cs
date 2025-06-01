@@ -32,7 +32,7 @@ namespace backend.Controllers
         /// or 500 Internal Server Error if an exception occurs.
         /// </returns>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllCertifications()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace backend.Controllers
         /// or 500 Internal Server Error if an exception occurs.
         /// </returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> GetCertification(string id)
         {
             try
             {
@@ -77,5 +77,35 @@ namespace backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a certification by its unique identifier asynchronously.
+        /// </summary>
+        /// <param name="id">The unique identifier of the certification.</param>
+        /// <returns>
+        /// Returns 200 OK with the certification data if found,
+        /// 404 Not Found if the certification does not exist,
+        /// or 500 Internal Server Error if an exception occurs.
+        /// </returns>
+        [HttpGet("asset/{id}")]
+        public async Task<IActionResult> GetCertificationById(string id)
+        {
+            try
+            {
+                var certificationImg = await _service.FetchCertificationImgById(id);
+
+                if (certificationImg == null)
+                {
+                    _logger.LogWarning("Certification with ImgId {CertificationId} not found.", id);
+                    return NotFound(new { message = $"Certification with ID {id} not found." });
+                }
+
+                return Ok(certificationImg);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while fetching certification with ImgId {CertificationId}.", id);
+                return StatusCode(500, new { message = "An error occurred while processing your request." });
+            }
+        }
     }
 }

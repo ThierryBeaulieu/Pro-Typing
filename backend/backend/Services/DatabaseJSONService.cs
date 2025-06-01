@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 using backend.Schemas;
 namespace backend.Services
@@ -59,10 +60,38 @@ namespace backend.Services
 
         }
 
-        public async Task<CertificationImg?> FetchAssetById(string id)
+        private async Task<string> FetchCertificationImgByName(string fileName)
+        {
+            var imgPath = "Database/Assets/" + fileName;
+            if (!_fileService.Exists(imgPath))
+            {
+                throw new FileNotFoundException($"The database file was not found at path {imgPath}");
+            }
+
+            byte[] imageBytes = await _fileService.ReadAllBytesAsync(imgPath);
+            string base64img = Convert.ToBase64String(imageBytes);
+
+            return base64img;
+
+        }
+
+        public async Task<CertificationImg?> FetchCertificationImgById(string id)
         {
             IReadOnlyList<CertificationImg> images = await FetchAllCertificationsImg();
-            var img = images.FirstOrDefault(c => c.ID == id);
+
+            if (images == null || images.Count < 0)
+            {
+                throw new InvalidOperationException("No certification images were found in the database.");
+            }
+
+            CertificationImg? img = images.FirstOrDefault(c => c.ID == id);
+
+            if (img == null)
+            {
+                throw new KeyNotFoundException($"No certification image found with ID '{id}'.");
+            }
+
+            img.Base64 = await FetchCertificationImgByName(img.FileName);
             return img;
         }
     }
