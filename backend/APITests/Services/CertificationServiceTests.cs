@@ -43,4 +43,24 @@ public class CertificationServiceTests
         Assert.NotNull(result);
         Assert.Equal(expectedCertification, result);
     }
+
+    [Fact]
+    public async Task FetchCertificationByID_ShouldReturnASpecificCertificationImg()
+    {
+        // Arrange
+        var databaseMoq = new Mock<IDatabaseService>();
+        var expectedCertification = new CertificationImg();
+        databaseMoq.Setup(service => service.FetchCertificationImgById(It.IsAny<string>()))
+            .ReturnsAsync(expectedCertification);
+
+        var certificationService = new CertificationService(databaseMoq.Object);
+
+        // Act
+        var result = await certificationService.FetchCertificationImgById("id");
+
+        // Assert
+        databaseMoq.Verify(service => service.FetchCertificationImgById("id"), Times.Once());
+        Assert.NotNull(result);
+        Assert.Equal(expectedCertification, result);
+    }
 }

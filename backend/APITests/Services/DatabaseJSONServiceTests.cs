@@ -163,7 +163,6 @@ public class DatabaseJSONServiceTests
         Assert.Contains("Failed to deserialize file at Database/certificationImgs.json: JSON content is invalid or empty.", exception.Message);
     }
 
-
     [Fact]
     public async void FetchAllCertificationImgById_ShouldReturnAnImg()
     {
@@ -186,5 +185,4 @@ public class DatabaseJSONServiceTests
         Assert.Equal("space-man.jpeg", result.FileName);
         Assert.Equal("06cb4d77-42d7-4d9f-a515-97bf7b0d93b8", result.ID);
     }
-
 }
