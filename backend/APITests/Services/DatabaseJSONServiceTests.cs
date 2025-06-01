@@ -152,9 +152,9 @@ public class DatabaseJSONServiceTests
         var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var exception = await Assert.ThrowsAsync<JsonException>(() =>
-          databaseJSONService.FetchAllCertifications());
+          databaseJSONService.FetchCertificationImgById("test"));
 
-        Assert.Contains("Failed to deserialize file at Database/certifications.json: JSON content is invalid or empty.", exception.Message);
+        Assert.Contains("Failed to deserialize file at Database/certificationImgs.json: JSON content is invalid or empty.", exception.Message);
     }
 
 }
