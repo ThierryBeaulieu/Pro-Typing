@@ -8,11 +8,12 @@ using Moq;
 
 public class DatabaseJSONServiceTests
 {
-    private readonly string _stubJson;
+    private readonly string _stubCertifications;
+    private readonly string _stubCertificationsImg;
 
     public DatabaseJSONServiceTests()
     {
-        _stubJson = @"
+        _stubCertifications = @"
         [
             {
             ""id"": ""d1181969-6ae4-4a2f-9bb7-4e692aa278e7"",
@@ -29,6 +30,15 @@ public class DatabaseJSONServiceTests
             ""imgID"": ""39db54a6-c7f6-4311-8e6a-b4879cf9f21d""
             }
         ]";
+
+        _stubCertificationsImg = @"
+        [
+            {
+            ""id"": ""06cb4d77-42d7-4d9f-a515-97bf7b0d93b8"",
+            ""fileName"": ""space-man.jpeg"",
+            ""base64"": """"
+            }
+        ]";
     }
 
     [Fact]
@@ -36,7 +46,7 @@ public class DatabaseJSONServiceTests
     {
         var fileServiceMock = new Mock<IFileService>();
         fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
-            .ReturnsAsync(_stubJson);
+            .ReturnsAsync(_stubCertifications);
 
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(true);
@@ -53,7 +63,7 @@ public class DatabaseJSONServiceTests
     {
         var fileServiceMock = new Mock<IFileService>();
         fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
-            .ReturnsAsync(_stubJson);
+            .ReturnsAsync(_stubCertifications);
 
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(false);
@@ -145,16 +155,36 @@ public class DatabaseJSONServiceTests
         fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
             .ReturnsAsync("null");
 
-        byte[] stub = new byte[] { 0x01, 0xFF, 0x00, 0x7A };
-        fileServiceMock.Setup(service => service.ReadAllBytesAsync(It.IsAny<string>()))
-        .ReturnsAsync(stub);
-
         var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var exception = await Assert.ThrowsAsync<JsonException>(() =>
           databaseJSONService.FetchCertificationImgById("test"));
 
         Assert.Contains("Failed to deserialize file at Database/certificationImgs.json: JSON content is invalid or empty.", exception.Message);
+    }
+
+
+    [Fact]
+    public async void FetchAllCertificationImgById_ShouldReturnAnImg()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync(_stubCertificationsImg);
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+            .Returns(true);
+
+        byte[] stub = new byte[] { 0x01, 0xFF, 0x00, 0x7A };
+        fileServiceMock.Setup(service => service.ReadAllBytesAsync(It.IsAny<string>()))
+        .ReturnsAsync(stub);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
+
+        CertificationImg? result = await databaseJSONService.FetchCertificationImgById("06cb4d77-42d7-4d9f-a515-97bf7b0d93b8");
+
+        Assert.NotNull(result);
+        Assert.Equal("space-man.jpeg", result.FileName);
+        Assert.Equal("06cb4d77-42d7-4d9f-a515-97bf7b0d93b8", result.ID);
     }
 
 }

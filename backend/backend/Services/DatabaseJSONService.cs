@@ -72,7 +72,7 @@ namespace backend.Services
         {
             IReadOnlyList<CertificationImg> images = await FetchFromJsonFileAsync<CertificationImg>(_certificationImgPath);
 
-            if (images == null || images.Count < 0)
+            if (images.Count < 0)
             {
                 throw new InvalidOperationException("No certification images were found in the database.");
             }
