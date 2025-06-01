@@ -56,7 +56,7 @@ namespace backend.Controllers
         /// or 500 Internal Server Error if an exception occurs.
         /// </returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCertification(string id)
+        public async Task<IActionResult> GetCertificationById(string id)
         {
             try
             {
@@ -78,16 +78,16 @@ namespace backend.Controllers
         }
 
         /// <summary>
-        /// Retrieves a certification by its unique identifier asynchronously.
+        /// Retrieves a certification img by its unique identifier asynchronously.
         /// </summary>
-        /// <param name="id">The unique identifier of the certification.</param>
+        /// <param name="id">The unique identifier of the certification Img.</param>
         /// <returns>
-        /// Returns 200 OK with the certification data if found,
-        /// 404 Not Found if the certification does not exist,
+        /// Returns 200 OK with the certification img data if found,
+        /// 404 Not Found if the certification img does not exist,
         /// or 500 Internal Server Error if an exception occurs.
         /// </returns>
-        [HttpGet("asset/{id}")]
-        public async Task<IActionResult> GetCertificationById(string id)
+        [HttpGet("img/{id}")]
+        public async Task<IActionResult> GetCertificationImgById(string id)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace backend.Controllers
 
                 if (certificationImg == null)
                 {
-                    _logger.LogWarning("Certification with ImgId {CertificationId} not found.", id);
+                    _logger.LogWarning("Certification with certification img ID {CertificationId} not found.", id);
                     return NotFound(new { message = $"Certification with ID {id} not found." });
                 }
 
@@ -103,7 +103,7 @@ namespace backend.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while fetching certification with ImgId {CertificationId}.", id);
+                _logger.LogError(ex, "Error occurred while fetching certification img with ID {CertificationId}.", id);
                 return StatusCode(500, new { message = "An error occurred while processing your request." });
             }
         }

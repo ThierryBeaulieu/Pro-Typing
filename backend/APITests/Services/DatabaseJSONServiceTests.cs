@@ -98,6 +98,6 @@ public class DatabaseJSONServiceTests
         var exception = await Assert.ThrowsAsync<JsonException>(() =>
           databaseJSONService.FetchAllCertifications());
 
-        Assert.Contains("Failed to deserialize certifications: JSON content is invalid or empty.", exception.Message);
+        Assert.Contains("Failed to deserialize file at Database/certifications.json: JSON content is invalid or empty.", exception.Message);
     }
 }

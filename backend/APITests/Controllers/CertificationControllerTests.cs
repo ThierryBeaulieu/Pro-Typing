@@ -46,7 +46,7 @@ public class CertificationControllerTests
     public async Task Controller_ShouldFetchAllCertifications()
     {
         // Act
-        var result = await _controller.Get();
+        var result = await _controller.GetAllCertifications();
 
         // Assert the type is OkObjectResult (HTTP 200)
         var okResult = Assert.IsType<OkObjectResult>(result);
@@ -69,7 +69,7 @@ public class CertificationControllerTests
         var controller = new CertificationController(certificationMoq.Object, loggerMoq.Object);
 
         // Act
-        var result = await controller.Get();
+        var result = await controller.GetAllCertifications();
 
         // Assert
         var objectResult = Assert.IsType<ObjectResult>(result);
@@ -88,7 +88,7 @@ public class CertificationControllerTests
         var controller = new CertificationController(certificationMoq.Object, loggerMoq.Object);
 
         // Act
-        var result = await controller.Get("id");
+        var result = await controller.GetCertificationById("id");
 
         // Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(result);
@@ -109,7 +109,7 @@ public class CertificationControllerTests
 
         // Act
         var testId = "d1181969-6ae4-4a2f-9bb7-4e692aa278e7";
-        var result = await controller.Get(testId);
+        var result = await controller.GetCertificationById(testId);
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
@@ -130,7 +130,7 @@ public class CertificationControllerTests
         var controller = new CertificationController(certificationService, logger.Object);
 
         // Act
-        var result = await controller.Get();
+        var result = await controller.GetAllCertifications();
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
