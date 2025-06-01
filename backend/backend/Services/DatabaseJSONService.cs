@@ -53,13 +53,6 @@ namespace backend.Services
             return cert;
         }
 
-
-        private async Task<IReadOnlyList<CertificationImg>> FetchAllCertificationsImg()
-        {
-            return await FetchFromJsonFileAsync<CertificationImg>(_certificationImgPath);
-
-        }
-
         private async Task<string> FetchCertificationImgByName(string fileName)
         {
             var imgPath = "Database/Assets/" + fileName;
@@ -77,7 +70,7 @@ namespace backend.Services
 
         public async Task<CertificationImg?> FetchCertificationImgById(string id)
         {
-            IReadOnlyList<CertificationImg> images = await FetchAllCertificationsImg();
+            IReadOnlyList<CertificationImg> images = await FetchFromJsonFileAsync<CertificationImg>(_certificationImgPath);
 
             if (images == null || images.Count < 0)
             {

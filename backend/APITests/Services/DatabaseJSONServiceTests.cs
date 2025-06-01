@@ -100,4 +100,19 @@ public class DatabaseJSONServiceTests
 
         Assert.Contains("Failed to deserialize file at Database/certifications.json: JSON content is invalid or empty.", exception.Message);
     }
+
+    [Fact]
+    public async void FetchAllCertificationImgById_WhenDatabaseIsntFound_ShouldReturn500()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+             .Returns(false);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
+
+        var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
+            databaseJSONService.FetchCertificationImgById("imgId"));
+
+        Assert.Contains("The database file was not found at path Database/certificationImgs.json", exception.Message);
+    }
 }
