@@ -41,7 +41,7 @@ public class DatabaseJSONServiceTests
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(true);
 
-        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "path");
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var result = await databaseJSONService.FetchAllCertifications();
 
@@ -58,12 +58,12 @@ public class DatabaseJSONServiceTests
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(false);
 
-        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
             databaseJSONService.FetchAllCertifications());
 
-        Assert.Contains("The database file was not found at path test", exception.Message);
+        Assert.Contains("The database file was not found at path Database/certifications.json", exception.Message);
     }
 
 
@@ -77,7 +77,7 @@ public class DatabaseJSONServiceTests
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(true);
 
-        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var exception = await Assert.ThrowsAsync<JsonException>(() =>
           databaseJSONService.FetchAllCertifications());
@@ -93,7 +93,7 @@ public class DatabaseJSONServiceTests
         fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
             .Returns(true);
 
-        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object, "test");
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
 
         var exception = await Assert.ThrowsAsync<JsonException>(() =>
           databaseJSONService.FetchAllCertifications());
