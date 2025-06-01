@@ -115,4 +115,46 @@ public class DatabaseJSONServiceTests
 
         Assert.Contains("The database file was not found at path Database/certificationImgs.json", exception.Message);
     }
+
+    [Fact]
+    public async void FetchCertificationByImg_WhenNullJSON_ShouldReturn500()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+          .Returns(true);
+
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync("null");
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
+
+        var exception = await Assert.ThrowsAsync<JsonException>(() =>
+          databaseJSONService.FetchCertificationImgById("test"));
+
+        Assert.Contains("Failed to deserialize file at Database/certificationImgs.json: JSON content is invalid or empty.", exception.Message);
+    }
+
+    [Fact]
+    public async void FetchAllCertificationImgById_ShouldReturnImg()
+    {
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(service => service.Exists(It.IsAny<string>()))
+             .Returns(true);
+
+        fileServiceMock.Setup(service => service.ReadAllTextAsync(It.IsAny<string>()))
+            .ReturnsAsync("null");
+
+        byte[] stub = new byte[] { 0x01, 0xFF, 0x00, 0x7A };
+        fileServiceMock.Setup(service => service.ReadAllBytesAsync(It.IsAny<string>()))
+        .ReturnsAsync(stub);
+
+        var databaseJSONService = new DatabaseJSONService(fileServiceMock.Object);
+
+        var exception = await Assert.ThrowsAsync<FileNotFoundException>(() =>
+            databaseJSONService.FetchCertificationImgById("imgId"));
+
+        Assert.Contains("The database file was not found at path Database/certificationImgs.json", exception.Message);
+    }
+
 }
