@@ -44,7 +44,7 @@ namespace backend.Services
             return cert;
         }
 
-        public async Task<string?> FetchAssetById(string id)
+        public async Task<CertificationImg?> FetchAssetById(string id)
         {
             throw new NotImplementedException("not done yet");
         }

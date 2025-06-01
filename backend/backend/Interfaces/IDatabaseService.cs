@@ -10,6 +10,6 @@ namespace backend.Services
 
         public Task<Certification?> FetchCertificationById(string id);
 
-        public Task<string?> FetchAssetById(string id);
+        public Task<CertificationImg?> FetchAssetById(string id);
     }
 }

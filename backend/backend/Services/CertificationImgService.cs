@@ -4,21 +4,21 @@ using backend.Schemas;
 
 namespace backend.Services
 {
-    public interface IAssetService
+    public interface ICertificationImgService
     {
-        public Task<string?> FetchAssetById(string id);
+        public Task<CertificationImg?> FetchAssetById(string id);
     }
 
-    public class AssetService : IAssetService
+    public class CertificationImgService : ICertificationImgService
     {
         private readonly IDatabaseService _databaseService;
 
-        public AssetService(IDatabaseService databaseService)
+        public CertificationImgService(IDatabaseService databaseService)
         {
             _databaseService = databaseService;
         }
 
-        public async Task<string?> FetchAssetById(string id)
+        public async Task<CertificationImg?> FetchAssetById(string id)
         {
             return await _databaseService.FetchAssetById(id);
         }

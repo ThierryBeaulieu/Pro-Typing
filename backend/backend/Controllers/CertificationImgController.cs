@@ -12,12 +12,12 @@ using backend.Services;
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
-    public class AssetController : Controller
+    public class CertificationImgController : Controller
     {
-        private readonly ILogger<AssetController> _logger;
-        private readonly IAssetService _service;
+        private readonly ILogger<CertificationImgController> _logger;
+        private readonly ICertificationImgService _service;
 
-        public AssetController(IAssetService service, ILogger<AssetController> logger)
+        public CertificationImgController(ICertificationImgService service, ILogger<CertificationImgController> logger)
         {
             _logger = logger;
             _service = service;
@@ -41,8 +41,8 @@ namespace backend.Controllers
 
                 if (certification == null)
                 {
-                    _logger.LogWarning("Certification with ID {CertificationId} not found.", id);
-                    return NotFound(new { message = $"Certification with ID {id} not found." });
+                    _logger.LogWarning("CertificationImg with ID {CertificationImg} not found.", id);
+                    return NotFound(new { message = $"CertificationImg   with ID {id} not found." });
                 }
 
                 return Ok(certification);
