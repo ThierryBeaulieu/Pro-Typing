@@ -2,10 +2,18 @@
 using System.Text.Json;
 using backend.Schemas;
 namespace backend.Services
-
 {
     public class DatabaseJSONService : IDatabaseService
     {
+        private readonly IFileService _fileService;
+        private readonly string _databasePath;
+
+        public DatabaseJSONService(IFileService fileService, string databasePath = "Database/database.json")
+        {
+            _fileService = fileService;
+            _databasePath = databasePath;
+        }
+
         public async Task<IReadOnlyList<Certification>> FetchAllCertifications()
         {
             var options = new JsonSerializerOptions
@@ -13,14 +21,12 @@ namespace backend.Services
                 PropertyNameCaseInsensitive = true
             };
 
-            string databasePath = "Database/database.json";
-
-            if (!File.Exists(databasePath))
+            if (!_fileService.Exists(_databasePath))
             {
-                throw new FileNotFoundException($"The database file was not found at path {databasePath}");
+                throw new FileNotFoundException($"The database file was not found at path {_databasePath}");
             }
 
-            string databaseJson = await File.ReadAllTextAsync(databasePath);
+            string databaseJson = await _fileService.ReadAllTextAsync(_databasePath);
             List<Certification>? certifications = JsonSerializer.Deserialize<List<Certification>>(databaseJson, options);
 
             if (certifications == null)
