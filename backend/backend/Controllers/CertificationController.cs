@@ -23,14 +23,6 @@ namespace backend.Controllers
             _service = service;
         }
 
-
-        /// <summary>
-        /// Retrieves all certifications asynchronously.
-        /// </summary>
-        /// <returns>
-        /// Returns 200 OK with a list of certifications on success,
-        /// or 500 Internal Server Error if an exception occurs.
-        /// </returns>
         [HttpGet]
         public async Task<IActionResult> GetAllCertifications()
         {
@@ -46,15 +38,6 @@ namespace backend.Controllers
             }
         }
 
-        /// <summary>
-        /// Retrieves a certification by its unique identifier asynchronously.
-        /// </summary>
-        /// <param name="id">The unique identifier of the certification.</param>
-        /// <returns>
-        /// Returns 200 OK with the certification data if found,
-        /// 404 Not Found if the certification does not exist,
-        /// or 500 Internal Server Error if an exception occurs.
-        /// </returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCertificationById(string id)
         {
@@ -77,15 +60,6 @@ namespace backend.Controllers
             }
         }
 
-        /// <summary>
-        /// Retrieves a certification img by its unique identifier asynchronously.
-        /// </summary>
-        /// <param name="id">The unique identifier of the certification Img.</param>
-        /// <returns>
-        /// Returns 200 OK with the certification img data if found,
-        /// 404 Not Found if the certification img does not exist,
-        /// or 500 Internal Server Error if an exception occurs.
-        /// </returns>
         [HttpGet("img/{id}")]
         public async Task<IActionResult> GetCertificationImgById(string id)
         {
