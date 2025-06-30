@@ -21,10 +21,8 @@ type CertificationCardType = {
 function CertificationCard({ image, data }: CertificationCardType) {
   const navigate = useNavigate();
 
-  const handleCertificationClick = (wordsPerMinute: number[]) => {
-    const min = wordsPerMinute[0];
-    const max = wordsPerMinute[wordsPerMinute.length - 1];
-    navigate(`/certification/${min}-${max}`);
+  const handleCertificationClick = (certificationId: string) => {
+    navigate(`/certification/${certificationId}`);
   };
 
   const isCertificationObtained = (wpm: number) => {
@@ -69,14 +67,14 @@ function CertificationCard({ image, data }: CertificationCardType) {
             <Button
               color={'secondary'}
               variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
+              onClick={() => handleCertificationClick(data.id)}
             >
               Complete again
             </Button>
           ) : (
             <Button
               variant="contained"
-              onClick={() => handleCertificationClick(data.wordsPerMinute)}
+              onClick={() => handleCertificationClick(data.id)}
             >
               Take Certification
             </Button>

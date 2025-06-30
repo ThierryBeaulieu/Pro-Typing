@@ -4,7 +4,7 @@ import text from '../../database/database.json';
 import Box from '@mui/material/Box/Box';
 import TypingResult from './TypingResult';
 import CertificationState from '../../enum/CertificationState';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -32,7 +32,7 @@ function TypingContent() {
   const [isTypingDone, setIsTypingDone] = useState<boolean>(false);
   const [precision, setPrecision] = useState<number>(0);
   const [wpm, setWPM] = useState<number>(0);
-  const { range } = useParams();
+  const range = '10-23';
   const navigate = useNavigate();
 
   const location = useLocation();

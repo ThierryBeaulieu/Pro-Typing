@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box/Box';
-import { useParams } from 'react-router';
 import { Button, Grid2 } from '@mui/material';
 import manWorking from '../../assets/man_working.png';
 import { useState } from 'react';
@@ -12,7 +11,7 @@ enum pageState {
 }
 
 function CertificationMenu() {
-  const { range } = useParams();
+  const range = '10-20';
   const [certificationState, setCertificationState] = useState<pageState>(
     pageState.PreCertification,
   );

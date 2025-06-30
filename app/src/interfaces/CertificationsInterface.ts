@@ -4,6 +4,7 @@ export interface CertificationWrapper {
 }
 
 export interface Certification {
+  id: string;
   name: string;
   range: string;
   description: string;

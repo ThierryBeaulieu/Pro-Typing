@@ -5,6 +5,7 @@ const certifications: CertificationWrapper[] = [
     name: 'Advanced',
     certifications: [
       {
+        id: '1',
         name: 'Average Typist',
         range: '40-55 words per minute',
         description:
@@ -12,6 +13,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [40, 45, 50, 55],
       },
       {
+        id: '2',
         name: 'Certified Typist',
         range: '60-75 words per minute',
         description:
@@ -19,6 +21,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [60, 65, 70, 75],
       },
       {
+        id: '3',
         name: 'Proficient Typist',
         range: '80-95 words per minute',
         description:
@@ -26,6 +29,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [80, 85, 90, 95],
       },
       {
+        id: '4',
         name: 'Advanced Typist',
         range: '100-115 words per minute',
         description:
@@ -33,6 +37,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [100, 105, 110, 115],
       },
       {
+        id: '5',
         name: 'Expert Typist',
         range: '120-135 words per minute',
         description:
@@ -40,6 +45,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [120, 125, 130, 135],
       },
       {
+        id: '6',
         name: 'Master Typist',
         range: '140-155 words per minute',
         description:
@@ -47,6 +53,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [140, 145, 150, 155],
       },
       {
+        id: '7',
         name: 'Elite Typist',
         range: '160-175 words per minute',
         description:
@@ -54,6 +61,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [160, 165, 170, 175],
       },
       {
+        id: '8',
         name: 'Distinguished Typist',
         range: '180-195 words per minute',
         description:
@@ -61,6 +69,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [180, 185, 190, 195],
       },
       {
+        id: '9',
         name: 'Virtuoso Typist',
         range: '200+ words per minute',
         description:
@@ -73,6 +82,7 @@ const certifications: CertificationWrapper[] = [
     name: 'Master',
     certifications: [
       {
+        id: '10',
         name: 'Grandmaster Typist',
         range: '220-235 words per minute',
         description:
@@ -80,6 +90,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [220, 225, 230, 235],
       },
       {
+        id: '11',
         name: 'Pinnacle Typist',
         range: '240-255 words per minute',
         description:
@@ -87,6 +98,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [240, 245, 250, 255],
       },
       {
+        id: '12',
         name: 'Legend Typist',
         range: '260-275 words per minute',
         description:
@@ -99,6 +111,7 @@ const certifications: CertificationWrapper[] = [
     name: 'World Record',
     certifications: [
       {
+        id: '13',
         name: 'Hall of Fame Typist',
         range: '280-295 words per minute',
         description:
@@ -106,6 +119,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [280, 285, 290, 295],
       },
       {
+        id: '14',
         name: 'World-Class Typist',
         range: '300-315 words per minute',
         description:
@@ -113,6 +127,7 @@ const certifications: CertificationWrapper[] = [
         wordsPerMinute: [300, 305, 310, 315],
       },
       {
+        id: '15',
         name: 'Record-Breaking Typist',
         range: '320-335 words per minute',
         description:

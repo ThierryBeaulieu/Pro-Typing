@@ -25,7 +25,7 @@ function App() {
       element: <CertificationsPage />,
     },
     {
-      path: '/certification/:range',
+      path: '/certification/:certificationId',
       element: <CertificationPage />,
     },
     {
