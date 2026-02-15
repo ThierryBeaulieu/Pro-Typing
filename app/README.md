@@ -48,3 +48,6 @@ export default tseslint.config({
   },
 });
 ```
+
+## Ok mais pour vrai, t'as bcp bcp de motivation, c'est quand même hot 🥵
+Nah, juste kidding, c'est pas ici, mais nice try
